@@ -1,6 +1,3 @@
-Here’s an updated and comprehensive **README.md** for your PC Mart BD repository:
-
----
 
 # PC Mart BD
 

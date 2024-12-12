@@ -1,4 +1,5 @@
 <?php
+require'../model/db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hasError = [];
@@ -139,6 +140,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Successfully registered";
         } else {
             echo "Failed to save data";
+        }
+
+        $mydb=new myDB();
+        $conObj=$mydb->openCon();
+        $result=$mydb->insertData(
+            $uname,
+            $email,
+            $pass,
+            $access,
+            $number,
+            $gender,
+            $bio,
+            $dob,
+            $doj,
+            $preadd,
+            $peradd,
+            $nidFile,
+            $picFile,
+            $'admin',
+            $conObj
+        );
+        if($result==1){
+            echo "<br>" ."Success";
+
+        }
+        else{
+            echo "Error";
         }
     }
 }

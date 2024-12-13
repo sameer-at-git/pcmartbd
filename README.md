@@ -114,10 +114,10 @@ This project is licensed under the **MIT License**. Feel free to use, modify, an
 
 For inquiries or support, feel free to reach out:
 
-- **Author**: Sameer Sayed
-              Rifat Talukdar
-              Md. Tamjid Hossain
-              Wasif Asad Alvi
+- **Author**: Sameer Sayed  <br>
+              Rifat Talukdar<br>
+              Md. Tamjid Hossain<br>
+              Wasif Asad Alvi<br>
 - **Email**: [sameer0sayed@gmail.com]
 - **GitHub**: [sameer-at-git](https://github.com/sameer-at-git)
 

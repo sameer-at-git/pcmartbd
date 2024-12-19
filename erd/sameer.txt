@@ -1,0 +1,7 @@
+Discuss with your group members 
+Create an ER Diagram
+using Microsoft word or any other tool. 
+Then go to PHPmyAdmin 
+and create a database, table and columns 
+based on the ER diagram. 
+All 4 group members must show they have same database.

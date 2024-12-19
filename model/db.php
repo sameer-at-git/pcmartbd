@@ -13,29 +13,22 @@ class myDB
         return $connectionObject;
     }
 
-    function insertData($uname,
-    $email,
-    $pass,
-    $access,
-    $number,
-    $gender,
-    $bio,
-    $dob,
-    $doj,
-    $preadd,
-    $peradd,
-    $nidFile,
-    $picFile, $table, $connectionObject)
+    function insertData($uname,$email,$pass,$access,$number,$gender,$bio,$dob,$doj,$preadd,$peradd,$nidFile,$picFile,$table,$connectionobject)
     {
-        $sql = "INSERT INTO users(name,email,password) 
-        VALUES('$name','$email','$password')";
-        if ($connectionObject->query($sql)) {
-            return 1;
-        } else {
-            return 0;
-        }
+        $sql = "INSERT INTO admin (
+            name, email, password, accesstype, number, gender, bio, dob, doj, presentaddress, permanentaddress, nidpic, propic
+        ) VALUES (
+            '$uname', '$email', '$pass', $access, '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', '$nidFile', '$picFile'
+        )";
+        $connectionobject->query($sql);
     }
 
+    function showUser($table, $conobj)
+    {
+        $sql = 'SELECT * FROM $table';
+        $results = $conobj->query($sql);
+        return $results;
+    }
 
     function closecon($connectionObject)
     {

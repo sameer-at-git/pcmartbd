@@ -8,7 +8,7 @@ if($results->num_rows>0){
   foreach($results as $data){
 	echo $data["id"];
 	echo $data["name"];
-	echo "<img src=' ".$data["filename"]." '>";
+	echo "<img src=' ".$data["propic"]." ' 'alt='Profile Picture'>";
 	echo "<br>";
 	echo $data["id"];
 	}
@@ -16,4 +16,5 @@ if($results->num_rows>0){
 else{
 echo "No users found";
 }
+$mydb->closeCon($conobj);
 ?>

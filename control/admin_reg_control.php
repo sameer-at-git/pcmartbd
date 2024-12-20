@@ -80,36 +80,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nidFile)) {
         $hasError[] = "NID file is required.";
     } else {
-        $allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
-        if (!in_array($nidFile["type"], $allowedTypes)) {
-            $hasError[] = "NID must be a JPEG, JPG, or PNG image.";
+        $nidExtension = pathinfo($nidFile["name"], PATHINFO_EXTENSION);
+        if (!in_array($nidExtension, ['jpeg', 'jpg', 'png'])) {
+            $hasError[] = "NID must have a valid image file extension (JPEG, JPG, or PNG).";
         }
+    }
+    if ($nidFile["size"] > 2 * 1024 * 1024) { 
+        $hasError[] = "NID file size should not exceed 2MB.";
     }
 
     if (empty($picFile)) {
         $hasError[] = "Profile picture is required.";
     } else {
-        $allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
-        if (!in_array($picFile["type"], $allowedTypes)) {
-            $hasError[] = "Profile picture must be a JPEG, JPG, or PNG image.";
+        $picExtension = pathinfo($picFile["name"], PATHINFO_EXTENSION);
+        if (!in_array($picExtension, ['jpeg', 'jpg', 'png'])) {
+            $hasError[] = "NID must have a valid image file extension (JPEG, JPG, or PNG).";
         }
     }
+    if ($picFile["size"] > 2 * 1024 * 1024) { 
+        $hasError[] = "Profile Picture size should not exceed 2MB.";
+    }
 
-    if (!empty($hasError)) {
-        echo "<h2>Please correct the following hasError:</h2>";
-        echo "<ul>";
-        foreach ($hasError as $error) {
-            echo "<li>$error</li>";
+    if (empty($hasError)) {
+
+        $nidPath = $nidFile ? "../uploads/nid_" . uniqid() . "." . pathinfo($nidFile["name"], PATHINFO_EXTENSION) : null;
+        $picPath = $picFile ? "../uploads/pic_" . uniqid() . "." . pathinfo($picFile["name"], PATHINFO_EXTENSION) : null;
+
+        if ($nidFile && !empty($nidFile["tmp_name"])) {
+            move_uploaded_file($nidFile["tmp_name"], $nidPath);
         }
-        echo "</ul>";
-    } else {
-        /* $nidPath = "../uploads/nid_" . uniqid() . "." . pathinfo($nidFile["name"], PATHINFO_EXTENSION);
-        $picPath = "../uploads/pic_" . uniqid() . "." . pathinfo($picFile["name"], PATHINFO_EXTENSION);
+        if ($picFile && !empty($picFile["tmp_name"])) {
+            move_uploaded_file($picFile["tmp_name"], $picPath);
+        }
 
-        move_uploaded_file($nidFile["tmp_name"], $nidPath);
-        move_uploaded_file($picFile["tmp_name"], $picPath);
-*/
-        $data = [
+        /*$data = [
             "username" => $uname,
             "email" => $email,
             "accessType" => $access,
@@ -141,6 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Failed to save data";
         }
+        */
 
         $mydb = new myDB();
         $conObj = $mydb->openCon();
@@ -156,8 +161,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $doj,
             $preadd,
             $peradd,
-            $nidFile,
-            $picFile,
+            $nidPath,
+            $picPath,
             'admin',
             $conObj
         );
@@ -166,6 +171,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Error";
         }
+    } else {
+        echo "<h2>Please correct the following errors:</h2><ul>";
+        foreach ($hasError as $error) {
+            echo "<li>$error</li>";
+        }
+        echo "</ul>";
     }
 }
 ?>

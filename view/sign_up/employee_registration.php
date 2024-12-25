@@ -9,7 +9,7 @@
 
 <body>
     <h2>Employee Registration</h2>
-    <form action="../../control/empreg.php" method="post">
+    <form action="../../control/employee_reg_control.php" method="post">
         <fieldset>
             <legend><b>Employee Personal Details</b></legend>
             <table>

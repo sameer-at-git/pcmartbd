@@ -9,7 +9,7 @@
 
 <body>
     <h2>Employee Registration</h2>
-    <form action="../../control/employee_reg_control.php" method="post">
+    <form action="../../control/empreg.php" method="post">
         <fieldset>
             <legend><b>Employee Personal Details</b></legend>
             <table>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>Permanent Address :</td>
-                    <td><textarea name="adress" id="" cols="30" rows="4"
+                    <td><textarea name="adresss" id="" cols="30" rows="4"
                             placeholder="Enter Your Permanent Address"></textarea></td>
                 </tr>
                 <tr>
@@ -103,7 +103,7 @@
             <table>
                 <tr>
                     <td>Email :</td>
-                    <td><input type="email" placeholder="abcd@gmail.com"></td>
+                    <td><input type="email" name="emai" placeholder="abcd@gmail.com"></td>
                 </tr>
                 <tr>
                     <td>Password :</td>
@@ -111,7 +111,7 @@
                 </tr>
                 <tr>
                     <td>Confirm Password :</td>
-                    <td><input type="password" placeholder="Re-Enter to Confirm"></td>
+                    <td><input type="password" name="confirmpass" placeholder="Re-Enter to Confirm"></td>
                 </tr>
             </table>
         </fieldset>

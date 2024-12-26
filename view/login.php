@@ -7,7 +7,7 @@
 </head>
 <body>
     
-<form action="../control/reg_control.php" method="POST">
+<form action="../control/login_control.php" method="POST">
         <h1>Login</h1>
         <fieldset>
           

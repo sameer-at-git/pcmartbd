@@ -1,5 +1,7 @@
 <?php
+session_start();
 require '../model/db.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hasError = [];
@@ -49,6 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($dob)) {
         $hasError[] = "Date of birth is required.";
+    } else {
+        $dobYear = date('Y', strtotime($dob));
+        $currentYear = date('Y');
+        $age = $currentYear - $dobYear;
+        if ($age < 20) {
+            $hasError[] = "You must be at least 20 years old.";
+        }
     }
 
     if (empty($doj)) {
@@ -85,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hasError[] = "NID must have a valid image file extension (JPEG, JPG, or PNG).";
         }
     }
-    if ($nidFile["size"] > 2 * 1024 * 1024) { 
+    if ($nidFile["size"] > 2 * 1024 * 1024) {
         $hasError[] = "NID file size should not exceed 2MB.";
     }
 
@@ -97,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hasError[] = "NID must have a valid image file extension (JPEG, JPG, or PNG).";
         }
     }
-    if ($picFile["size"] > 2 * 1024 * 1024) { 
+    if ($picFile["size"] > 2 * 1024 * 1024) {
         $hasError[] = "Profile Picture size should not exceed 2MB.";
     }
 
@@ -167,7 +176,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conObj
         );
         if ($result == 1) {
-            echo "<br>" . "Success";
+            //echo "<br>" . "Success";
+            header("Location:../view/login.php");
         } else {
             echo "Error";
         }
@@ -179,4 +189,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "</ul>";
     }
 }
-?>

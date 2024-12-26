@@ -1,5 +1,4 @@
 <?php
-
 class myDB
 {
     function openCon()
@@ -28,13 +27,20 @@ class myDB
 
     function showUser($table, $conobj)
     {
-        $sql = 'SELECT * FROM $table';
+        $sql = "SELECT * FROM $table";
         $results = $conobj->query($sql);
         return $results;
     }
 
+
+    function getUserByID($table,$connectionObject,$id)
+    {
+        $sql='SELECT * FROM $table WHERE id=$id';
+
+    }
     function closecon($connectionObject)
     {
         $connectionObject->close();
     }
 }
+?>

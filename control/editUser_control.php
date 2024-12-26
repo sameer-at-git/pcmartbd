@@ -1,5 +1,9 @@
 <?php
+
 session_start();
+//echo "$_GET["id"]";
+
+
 if (!isset($_SESSION['user_email'])) {
     header('Location: login.php');
     exit;
@@ -30,3 +34,5 @@ if ($result && $result->num_rows > 0) {
 
 $mydb->closecon($connection);
 ?>
+
+

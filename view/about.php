@@ -1,3 +1,7 @@
+<?php
+session_start();?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +17,8 @@
         <a href="home.php">Home</a> |
         <a href="about.php">About Us</a> |
         <a href="contact.php">Contact</a> |
-        <a href="login.php">Login</a>
+        <a href="profile.php">Profile</a> |
+        <a href="../control/sessionout.php">Logout</a>
     </nav>
     <main>
         <section>

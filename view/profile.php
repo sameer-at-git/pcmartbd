@@ -1,16 +1,20 @@
 <?php
-include '../control/showUser_control.php'; 
+session_start();
+if (!isset($_SESSION['user_email'])) {
+    header('Location: login.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Profile Info</title>
+    <title>Admin Profile</title>
 </head>
 <body>
     <header>
-        <h1>Admin Profile Information</h1>
+        <h1>Welcome, <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] : "User"; ?></h1>
         <nav>
             <a href="home.php">Home</a> |
             <a href="about.php">About Us</a> |
@@ -20,9 +24,9 @@ include '../control/showUser_control.php';
     </header>
 
     <main>
-        <?php
-        echo $adminProfileHTML ?? "<p>No user data found.</p>";
-        ?>
+        <form action="showUsers.php" method="get">
+            <button type="submit">Show Info</button>
+        </form>
     </main>
 
     <footer>

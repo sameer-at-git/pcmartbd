@@ -25,10 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
             if ($user['password'] === $password) {
                 
-                $_SESSION['user_id'] = $user['id']; 
+                $_SESSION['user_id'] = $user['admin_id']; 
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['user_name'] = $user['name']; 
-                header("Location: ../view/profile.php");
+                $_SESSION['user_access'] = $user['access']; 
+                header("Location: ../view/admin_home.php");
                 exit();
             } else {
            

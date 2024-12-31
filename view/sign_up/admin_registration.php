@@ -15,9 +15,6 @@
                 <tr>
                     <td>Full Name :</td>
                     <td><input type="text" name="fullname" placeholder="Enter Full Name"></td>
-
-                    <td>Father's Name :</td>
-                    <td><input type="text" name="fname" placeholder="Enter Father's Name"></td>
                 </tr>
                 <tr>
                     <td>Gender :</td>
@@ -79,7 +76,7 @@
                 <tr>
                     <td>Bio/Link :</td>
                     <td>
-                        <input ype="text" name="bio" placeholder="Enter Portfolio or Github Link">
+                        <input type="text" name="bio" placeholder="Enter Portfolio or Github Link">
                     </td>
                 </tr>
             </table>
@@ -93,9 +90,9 @@
                     <td>Select Permissions :</td>
                     <td><select name="permit">
                             <option value="0"></option>
-                            <option value="1">Full Control</option>
-                            <option value="2">Product Control</option>
-                            <option value="3">Employee Control</option>
+                            <option value="Full Control">Full Control</option>
+                            <option value="Product Control">Product Control</option>
+                            <option value="Employee Control">Employee Control</option>
                         </select>
                     </td>
                 </tr>

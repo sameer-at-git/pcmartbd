@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dob = trim($_POST["dob"] ?? "");
     $doj = trim($_POST["doj"] ?? "");
     $bio = trim($_POST["bio"] ?? "");
-    $access = $_POST["permit"] ?? 0;
+    $access = trim($_POST["permit"] ?? "");
     $email = trim($_POST["email"] ?? "");
     $pass = $_POST["pass"] ?? "";
     $conpass = $_POST["conpass"] ?? "";
@@ -25,9 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hasError[] = "Name should be at least 4 characters.";
     }
 
-    if (empty($fname)) {
-        $hasError[] = "Father's name is required.";
-    }
 
     if (empty($email)) {
         $hasError[] = "Email field is required.";
@@ -176,7 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conObj
         );
         if ($result == 1) {
-            //echo "<br>" . "Success";
             header("Location:../view/login.php");
         } else {
             echo "Error";

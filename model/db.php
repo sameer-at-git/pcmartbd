@@ -11,7 +11,6 @@ class myDB
         if ($connectionObject->connect_error) {
             die("Connection failed: " . $connectionObject->connect_error);
         }
-
         return $connectionObject;
     }
 
@@ -20,27 +19,59 @@ class myDB
         $sql = "INSERT INTO admin (
             name, email, password, access, number, gender, bio, dob, doj, presentaddress, permanentaddress, 
             nidpic, propic)
-             VALUES ('$uname', '$email', '$pass', $access, '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', 
+             VALUES ('$uname', '$email', '$pass', '$access', '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', 
              '$nidPath', '$picPath')";
         return $connectionobject->query($sql);
     }
 
-    function showUser($table, $conobj)
+    function getUserInfo($connectionObject, $id)
     {
-        $sql = "SELECT * FROM $table";
-        $results = $conobj->query($sql);
-        return $results;
+        $sql = "SELECT * FROM admin WHERE admin_id=$id";
+        $result = $connectionObject->query($sql);
+        return $result->fetch_assoc();
     }
 
-
-    function getUserByID($table,$connectionObject,$id)
+    function updateUserInfo($connectionObject, $id, $name, $number,  $bio, $dob,  $preadd, $peradd, $password)
     {
-        $sql='SELECT * FROM $table WHERE id=$id';
+        $sql = "UPDATE admin SET 
+                name='$name', 
+                number='$number',
+                bio='$bio',
+                dob='$dob',
+                presentaddress='$preadd',
+                permanentaddress='$peradd',
+                password='$password'
+                WHERE admin_id=$id";
 
+        return $connectionObject->query($sql);
     }
+
+    function deleteUserById($connectionObject, $userId)
+    {
+        $sql = "DELETE FROM admin WHERE admin_id = $userId";
+        return $connectionObject->query($sql);
+    }
+    function getTotalCount($table, $connectionObject)
+    {
+        $sql = "SELECT COUNT(*) as total FROM $table";
+        $result = $connectionObject->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+    function getTotalRevenue($connectionObject)
+    {
+        $sql = "SELECT SUM(price_per_unit*quantity) AS revenue FROM pcmartbd.orders";
+        $result = $connectionObject->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['revenue'];
+    }
+    function ChangePic($connectionObject,$id)
+    {
+        
+    }
+
     function closecon($connectionObject)
     {
         $connectionObject->close();
     }
 }
-?>

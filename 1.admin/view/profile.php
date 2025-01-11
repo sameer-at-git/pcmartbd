@@ -51,9 +51,21 @@ if(isset($_POST['editpic'])) {
 
 <head>
     <title>Admin Profile</title>
+    <link rel="stylesheet" href="../css/mystyle.css">
 </head>
 
 <body>
+<div>
+        <table>
+            <tr>
+                <td><a href="home.php">Home</a></td>
+                <td><a href="admin_home.php">Dashboard</a></td>
+                <td><a href="notifications.php">Notifications</a></td>
+                <td><a href="profile.php" class="active">Profile</a></td>
+                <td><a href="../control/sessionout.php">Logout</a></td>
+            </tr>
+        </table>
+</div>
     <h2>Admin information</h2>
     <form action="" method="POST" enctype="multipart/form-data">
         <fieldset>

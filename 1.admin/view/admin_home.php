@@ -14,25 +14,27 @@ $admin_type = $_SESSION['user_access'];
 
 <head>
     <title>Admin Home</title>
+    <link rel="stylesheet" href="../css/mystyle.css">
+
 </head>
 
 <body>
-    <nav>
+  <div class="all"> <div class="superlative"> <div>
         <table>
             <tr>
                 <td><a href="home.php">Home</a></td>
+                <td><a href="admin_home.php" class="active">Dashboard</a></td>
                 <td><a href="notifications.php">Notifications</a></td>
                 <td><a href="profile.php">Profile</a></td>
                 <td><a href="../control/sessionout.php">Logout</a></td>
             </tr>
         </table>
-    </nav>
-    -------------------------------------------------------------------------------------------------------------
-    <br>
-    <fieldset>
+</div>
+     <br>
+    <fieldset class="dashboard">
         
             <section id="currentstat">
-                <h2>Current Stat</h2>
+                <h3>Current Stat</h3>
         
         <ol>
             <li>Total Admins: <?php echo $db->getTotalCount('admin', $conn); ?></li>
@@ -48,7 +50,7 @@ $admin_type = $_SESSION['user_access'];
     </fieldset>
     <legend>
         <h2>Admin Functionalities</h2>
-    </legend>
+    </legend><div class="manage">
     <section id="functionalities">
         <section id="manage_technician">
             <h3><a href="functions/manage_technician.php">Manage Technician</a> </h3>
@@ -56,24 +58,25 @@ $admin_type = $_SESSION['user_access'];
         <?php
         if ($admin_type === 'Full Control' || $admin_type === 'Employee Control') {
             echo '<section id="manage-employees">
-        <h3><a href="functions/manage_employee.php">Manage Employees</a> </h3>
+        <h3 id="h3"><a href="functions/manage_employee.php">Manage Employees</a> </h3>
         </section>';
         }
         if ($admin_type === 'Full Control' || $admin_type === 'Product Control') {
             echo '<section id="manage-product">
-        <h3><a href="functions/manage_products.php">Manage Product</a> </h3>
+        <h3  id="h3"><a href="functions/manage_products.php">Manage Product</a> </h3>
         </section>';
         }
 
         if ($admin_type === 'Full Control') {
             echo '<section id="manage-admin">
-        <h3><a href="functions/manage_admin.php">Manage Admin</a> </h3>
+        <h3  id="h3"><a href="functions/manage_admin.php">Manage Admin</a> </h3>
         </section>';
         }
         ?>
 
-    </section>
+    </section></div>
     </fieldset>
-</body>
+    </div>
+    </div></body>
 
 </html>

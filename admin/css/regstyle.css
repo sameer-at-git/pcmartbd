@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    height: 100%; 
+}
+
+.form-container {
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 1000px; 
+   }
+
+.form-container h2 {
+    text-align: center;
+    color: #00008b;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="number"],
+.input-group input[type="date"],
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.radio-group label {
+    margin: 0 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button[type="submit"],
+button[type="reset"] {
+    background-color: #00008b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover {
+    background-color: #4169e1;
+}
+
+#error-messages {
+    color: red;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+p{
+    color:red;
+    
+}

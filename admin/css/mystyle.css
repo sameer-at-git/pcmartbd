@@ -1,0 +1,69 @@
+
+div {
+    background-color: #dfdee5;
+    padding: 10px;
+}
+
+div table {
+    margin:5px;
+    width: 100%;
+    background-color: #12024c;  
+}
+
+div td {
+    padding: 20px;
+}
+
+div a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    
+}
+
+div a:hover {
+    background-color: #faf7f7;
+    color: #0a0000;
+}
+
+.active {
+    font-weight: bold;
+    color: rgb(252, 252, 251);
+    text-decoration-line: underline;
+}
+h2{
+color:rgb(5, 5, 5);
+
+}
+.dashboard{
+background-color: rgb(236, 237, 243);
+height:500px;
+width: 500px;
+justify-items:center;
+justify-self: center;
+
+}
+
+.manage{
+    background-color: rgb(35, 55, 163);
+    height:200;
+width: 500px;
+justify-self:center;
+
+}
+
+.all{
+    justify-content: center;
+}
+
+
+
+ol{
+    font-size:25px;
+}
+
+legend{
+    justify-self: center;
+
+}

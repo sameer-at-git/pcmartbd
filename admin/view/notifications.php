@@ -9,12 +9,12 @@ if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
 
 <head>
     <title> Home</title>
-    <link rel="stylesheet" href="../css/mystyle.css">
+    <link rel="stylesheet" href="../css/notificationstyle.css">
 
 </head>
 
 <body>
-    <div>
+    <div class="navbar">
         <table>
             <tr>
             <td><a href="home.php">Home</a></td>

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
+    background-color: #001f3f;
     color: #000;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 1000px; 
-   }
+}
 
 .form-container h2 {
     text-align: center;
@@ -62,23 +62,29 @@ body {
 .button-group {
     display: flex;
     justify-content: space-between;
+    gap: 10px;  /* Add spacing between buttons */
     margin-top: 20px;
 }
 
-button[type="submit"],
-button[type="reset"] {
+.button-group button {
     background-color: #00008b;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    width: 48%;
+    flex: 1; 
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover,
-button[type="reset"]:hover {
-    background-color: #4169e1;
+.button-group button:hover {
+    background-color: #1e90ff;
+}
+
+.button-group button:active {
+    background-color: #104e8b;
 }
 
 #error-messages {
@@ -87,7 +93,27 @@ button[type="reset"]:hover {
     font-size: 0.9em;
 }
 
-p{
-    color:red;
-    
+p {
+    color: red;
+}
+#back-button {
+    background-color: #00008b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s;
+}
+
+#back-button:hover {
+    background-color: #1e90ff;
+}
+
+#back-button:active {
+    background-color: #104e8b;
 }

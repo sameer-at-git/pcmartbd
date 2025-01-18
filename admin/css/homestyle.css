@@ -1,0 +1,122 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+}
+
+/* Container Styles */
+.all {
+    background-color: transparent;
+    padding: 0;
+}
+
+.superlative {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Navigation Bar */
+div table {
+    width: 100%;
+    background-color: #003366;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+div td {
+    padding: 0;
+    text-align: center;
+}
+
+div a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1rem;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+div a:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #003366;
+}
+
+.active {
+    text-decoration-line: underline;
+    font-weight: bold;
+    color: white;
+}
+
+/* Dashboard Section */
+.dashboard {
+    background-color: white;
+    border: 2px solid #004d99;
+    border-radius: 5px;
+    padding: 1.5rem;
+    margin: 1rem auto;
+    height: auto;
+    min-height: 500px;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Management Section */
+.manage {
+    background-color: white;
+    border: 2px solid #004d99;
+    border-radius: 5px;
+    padding: 1.5rem;
+    margin: 1rem auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Headings */
+h2 {
+    color: #003366;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    color: #003366;
+    margin: 1rem 0;
+}
+
+/* Lists */
+ol {
+    font-size: 20px;
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+/* Section Links */
+#functionalities a {
+    color: #003366;
+    font-size: 18px;
+    padding: 0.5rem;
+    background-color: transparent;
+}
+
+#functionalities a:hover {
+    color: #004d99;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+/* Legend */
+legend {
+    color: #003366;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+
+/* Current Stats Section */
+#currentstat {
+    margin-bottom: 2rem;
+}
+

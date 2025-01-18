@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../../layout/login.php');
     exit();
 }
 include('../model/db.php');
@@ -14,7 +14,7 @@ $admin_type = $_SESSION['user_access'];
 
 <head>
     <title>Admin Home</title>
-    <link rel="stylesheet" href="../css/mystyle.css">
+    <link rel="stylesheet" href="../css/homestyle.css">
 
 </head>
 

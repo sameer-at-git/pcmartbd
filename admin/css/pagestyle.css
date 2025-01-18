@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #1a1a1a;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #003366;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.navbar table {
+    width: 100%;
+}
+
+.navbar td {
+    padding: 0;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    background-color: transparent;
+}
+
+.navbar a:hover {
+    color: #003366;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Rest of your existing CSS remains the same */
+/* Main Content */
+h2 {
+    color: #003366;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Fieldsets */
+fieldset {
+    border: 2px solid #004d99;
+    border-radius: 5px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    max-width: 90%;
+    background-color: white;
+}
+
+legend {
+    color: #003366;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0.8rem;
+    vertical-align: top;
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #004d99;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+form > div:last-child {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+form > div:last-child table {
+    width: auto;
+    margin: 0 auto;
+}
+
+form > div:last-child td {
+    padding: 0 1rem;
+}
+/* Buttons */
+input[type="submit"] {
+    background-color: #004d99;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    min-width: 100px;
+}
+
+input[type="submit"]:hover {
+    background-color: #003366;
+}
+
+/* Images */
+img {
+    border: 2px solid #004d99;
+    border-radius: 4px;
+}

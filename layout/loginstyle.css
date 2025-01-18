@@ -1,0 +1,102 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #001f3f; /* Deep Blue Background */
+    color: #fff; /* White Text */
+}
+
+form {
+    background-color: #ffffff; /* White Background */
+    border: 2px solid #001f3f; /* Deep Blue Border */
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+    text-align: center;
+    color: #001f3f; /* Deep Blue Text */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+table {
+  
+    width: 100%;
+    margin: 15px 0;
+}
+
+td {
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    font-size: 14px;
+    color: #001f3f; /* Deep Blue Text */
+    text-align: center; /* Center text in table cells */
+}
+
+
+tr a {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    color: #007bff;
+    justify-content: center; /* Aligns text to center */
+    margin: 5px 0; /* Adds space around link */
+}
+
+tr a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker Blue on Hover */
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #001f3f; /* Deep Blue Button */
+    color: #ffffff; /* White Text */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #004080; /* Slightly Lighter Blue */
+}
+
+/* Additional Styling */
+.placeholder {
+    font-style: italic;
+    color: #999;
+}
+
+#fp{
+    display: block;
+    margin-left:auto;
+    margin-right:auto ;
+    justify-content: center;
+}

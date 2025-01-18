@@ -1,191 +1,125 @@
-function validateForm() {
-    var isValid = true;
-    
-    // Full Name validation
-    var fullname = document.getElementById("uname").value;
-    var nameerr = document.getElementById("nameerr");
-    if (fullname.trim() === "") {
-        nameerr.innerHTML = "Name cannot be empty";
-        nameerr.style.color = "red";
-        isValid = false;
-    } else if (fullname.length < 3) {
-        nameerr.innerHTML = "Name must be at least 3 characters";
-        nameerr.style.color = "red";
-        isValid = false;
+// Function to validate Full Name
+function validateFullName() {
+    var fullName = document.getElementById("uname").value;
+    if (fullName.trim() === "") {
+        document.getElementById("nameerr").innerHTML = "Full Name is required.";
+        return false;
     } else {
-        nameerr.innerHTML = "";
+        document.getElementById("nameerr").innerHTML = "";
+        return true;
     }
+}
 
-    // Gender validation
+// Function to validate Gender
+function validateGender() {
     var gender = document.querySelector('input[name="gender"]:checked');
-    var gendererr = document.getElementById("gendererr");
     if (!gender) {
-        gendererr.innerHTML = "Please select a gender";
-        gendererr.style.color = "red";
-        isValid = false;
+        document.getElementById("gendererr").innerHTML = "Please select a gender.";
+        return false;
     } else {
-        gendererr.innerHTML = "";
+        document.getElementById("gendererr").innerHTML = "";
+        return true;
     }
+}
 
-    // Phone number validation
+// Function to validate Phone Number
+function validatePhone() {
     var phone = document.getElementById("phone").value;
-    var phoneerr = document.getElementById("phoneerr");
-    var phoneRegex = /^\d{10,11}$/;
-    if (!phone) {
-        phoneerr.innerHTML = "Phone number cannot be empty";
-        phoneerr.style.color = "red";
-        isValid = false;
-    } else if (!phoneRegex.test(phone)) {
-        phoneerr.innerHTML = "Please enter a valid phone number (10-11 digits)";
-        phoneerr.style.color = "red";
-        isValid = false;
+    if (phone.trim() === "" || phone.length < 11 || isNaN(phone)) {
+        document.getElementById("phoneerr").innerHTML = "Enter a valid phone number.";
+        return false;
     } else {
-        phoneerr.innerHTML = "";
+        document.getElementById("phoneerr").innerHTML = "";
+        return true;
     }
+}
 
-    // Email validation
+// Function to validate Permissions
+function validatePermissions() {
+    var permission = document.getElementById("permit").value;
+    if (permission === "0") {
+        document.getElementById("permiterr").innerHTML = "Please select a permission.";
+        return false;
+    } else {
+        document.getElementById("permiterr").innerHTML = "";
+        return true;
+    }
+}
+
+// Function to validate Email
+function validateEmail() {
     var email = document.getElementById("email").value;
-    var emailerr = document.getElementById("emailerr");
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) {
-        emailerr.innerHTML = "Email cannot be empty";
-        emailerr.style.color = "red";
-        isValid = false;
-    } else if (!emailRegex.test(email)) {
-        emailerr.innerHTML = "Please enter a valid email address";
-        emailerr.style.color = "red";
-        isValid = false;
-    } else if (!email.endsWith("aiub.edu")) {
-        emailerr.innerHTML = "Email must be from aiub.edu domain";
-        emailerr.style.color = "red";
-        isValid = false;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+        document.getElementById("emailerr").innerHTML = "Enter a valid email address.";
+        return false;
     } else {
-        emailerr.innerHTML = "";
+        document.getElementById("emailerr").innerHTML = "";
+        return true;
     }
+}
 
-    // Password validation
+// Function to validate Password
+function validatePassword() {
     var pass = document.getElementById("pass").value;
-    var passerr = document.getElementById("passerr");
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!pass) {
-        passerr.innerHTML = "Password cannot be empty";
-        passerr.style.color = "red";
-        isValid = false;
-    } else if (!passwordRegex.test(pass)) {
-        passerr.innerHTML = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character";
-        passerr.style.color = "red";
-        isValid = false;
+    if (pass.length < 8) {
+        document.getElementById("passerr").innerHTML = "Password must be at least 6 characters long.";
+        return false;
     } else {
-        passerr.innerHTML = "";
-    }
-
-    // Confirm password validation
-    var conpass = document.getElementById("conpass").value;
-    var conpasserr = document.getElementById("conpasserr");
-    if (!conpass) {
-        conpasserr.innerHTML = "Please confirm your password";
-        conpasserr.style.color = "red";
-        isValid = false;
-    } else if (conpass !== pass) {
-        conpasserr.innerHTML = "Passwords do not match";
-        conpasserr.style.color = "red";
-        isValid = false;
-    } else {
-        conpasserr.innerHTML = "";
-    }
-
-    // Permission validation
-    var permit = document.getElementById("permit").value;
-    var permiterr = document.getElementById("permiterr");
-    if (permit === "0") {
-        permiterr.innerHTML = "Please select a permission level";
-        permiterr.style.color = "red";
-        isValid = false;
-    } else {
-        permiterr.innerHTML = "";
-    }
-
-    // Date validations
-    var dob = document.getElementById("dob").value;
-    var doj = document.getElementById("doj").value;
-    
-    if (!dob) {
-        document.getElementById("dob").style.borderColor = "red";
-        isValid = false;
-    } else {
-        document.getElementById("dob").style.borderColor = "";
-    }
-
-    if (!doj) {
-        document.getElementById("doj").style.borderColor = "red";
-        isValid = false;
-    } else {
-        document.getElementById("doj").style.borderColor = "";
-    }
-
-    // File validations
-    var nid = document.getElementById("nid").value;
-    var pic = document.getElementById("pic").value;
-    
-    if (!nid) {
-        document.getElementById("nid").style.borderColor = "red";
-        isValid = false;
-    } else {
-        document.getElementById("nid").style.borderColor = "";
-    }
-
-    if (!pic) {
-        document.getElementById("pic").style.borderColor = "red";
-        isValid = false;
-    } else {
-        document.getElementById("pic").style.borderColor = "";
-    }
-
-    // Address validations
-    var preadd = document.getElementById("preadd").value;
-    var peradd = document.getElementById("peradd").value;
-    
-    if (!preadd.trim()) {
-        document.getElementById("preadd").style.borderColor = "red";
-        isValid = false;
-    } else {
-        document.getElementById("preadd").style.borderColor = "";
-    }
-
-    if (!peradd.trim()) {
-        document.getElementById("peradd").style.borderColor = "red";
-        isValid = false;
-    } else {
-        document.getElementById("peradd").style.borderColor = "";
-    }
-
-    return isValid;
-}
-
-// Add onchange handlers to form elements
-function addValidationHandlers() {
-    var inputs = document.getElementsByTagName('input');
-    var selects = document.getElementsByTagName('select');
-    var textareas = document.getElementsByTagName('textarea');
-    
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].onchange = function() {
-            validateForm();
-        };
-    }
-    
-    for (var i = 0; i < selects.length; i++) {
-        selects[i].onchange = function() {
-            validateForm();
-        };
-    }
-    
-    for (var i = 0; i < textareas.length; i++) {
-        textareas[i].onchange = function() {
-            validateForm();
-        };
+        document.getElementById("passerr").innerHTML = "";
+        return true;
     }
 }
 
-// Call the function when window loads
-window.onload = addValidationHandlers;
+// Function to validate Confirm Password
+function validateConfirmPassword() {
+    var pass = document.getElementById("pass").value;
+    var confirmPass = document.getElementById("conpass").value;
+    if (confirmPass !== pass) {
+        document.getElementById("conpasserr").innerHTML = "Passwords do not match.";
+        return false;
+    } else {
+        document.getElementById("conpasserr").innerHTML = "";
+        return true;
+    }
+}
+
+// Function to validate the entire form
+function validateForm() {
+    var isFullNameValid = validateFullName();
+    var isGenderValid = validateGender();
+    var isPhoneValid = validatePhone();
+    var isPermissionsValid = validatePermissions();
+    var isEmailValid = validateEmail();
+    var isPasswordValid = validatePassword();
+    var isConfirmPasswordValid = validateConfirmPassword();
+
+    // Aggregate validation results
+    if (
+        isFullNameValid &&
+        isGenderValid &&
+        isPhoneValid &&
+        isPermissionsValid &&
+        isEmailValid &&
+        isPasswordValid &&
+        isConfirmPasswordValid
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Function to navigate to the home page (placeholder for actual implementation)
+function goToHomePage() {
+    window.location.href = "../admin_home.php";
+}
+
+// Function to show a confirmation box for clearing the form
+function confirmationBox() {
+    if (confirm("Are you sure you want to clear the form?")) {
+        document.getElementById("adminForm").reset(); // Reset the form only if the user confirms
+    }
+}
+
+

@@ -119,40 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($picFile["tmp_name"], $picPath);
         }
 
-        /*$data = [
-            "username" => $uname,
-            "email" => $email,
-            "accessType" => $access,
-            "number" => $number,
-            "gender" => $gender,
-            "bio" => $bio,
-            "dob" => $dob,
-            "doj" => $doj,
-            "presentAddress" => $preadd,
-            "permanentAddress" => $peradd
-            //"nidPath" => $nidPath,
-            //"picPath" => $picPath
-        ];
-
-        $filePath = "../data/adm_data.json";
-        if (file_exists($filePath)) {
-            $jsonData = file_get_contents($filePath);
-            $users = json_decode($jsonData, true);
-            if (!is_array($users)) {
-                $users = [];
-            }
-        } else {
-            $users = [];
-        }
-
-        $users[] = $data;
-        if (file_put_contents($filePath, json_encode($users, JSON_PRETTY_PRINT))) {
-            echo "Successfully registered";
-        } else {
-            echo "Failed to save data";
-        }
-        */
-
+       
         $mydb = new myDB();
         $conObj = $mydb->openCon();
         $result = $mydb->insertData(

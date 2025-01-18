@@ -24,6 +24,24 @@ class myDB
         return $connectionobject->query($sql);
     }
 
+    public function getAdminByEmail($email) {
+        $conn = $this->openCon();
+    
+        $query = "SELECT * FROM admin WHERE email = '$email'";
+        $result = $conn->query($query);
+    
+        if ($result) {
+            $user = $result->fetch_assoc();
+    
+            if ($user) {
+                return $user;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
     function getUserInfo($connectionObject, $id)
     {
         $sql = "SELECT * FROM admin WHERE admin_id=$id";

@@ -11,7 +11,7 @@
 <body>
     <div class="form-container">
         <h2>Admin Registration</h2>
-        <form action="../../control/admin_reg_control.php" method="POST" enctype="multipart/urlencoded">
+        <form id="adminForm" action="../../control/admin_reg_control.php" method="POST" enctype="multipart/urlencoded" onsubmit="return validateForm();">
 
             <div class="section">
                 <h3>Personal Information</h3>
@@ -48,7 +48,7 @@
                     <textarea name="preadd" id="preadd" cols="30" rows="4" placeholder="Enter Your Present Address"></textarea>
                 </div>
 
-                
+
 
                 <div class="input-group">
                     <label for="peradd">Permanent Address:</label>
@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-         
+
             <div class="section">
                 <h3>Joining Information</h3>
 
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-           
+
             <div class="section">
                 <h3>Admin Access Information</h3>
 
@@ -91,12 +91,13 @@
                         <option value="Full Control">Full Control</option>
                         <option value="Product Control">Product Control</option>
                         <option value="Employee Control">Employee Control</option>
-                        <p id="permiterr"></p>
                     </select>
+                    <p id="permiterr"></p>
                 </div>
+
             </div>
 
-        
+
             <div class="section">
                 <h3>Login Details</h3>
 
@@ -119,16 +120,20 @@
                 </div>
             </div>
 
-         
+
             <div class="button-group">
-                <button type="submit" onclick="return validateForm()">Confirm</button>
-                <button type="reset">Clear</button>
-            </div></div>
-</form>
-        <script src="../../js/reg_validation.js"></script>
+            <a id="back-button" href="../admin_home.php">Back</a>
+            <button type="submit">Confirm</button>
+                <button type="button" onclick="confirmationBox()">Clear</button>
+            </div>
 
     </div>
+    </form>
     
+
+    </div>
+    <script src="../../js/reg_validation.js"></script>
+
 </body>
 
 </html>

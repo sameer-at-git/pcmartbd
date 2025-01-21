@@ -10,7 +10,7 @@
 
 <body>
 
-    <form action="../admin/control/login_control.php" method="POST">
+    <form action="login_control.php" method="POST">
         <h1>Login</h1>
         <fieldset>
 
@@ -29,7 +29,7 @@
         <table>
 
             <tr>
-                <td> <a id="fp" href="../admin/view/forget_password.php">Forgot Password</a></td>
+                <td> <a id="fp" href="forget_password.php">Forgot Password</a></td>
             </tr>
         </table>
 
@@ -40,7 +40,7 @@
                 <td><input type="submit" value="Log In"></td>
             </tr>
             <tr>
-                <td>Don't Have an Account ? <a href="../admin/view/sign_up/admin_registration.php"> Sign Up</a></td>
+                <td>Don't Have an Account ? <a href="registration.php"> Sign Up</a></td>
 
 
             </tr>

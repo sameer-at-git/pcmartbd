@@ -35,16 +35,10 @@
                 <img src="payment_methods/dutchbanglabank.jpg" alt="Dutch-Bangla Bank" class="payment-logo"> Dutch-Bangla Bank
             </label>
             <label>
-                <input type="radio" name="method" value="CityBank">
-                <img src="payment_methods/citybank_logo.png" alt="City Bank" class="payment-logo"> City Bank
-            </label>
-            <label>
-                <input type="radio" name="method" value="BRAC">
-                <img src="payment_methods/bracbank_logo.png" alt="BRAC Bank" class="payment-logo"> BRAC Bank
-            </label>
-            <label>
+</edit>
                 <input type="radio" name="method" value="EBL">
                 <img src="payment_methods/easternbank.jpg" alt="Eastern Bank Limited" class="payment-logo"> Eastern Bank Limited
+                
             </label>
             <label>
                 <input type="radio" name="method" value="PrimeBank">

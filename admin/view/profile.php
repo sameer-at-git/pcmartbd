@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 include('../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$userInfo = $db->getUserInfo($conn, $_SESSION['user_id']);
+$userInfo = $db->getUserInfo($conn, $_SESSION['admin_id']);
 $id = $_SESSION['user_id'];
 if (isset($_POST['edit'])) {
 

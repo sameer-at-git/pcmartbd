@@ -10,6 +10,55 @@ $db = new myDB();
 $conn = $db->openCon();
 $id = $_SESSION['user_id'];
 $admin_type = $_SESSION['user_access'];
+
+// Define admin permissions structure
+$adminPermissions = [
+    'Full Control' => [
+        'manage_technician' => true,
+        'manage_employees' => true,
+        'manage_products' => true,
+        'manage_admin' => true,
+        'manage_customers' => true
+    ],
+    'Employee Control' => [
+        'manage_technician' => true,
+        'manage_employees' => true,
+        'manage_products' => false,
+        'manage_admin' => false,
+        'manage_customers' => true
+    ],
+    'Product Control' => [
+        'manage_technician' => true,
+        'manage_employees' => false,
+        'manage_products' => true,
+        'manage_admin' => false,
+        'manage_customers' => false
+    ]
+];
+
+// Define menu items structure
+$menuItems = [
+    'manage_technician' => [
+        'title' => 'Manage Technician',
+        'url' => 'functions/manage_technician.php'
+    ],
+    'manage_employees' => [
+        'title' => 'Manage Employees',
+        'url' => 'functions/manage_employee.php'
+    ],
+    'manage_products' => [
+        'title' => 'Manage Product',
+        'url' => 'functions/manage_products.php'
+    ],
+    'manage_admin' => [
+        'title' => 'Manage Admin',
+        'url' => 'functions/manage_admin.php'
+    ],
+    'manage_customers' => [
+        'title' => 'Manage Customers',
+        'url' => 'functions/manage_customers.php'
+    ]
+];
 ?>
 <html>
 
@@ -53,28 +102,16 @@ $admin_type = $_SESSION['user_access'];
         <h2>Admin Functionalities</h2>
     </legend><div class="manage">
     <section id="functionalities">
-        <section id="manage_technician">
-            <h3><a href="functions/manage_technician.php">Manage Technician</a> </h3>
-        </section>
         <?php
-        if ($admin_type === 'Full Control' || $admin_type === 'Employee Control') {
-            echo '<section id="manage-employees">
-        <h3 id="h3"><a href="functions/manage_employee.php">Manage Employees</a> </h3>
-        </section>';
-        }
-        if ($admin_type === 'Full Control' || $admin_type === 'Product Control') {
-            echo '<section id="manage-product">
-        <h3  id="h3"><a href="functions/manage_products.php">Manage Product</a> </h3>
-        </section>';
-        }
-
-        if ($admin_type === 'Full Control') {
-            echo '<section id="manage-admin">
-        <h3  id="h3"><a href="functions/manage_admin.php">Manage Admin</a> </h3>
-        </section>';
+        // Display menu items based on permissions
+        foreach ($menuItems as $key => $item) {
+            if ($adminPermissions[$admin_type][$key] ?? false) {
+                echo "<section id='{$key}'>";
+                echo "<h3><a href='{$item['url']}'>{$item['title']}</a></h3>";
+                echo "</section>";
+            }
         }
         ?>
-
     </section></div>
     </fieldset>
     </div>

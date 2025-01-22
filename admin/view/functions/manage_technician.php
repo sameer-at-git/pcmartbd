@@ -10,26 +10,26 @@ $db = new myDB();
 $conn = $db->openCon();
 
 if (isset($_POST['edit'])) {
-    $technician_id = $_POST['technician_id'];
-    $experience = $_POST['experience'];
-    $work_area = $_POST['work_area'];
-    $work_hours = $_POST['work_hours'];
-    $f_name = $_POST['f_name'];
-    $l_name = $_POST['l_name'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
+    $technicianData = array(
+        'technician_id' => $_POST['technician_id'],
+        'first_name' => $_POST['first_name'],
+        'last_name' => $_POST['last_name'],
+        'father_name' => $_POST['father_name'],
+        'gender' => $_POST['gender'],
+        'dob' => $_POST['dob'],
+        'phone' => $_POST['phone'],
+        'address' => $_POST['address'],
+        'experience' => $_POST['experience'],
+        'work_area' => $_POST['work_area'],
+        'work_hour' => $_POST['work_hour'],
+        'nidpic' => $_POST['nidpic'],
+        'photo' => $_POST['photo'],
+        'cv' => $_POST['cv'],
+        'email' => $_POST['email'],
+        'password' => $_POST['password']
+    );
 
-    $sql = "UPDATE technician SET 
-                experience = '$experience', 
-                work_area = '$work_area', 
-                work_hours = '$work_hours', 
-                f_name = '$f_name', 
-                l_name = '$l_name',  
-                phone = '$phone',  
-                email = '$email' 
-            WHERE technician_id = $technician_id";
-
-    if ($conn->query($sql) === TRUE) {
+    if ($db->updateTechnician($conn, $technicianData)) {
         echo "Technician information updated successfully!";
     } else {
         echo "Error updating technician: " . $conn->error;
@@ -38,10 +38,8 @@ if (isset($_POST['edit'])) {
 
 if (isset($_POST['delete'])) {
     $technician_id = $_POST['technician_id'];
-
-    $sql = "DELETE FROM technician WHERE technician_id = $technician_id";
-
-    if ($conn->query($sql) === TRUE) {
+    
+    if ($db->deleteTechnician($conn, $technician_id)) {
         echo "Technician deleted successfully!";
     } else {
         echo "Error deleting technician: " . $conn->error;
@@ -55,15 +53,16 @@ if (isset($_POST['delete'])) {
 
 <head>
     <title>Manage Technicians</title>
+    <link rel="stylesheet" href="../../css/managestyle.css">
+    
 </head>
 
 <body>
-
+    <a href="../admin_home.php" class="back-button">← Back to Dashboard</a>
     <h2>Manage Technicians</h2>
 
     <?php
-    $sql = "SELECT * FROM technician";
-    $result = $conn->query($sql);
+    $result = $db->getAllTechnicians($conn);
 
     if ($result->num_rows > 0) {
     ?>
@@ -84,8 +83,8 @@ if (isset($_POST['delete'])) {
                 <form method="post">
                     <tr>
                         <td><?php echo $row["technician_id"]; ?></td>
-                        <td><input type="text" name="f_name" value="<?php echo $row["f_name"]; ?>"> <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>"></td>
-                        <td><input type="text" name="work_hours" value="<?php echo $row["work_hours"]; ?>"></td>
+                        <td><input type="text" name="first_name" value="<?php echo $row["first_name"]; ?>"> <input type="text" name="last_name" value="<?php echo $row["last_name"]; ?>"></td>
+                        <td><input type="text" name="work_hour" value="<?php echo $row["work_hour"]; ?>"></td>
                         <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
                         <td><input type="text" name="email" value="<?php echo $row["email"]; ?>"></td>
                         <td><input type="text" name="work_area" value="<?php echo $row["work_area"]; ?>"></td>

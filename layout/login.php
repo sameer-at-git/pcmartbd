@@ -40,7 +40,7 @@
                 <td><input type="submit" value="Log In"></td>
             </tr>
             <tr>
-                <td>Don't Have an Account ? <a href="registration.php"> Sign Up</a></td>
+                <td>Don't Have an Account ? <a href="../admin/view/sign_up/admin_registration.php"> Sign Up</a></td>
 
 
             </tr>

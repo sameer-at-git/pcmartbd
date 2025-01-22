@@ -1,17 +1,47 @@
 <?php
 session_start();
-require_once('../model/db.php');
+include ('../model/db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hasError = array();
     
-    // Get form data
+    // Name validation
     $uname = trim($_POST['uname'] ?? '');
+    if (empty($uname)) {
+        $hasError[] = "Name cannot be empty";
+    }
+
+    // Email validation
     $email = trim($_POST['email'] ?? '');
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $hasError[] = "Valid email is required";
+    }
+
+    // Password validation
     $pass = trim($_POST['pass'] ?? '');
+    if (empty($pass) || strlen($pass) < 6) {
+        $hasError[] = "Password must be at least 6 characters";
+    }
+
+    // Access level validation
     $access = trim($_POST['permit'] ?? '');
-    $number = trim($_POST['number'] ?? '');
+    if (empty($access) || $access === "0") {
+        $hasError[] = "Please select access level";
+    }
+
+    // Phone number validation - Updated
+    $number = trim($_POST['phone'] ?? ''); // Changed from 'number' to 'phone' to match form
+    if (empty($number) || strlen($number) !== 11 || !str_starts_with($number, '01')) {
+        $hasError[] = "Phone number must be 11 digits and start with '01'";
+    }
+
+    // Gender validation
     $gender = $_POST['gender'] ?? '';
+    if (empty($gender)) {
+        $hasError[] = "Please select gender";
+    }
+
+    // Other fields
     $bio = trim($_POST['bio'] ?? '');
     $dob = trim($_POST['dob'] ?? '');
     $doj = trim($_POST['doj'] ?? '');
@@ -20,124 +50,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // File handling
     $nidFile = $_FILES['nid'] ?? null;
-    $picFile = $_FILES['propic'] ?? null;
-
-    if (strlen($uname) < 4) {
-        $hasError[] = "Name should be at least 4 characters.";
-    }
-
-
-    if (empty($email)) {
-        $hasError[] = "Email field is required.";
-    } elseif (!preg_match("/@aiub\.edu$/", $email)) {
-        $hasError[] = "Email address must end with '@aiub.edu'.";
-    }
-
-    if (empty($number)) {
-        $hasError[] = "Phone number is required.";
-    } elseif (!preg_match("/^\d+$/", $number)) {
-        $hasError[] = "Phone number must contain only digits.";
-    }
-
-    if (empty($preadd)) {
-        $hasError[] = "Present address is required.";
-    }
-
-    if (empty($peradd)) {
-        $hasError[] = "Permanent address is required.";
-    }
-
-    if (empty($dob)) {
-        $hasError[] = "Date of birth is required.";
-    } else {
-        $dobYear = date('Y', strtotime($dob));
-        $currentYear = date('Y');
-        $age = $currentYear - $dobYear;
-        if ($age < 20) {
-            $hasError[] = "You must be at least 20 years old.";
-        }
-    }
-
-    if (empty($doj)) {
-        $hasError[] = "Date of joining is required.";
-    }
-
-    if (strlen($bio) > 500) {
-        $hasError[] = "Bio should not exceed 500 characters.";
-    }
-
-    if (empty($access)) {
-        $hasError[] = "Access type must be selected.";
-    }
-
-    if (!isset($gender)) {
-        $hasError[] = "Gender must be selected.";
-    }
-
-    if (empty($pass)) {
-        $hasError[] = "Password is required.";
-    } elseif (!preg_match("/[@$#!%*?&]/", $pass)) {
-        $hasError[] = "Password must be at least 8 characters long and include at least one special character.";
-    }
-
-    if (empty($nidFile)) {
-        $hasError[] = "NID file is required.";
-    } else {
-        $nidExtension = pathinfo($nidFile["name"], PATHINFO_EXTENSION);
-        if (!in_array($nidExtension, ['jpeg', 'jpg', 'png'])) {
-            $hasError[] = "NID must have a valid image file extension (JPEG, JPG, or PNG).";
-        }
-    }
-    if ($nidFile["size"] > 2 * 1024 * 1024) {
-        $hasError[] = "NID file size should not exceed 2MB.";
-    }
-
-    if (empty($picFile)) {
-        $hasError[] = "Profile picture is required.";
-    } else {
-        $picExtension = pathinfo($picFile["name"], PATHINFO_EXTENSION);
-        if (!in_array($picExtension, ['jpeg', 'jpg', 'png'])) {
-            $hasError[] = "NID must have a valid image file extension (JPEG, JPG, or PNG).";
-        }
-    }
-    if ($picFile["size"] > 2 * 1024 * 1024) {
-        $hasError[] = "Profile Picture size should not exceed 2MB.";
-    }
+    $picFile = $_FILES['pic'] ?? null; // Changed from 'propic' to 'pic' to match form
 
     if (empty($hasError)) {
         $mydb = new myDB();
         $conObj = $mydb->openCon();
 
-        // Check if email already exists
-        if ($mydb->checkEmailExists($email, $conObj)) {
-            $hasError[] = "Email already exists!";
-        } else {
-            $nidPath = $nidFile ? "../uploads/nid_" . uniqid() . "." . pathinfo($nidFile["name"], PATHINFO_EXTENSION) : null;
-            $picPath = $picFile ? "../uploads/pic_" . uniqid() . "." . pathinfo($picFile["name"], PATHINFO_EXTENSION) : null;
+        $nidPath = "../uploads/nid_" . uniqid() . "." . pathinfo($nidFile["name"], PATHINFO_EXTENSION);
+        $picPath = "../uploads/pic_" . uniqid() . "." . pathinfo($picFile["name"], PATHINFO_EXTENSION);
+        
+        move_uploaded_file($nidFile["tmp_name"], $nidPath);
+        move_uploaded_file($picFile["tmp_name"], $picPath);
 
-            // Handle file uploads
-            if ($nidFile && !empty($nidFile["tmp_name"])) {
-                move_uploaded_file($nidFile["tmp_name"], $nidPath);
-            }
-            if ($picFile && !empty($picFile["tmp_name"])) {
-                move_uploaded_file($picFile["tmp_name"], $picPath);
-            }
+        $result = $mydb->insertData(
+            $uname, $email, $pass, $access, $number, 
+            $gender, $bio, $dob, $doj, $preadd, 
+            $peradd, $nidPath, $picPath, 'admin', $conObj
+        );
 
-            // Insert into both tables
-            $result = $mydb->insertAdmin(
-                $uname, $email, $pass, $access, $number, 
-                $gender, $bio, $dob, $doj, $preadd, 
-                $peradd, $nidPath, $picPath, $conObj
-            );
-
-            if ($result) {
-                $_SESSION['success_message'] = "Admin registered successfully!";
-                header("Location: ../view/login.php");
-                exit();
-            } else {
-                $hasError[] = "Database error occurred. Please try again.";
-            }
+        if ($result) {
+            $_SESSION['success_message'] = "Admin registered successfully!";
+            header("Location: ../../layout/login.php");
+            exit();
         }
+        
         $mydb->closecon($conObj);
     }
 }

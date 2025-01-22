@@ -11,14 +11,14 @@
 <body>
     <div class="form-container">
         <h2>Admin Registration</h2>
-        <form id="adminForm" action="../../control/admin_reg_control.php" method="POST" enctype="multipart/urlencoded" onsubmit="return validateForm();">
+        <form id="adminForm" action="../../control/admin_reg_control.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
 
             <div class="section">
                 <h3>Personal Information</h3>
 
                 <div class="input-group">
                     <label for="uname">Full Name:</label>
-                    <input type="text" name="fullname" id="uname" placeholder="Enter Full Name">
+                    <input type="text" name="uname" id="uname" placeholder="Enter Full Name">
                     <p id="nameerr"></p>
                 </div>
 
@@ -34,7 +34,7 @@
 
                 <div class="input-group">
                     <label for="phone">Phone Number:</label>
-                    <input type="number" name="phone" id="phone" placeholder="Enter Phone Number">
+                    <input type="text" name="phone" id="phone" placeholder="Enter Phone Number">
                     <p id="phoneerr"></p>
                 </div>
 

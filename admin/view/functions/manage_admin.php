@@ -48,6 +48,7 @@ if (isset($_POST['delete'])) {
 <body>
     <a href="../admin_home.php" class="back-button">← Back to Dashboard</a>
     <h2>Manage Admins</h2>
+    <a href="../sign_up/admin_registration.php" class="add-button">Add Admin</a>
 
     <?php
     $result = $db->getAllAdmins($conn);

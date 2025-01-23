@@ -1,4 +1,19 @@
-// Function to validate Full Name
+var passwordAttempts = 0;
+var emailMessage = "(Input valid email that ends with aiub.edu)";
+
+function showEmailMessage() {
+    document.getElementById('emailMessage').innerHTML ="<h6>" + emailMessage + "</h6>";
+}
+
+function hideEmailMessage() {
+    document.getElementById('emailMessage').innerHTML = "";
+}
+
+function trackPasswordAttempts() {
+    passwordAttempts++;
+    document.getElementById('attemptCount').innerHTML = "Password attempts: " + passwordAttempts;
+}
+
 function validateFullName() {
     var fullName = document.getElementById("uname").value;
     if (fullName.trim() === "") {
@@ -10,7 +25,7 @@ function validateFullName() {
     }
 }
 
-// Function to validate Gender
+
 function validateGender() {
     var gender = document.querySelector('input[name="gender"]:checked');
     if (!gender) {
@@ -22,7 +37,7 @@ function validateGender() {
     }
 }
 
-// Function to validate Phone Number
+
 function validatePhone() {
     var phone = document.getElementById("phone").value;
     if (phone.trim() === "" || phone.length < 11 || isNaN(phone)) {
@@ -34,7 +49,6 @@ function validatePhone() {
     }
 }
 
-// Function to validate Permissions
 function validatePermissions() {
     var permission = document.getElementById("permit").value;
     if (permission === "0") {
@@ -46,7 +60,6 @@ function validatePermissions() {
     }
 }
 
-// Function to validate Email
 function validateEmail() {
     var email = document.getElementById("email").value;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -59,7 +72,6 @@ function validateEmail() {
     }
 }
 
-// Function to validate Password
 function validatePassword() {
     var pass = document.getElementById("pass").value;
     if (pass.length < 8) {
@@ -71,7 +83,6 @@ function validatePassword() {
     }
 }
 
-// Function to validate Confirm Password
 function validateConfirmPassword() {
     var pass = document.getElementById("pass").value;
     var confirmPass = document.getElementById("conpass").value;
@@ -84,7 +95,6 @@ function validateConfirmPassword() {
     }
 }
 
-// Function to validate the entire form
 function validateForm() {
     var isFullNameValid = validateFullName();
     var isGenderValid = validateGender();
@@ -94,7 +104,6 @@ function validateForm() {
     var isPasswordValid = validatePassword();
     var isConfirmPasswordValid = validateConfirmPassword();
 
-    // Aggregate validation results
     if (
         isFullNameValid &&
         isGenderValid &&
@@ -110,15 +119,9 @@ function validateForm() {
     }
 }
 
-// Function to navigate to the home page (placeholder for actual implementation)
-function goToHomePage() {
-    window.location.href = "../admin_home.php";
-}
-
-// Function to show a confirmation box for clearing the form
 function confirmationBox() {
     if (confirm("Are you sure you want to clear the form?")) {
-        document.getElementById("adminForm").reset(); // Reset the form only if the user confirms
+        document.getElementById("adminForm").reset(); 
     }
 }
 

@@ -62,7 +62,7 @@ body {
 .button-group {
     display: flex;
     justify-content: space-between;
-    gap: 10px;  /* Add spacing between buttons */
+    gap: 10px; 
     margin-top: 20px;
 }
 
@@ -106,7 +106,7 @@ p {
     flex: 1;
     text-align: center;
     font-size: 16px;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none; 
     transition: background-color 0.3s;
 }
 
@@ -116,4 +116,16 @@ p {
 
 #back-button:active {
     background-color: #104e8b;
+}
+
+.label-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#emailMessage h6 {
+    margin: 0;
+    color: #666;
+    font-weight: normal;
 }

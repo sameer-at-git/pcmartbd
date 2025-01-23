@@ -252,3 +252,20 @@ a:hover {
     max-width: 800px;
     box-sizing: border-box;
 }
+
+.add-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #0d1657;
+    color: white;
+    text-decoration: none;
+}

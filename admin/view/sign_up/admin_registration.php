@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Registration</title>
+    <title>Add Admin</title>
     <link rel="stylesheet" href="../../css/regstyle.css">
 </head>
 
 <body>
     <div class="form-container">
-        <h2>Admin Registration</h2>
+        <h2>Add Admin</h2>
         <form id="adminForm" action="../../control/admin_reg_control.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
 
             <div class="section">
@@ -27,7 +27,6 @@
                     <div class="radio-group">
                         <label><input type="radio" name="gender" value="Male"> Male</label>
                         <label><input type="radio" name="gender" value="Female"> Female</label>
-                        <label><input type="radio" name="gender" value="Others"> Others</label>
                         <p id="gendererr"></p>
                     </div>
                 </div>
@@ -102,15 +101,19 @@
                 <h3>Login Details</h3>
 
                 <div class="input-group">
-                    <label for="email">Email:</label>
+                    <div class="label-container">
+                        <label for="email" id="emailLabel" onmouseover="showEmailMessage()" onmouseout="hideEmailMessage()">Email:</label>
+                        <div id="emailMessage"></div>
+                    </div>
                     <input type="email" name="email" id="email" placeholder="abcd@aiub.edu">
                     <p id="emailerr"></p>
                 </div>
 
                 <div class="input-group">
                     <label for="pass">Temporary Password:</label>
-                    <input type="password" name="pass" id="pass" placeholder="Enter Your Password">
+                    <input type="password" name="pass" id="pass" onchange="trackPasswordAttempts()" placeholder="Enter Your Password">
                     <p id="passerr"></p>
+                    <p id="attemptCount"></p>
                 </div>
 
                 <div class="input-group">
@@ -122,8 +125,8 @@
 
 
             <div class="button-group">
-            <a id="back-button" href="../admin_home.php">Back</a>
-            <button type="submit">Confirm</button>
+                <a id="back-button" href="../functions/manage_admin.php">Back</a>
+                <button type="submit">Confirm</button>
                 <button type="button" onclick="confirmationBox()">Clear</button>
             </div>
 

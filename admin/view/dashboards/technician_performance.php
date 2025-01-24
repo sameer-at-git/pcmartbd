@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ../../../layout/login.php');
     exit();
 }
@@ -13,7 +13,7 @@ $conn = $db->openCon();
 <html>
 <head>
     <title>Technician Performance - Admin Dashboard</title>
-    <link rel="stylesheet" href="../../css/homestyle.css">
+    <link rel="stylesheet" href="../../css/home.css">
 </head>
 <body>
     <div class="navbar">

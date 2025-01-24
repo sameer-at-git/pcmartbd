@@ -1,13 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
+    header('Location: ../../../layout/login.php');
     exit();
 }
 
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
+$uid=$_SESSION['user_id'];
 
 if (isset($_POST['edit'])) {
     if ($db->updateTechnician(
@@ -30,7 +31,7 @@ if (isset($_POST['edit'])) {
 if (isset($_POST['delete'])) {
     $technician_id = $_POST['technician_id'];
     
-    if ($db->deleteTechnician($conn, $technician_id)) {
+    if ($db->deleteTechnician($conn, $technician_id,$uid)) {
         echo "Technician deleted successfully!";
     } else {
         echo "Error deleting technician: " . $conn->error;
@@ -59,11 +60,11 @@ if (isset($_POST['delete'])) {
     ?>
         <table>
             <tr>
-                <th>ID</th>
+                <th class="id-column">ID</th>
                 <th>Name</th>
-                <th>Work-Hour</th>
-                <th>Phone</th>
-                <th>Email</th>
+                <th class="work-hours-column">Work-Hour</th>
+                <th class="phone-column">Phone</th>
+                <th class="email-column">Email</th>
                 <th>Work Area</th>
                 <th>Experience</th>
                 <th>Actions</th>
@@ -84,7 +85,7 @@ if (isset($_POST['delete'])) {
                             </select>
                         </td>
                         <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
-                        <td><input type="text" name="email" value="<?php echo $row["email"]; ?>"></td>
+                        <td><?php echo $row["email"]; ?></td>
                         <td>
                             <select name="work_area">
                                 <option value="Dhanmondi" <?php echo ($row["work_area"] == "Dhanmondi") ? "selected" : ""; ?>>Dhanmondi</option>
@@ -119,7 +120,7 @@ if (isset($_POST['delete'])) {
         echo "0 results";
     }
 
-    $conn->close();
+    $db->closeCon($conn);
     ?>
 
 </body>

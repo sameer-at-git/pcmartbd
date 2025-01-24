@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ../../../layout/login.php');
     exit();
 }
@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
+$uid=$_SESSION['user_id'];
 
 if (isset($_POST['edit'])) {
     $customer_id = $_POST['customer_id'];
@@ -27,7 +28,7 @@ if (isset($_POST['edit'])) {
 if (isset($_POST['delete'])) {
     $customer_id = $_POST['customer_id'];
     
-    if ($db->deleteCustomer($conn, $customer_id)) {
+    if ($db->deleteCustomer($conn, $customer_id,$uid)) {
         echo "Customer deleted successfully!";
     } else {
         echo "Error deleting customer: " . $conn->error;
@@ -53,12 +54,12 @@ if (isset($_POST['delete'])) {
     ?>
         <table>
             <tr>
-                <th>ID</th>
+                <th class="id-column">ID</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th class="email-column">Email</th>
                 <th>Password</th>
                 <th>Address</th>
-                <th>Phone</th>
+                <th class="phone-column">Phone</th>
                 <th>Actions</th>
             </tr>
             <?php
@@ -68,7 +69,7 @@ if (isset($_POST['delete'])) {
                     <tr>
                         <td><?php echo $row["customer_id"]; ?></td>
                         <td><input type="text" name="name" value="<?php echo $row["name"]; ?>"></td>
-                        <td><input type="email" name="email" value="<?php echo $row["email"]; ?>"></td>
+                        <td><?php echo $row["email"]; ?></td>
                         <td><input type="text" name="password" value="<?php echo $row["password"]; ?>"></td>
                         <td><input type="text" name="address" value="<?php echo $row["address"]; ?>"></td>
                         <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
@@ -88,7 +89,7 @@ if (isset($_POST['delete'])) {
         echo "0 results";
     }
 
-    $conn->close();
+    $db->closeCon($conn);
     ?>
 
 </body>

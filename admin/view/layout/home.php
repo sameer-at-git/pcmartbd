@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ../../../layout/login.php');
     exit();
 }
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$id = $_SESSION['user_id'];
+$id = $_SESSION['admin_id'];
 $admin_type = $_SESSION['user_access'];
 
 $adminPages = [
@@ -38,7 +38,7 @@ $adminPages = [
 
 <head>
     <title>Admin Home</title>
-    <link rel="stylesheet" href="../../css/homestyle.css">
+    <link rel="stylesheet" href="../../css/home.css">
 </head>
 
 <body>
@@ -62,7 +62,8 @@ $adminPages = [
             <div class="functionalities-grid">
                 <?php
                 foreach ($adminPages[$admin_type] as $title => $url) {
-                    echo "<div class='function-card'>";
+                    $className = str_replace(' ', '', strtolower($title));
+                    echo "<div class='function-card {$className}'>";
                     echo "<h3><a href='$url'>$title</a></h3>";
                     echo "</div>";
                 }

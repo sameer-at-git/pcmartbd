@@ -1,12 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ../../../layout/login.php');
     exit();
 }
 
 include('../../model/db.php');
 $db = new myDB();
+$conn = $db->openCon();
+$uid=$_SESSION['user_id'];
 
 if (isset($_POST['edit'])) {
     $emp_id = $_POST['emp_id'];
@@ -21,12 +23,12 @@ if (isset($_POST['edit'])) {
     $marital_status = $_POST['marital_status'];
     $employment = $_POST['employment'];
     
-    $db->updateEmployee($emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment);
+    $db->updateEmployee($conn, $emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment, $uid);
 }
 
 if (isset($_POST['delete'])) {
     $emp_id = $_POST['emp_id'];
-    $db->deleteEmployee($emp_id);
+    $db->deleteEmployee($conn, $emp_id, $uid);
 }
 ?>
 
@@ -45,15 +47,15 @@ if (isset($_POST['delete'])) {
         <a href="../sign_up/employee_registration.php" class="add-button">Add Employee</a>
         <div class="table-wrapper">
             <?php
-            $result = $db->getAllEmployees();
+            $result = $db->getAllEmployees($conn);
             if ($result->num_rows > 0) {
             ?>
                 <table class="manage-table">
                     <tr>
                         <th class="id-column">ID</th>
                         <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
+                        <th class="phone-column">Phone</th>
+                        <th class="email-column">Email</th>
                         <th>Gender</th>
                         <th>DOB</th>
                         <th>Present Address</th>
@@ -69,7 +71,7 @@ if (isset($_POST['delete'])) {
                                     <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>" class="input-field">
                                 </td>
                                 <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>" class="input-field"></td>
-                                <td><input type="text" name="email" value="<?php echo $row["email"]; ?>" class="input-field"></td>
+                                <td><?php echo $row["email"]; ?></td>
                                 <td>
                                     <select name="gender" class="input-field">
                                         <option value="Male" <?php echo ($row["gender"] == "Male") ? "selected" : ""; ?>>Male</option>
@@ -99,6 +101,7 @@ if (isset($_POST['delete'])) {
             <?php
             } else {
                 echo "<p class='no-results'>No employees found</p>";
+                $db->closeCon($conn);
             }
             ?>
         </div>

@@ -1,4 +1,3 @@
-/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +9,6 @@ body {
     background-color: #f0f2f5;
 }
 
-/* Navigation Bar Styles */
 .navbar {
     width: 100%;
     background-color: #003366;
@@ -42,44 +40,15 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Dashboard Container */
 .dashboard-container {
     display: flex;
-    min-height: calc(100vh - 53px); /* Height minus navbar height */
+    min-height: calc(100vh - 53px);
 }
 
-/* Sidebar Styles */
 .sidebar {
     width: 320px;
     background-color: #003366;
     min-height: 100%;
-}
-
-.profile-section {
-    text-align: center;
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.profile-image {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.sidebar h3 {
-    color: white;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
 }
 
 .sidebar-nav {
@@ -111,13 +80,6 @@ body {
     font-weight: bold;
 }
 
-.logout {
-    margin-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-}
-
-/* Content Area */
 .content {
     flex: 1;
     padding: 20px;
@@ -138,7 +100,44 @@ body {
     font-size: 28px;
 }
 
-/* Stats Container */
+.functionalities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.function-card {
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.function-card.managetechnician { background-color: #c79292; }
+.function-card.manageemployees { background-color: #80adc5; }
+.function-card.manageproduct { background-color: #8dd18d; }
+.function-card.manageadmin { background-color: #d2976d; }
+.function-card.managecustomers { background-color: #a071be; }
+.function-card.seeallappointments { background-color: #3ed7b4; }
+
+.function-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.function-card h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.function-card a {
+    color: #003366;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+}
+
 .stats-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -166,162 +165,6 @@ body {
     font-weight: bold;
 }
 
-/* Utility Classes */
-.hidden {
-    display: none;
-}
-
-/* Dashboard Specific Styles */
-.dashboard-wrapper {
-    display: flex;
-    margin-top: 20px;
-    min-height: calc(100vh - 100px);
-}
-
-.dashboard-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-}
-
-.dashboard-section {
-    margin-bottom: 30px;
-}
-
-.quick-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.stat-card {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.stat-card h3 {
-    margin: 12px 0;
-    color: #666;
-    font-size: 16px;
-}
-
-.stat-card p {
-    font-size: 28px;
-    color: #333;
-    font-weight: bold;
-    margin: 0;
-}
-
-/* Existing styles for navigation */
-.all {
-    width: 100%;
-    min-height: 100vh;
-}
-
-.superlative {
-    width: 100%;
-}
-
-.superlative table {
-    width: 100%;
-    background-color: #003366;
-    padding: 15px 0;
-}
-
-.superlative table td {
-    text-align: center;
-}
-
-.superlative table td a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    padding: 15px 30px;
-}
-
-.superlative table td a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.superlative table td a.active {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Dashboard Layout */
-.dashboard-wrapper {
-    display: flex;
-    min-height: calc(100vh - 53px); /* Adjust based on your nav height */
-    position: relative;
-}
-
-/* Admin Functionalities Grid */
-.functionalities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
-}
-
-.function-card {
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* Specific colors for different functionalities */
-.function-card:nth-child(6n+1) {
-    background: #FFE5E5; /* Light red */
-}
-
-.function-card:nth-child(6n+2) {
-    background: #E5F6FF; /* Light blue */
-}
-
-.function-card:nth-child(6n+3) {
-    background: #E5FFE5; /* Light green */
-}
-
-.function-card:nth-child(6n+4) {
-    background: #FFF0E5; /* Light orange */
-}
-
-.function-card:nth-child(6n+5) {
-    background: #F5E5FF; /* Light purple */
-}
-
-.function-card:nth-child(6n) {
-    background: #E5FFF9; /* Light cyan */
-}
-
-.function-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    filter: brightness(0.95); /* Slightly darken on hover */
-}
-
-.function-card h3 {
-    margin: 0;
-    text-align: center;
-}
-
-.function-card h3 a {
-    color: #003366;
-    text-decoration: none;
-    font-size: 20px;
-    display: block;
-    padding: 15px;
-}
-
-.function-card h3 a:hover {
-    color: #004d99;
-}
-
-/* Profile Form Styles */
 .content-section form fieldset {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -345,11 +188,6 @@ body {
     padding: 12px;
     vertical-align: middle;
     font-size: 16px;
-}
-
-.content-section form td:first-child {
-    width: 150px;
-    color: #666;
 }
 
 .content-section form input[type="text"],
@@ -402,5 +240,135 @@ body {
 
 .content-section form input[name="back"]:hover {
     background-color: #5a6268;
+}
+
+.notifications-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.notifications-container h1 {
+    color: #003366;
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.filters {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filter-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #003366;
+    color: #003366;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background-color: #e9ecef;
+}
+
+.filter-btn.active {
+    background-color: #003366;
+    color: white;
+}
+
+.messages-list {
+    display: grid;
+    gap: 20px;
+}
+
+.message-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sender-type {
+    background-color: #003366;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.message-date {
+    color: #666;
+    font-size: 14px;
+}
+
+.message-subject {
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.sender-email {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.message-content {
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    white-space: pre-line;
+}
+
+.message-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.reply-btn, .delete-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.reply-btn {
+    background-color: #003366;
+    color: white;
+}
+
+.reply-btn:hover {
+    background-color: #004d99;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.no-messages {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

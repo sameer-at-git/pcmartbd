@@ -15,7 +15,7 @@ $messages = $db->getAllMessages($conn);
 <html>
 <head>
     <title>Admin Notifications</title>
-    <link rel="stylesheet" href="../../css/notificationstyle.css">
+    <link rel="stylesheet" href="../../css/home.css">
 </head>
 <body>
     <div class="navbar">
@@ -31,7 +31,7 @@ $messages = $db->getAllMessages($conn);
     </div>
 
     <div class="notifications-container">
-        <h1>Messages & Notifications</h1>
+        <h1>All Messages</h1>
         
         <div class="filters">
             <button class="filter-btn active" data-filter="all">All Messages</button>

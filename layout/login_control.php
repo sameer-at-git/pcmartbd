@@ -18,7 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_access'] = $user['subtype']; 
             switch ($user['user_type']) {
                 case 'Admin':
-                    header("Location: ../admin/view/admin_home.php");
+                    $admin_id = $db->getAdminIdByEmail($email, $conn);
+                    if ($admin_id) {
+                        $_SESSION['admin_id'] = $admin_id;
+                    }
+                    header("Location: ../admin/view/layout/home.php");
                     break;
                 case 'Customer':
                     header("Location: customer_dashboard.php");

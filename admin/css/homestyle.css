@@ -1,122 +1,406 @@
-/* Global Styles */
-body {
+/* Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
+    box-sizing: border-box;
 }
 
-/* Container Styles */
-.all {
-    background-color: transparent;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    width: 100%;
+    background-color: #003366;
+    padding: 5px 0;
+}
+
+.navbar table {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.navbar table td {
+    text-align: center;
+}
+
+.navbar table td a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 20px 40px;
+    font-weight: 500;
+}
+
+.navbar table td a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar table td a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    min-height: calc(100vh - 53px); /* Height minus navbar height */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 320px;
+    background-color: #003366;
+    min-height: 100%;
+}
+
+.profile-section {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar h3 {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.sidebar-nav {
+    list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-link {
+    display: block;
+    padding: 25px 35px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.logout {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+/* Content Area */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.content-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+    color: #003366;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Stats Container */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-box h3 {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.stat-box p {
+    color: #1a2942;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/* Dashboard Specific Styles */
+.dashboard-wrapper {
+    display: flex;
+    margin-top: 20px;
+    min-height: calc(100vh - 100px);
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.dashboard-section {
+    margin-bottom: 30px;
+}
+
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    margin: 12px 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.stat-card p {
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Existing styles for navigation */
+.all {
+    width: 100%;
+    min-height: 100vh;
 }
 
 .superlative {
-    background-color: transparent;
-    padding: 0;
+    width: 100%;
 }
 
-/* Navigation Bar */
-div table {
+.superlative table {
     width: 100%;
     background-color: #003366;
-    margin: 0;
-    border-collapse: collapse;
+    padding: 15px 0;
 }
 
-div td {
-    padding: 0;
+.superlative table td {
     text-align: center;
 }
 
-div a {
+.superlative table td a {
     text-decoration: none;
     color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 1rem;
-    display: block;
-    transition: all 0.3s ease;
+    font-size: 16px;
+    padding: 15px 30px;
 }
 
-div a:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #003366;
+.superlative table td a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.active {
-    text-decoration-line: underline;
-    font-weight: bold;
-    color: white;
+.superlative table td a.active {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Dashboard Section */
-.dashboard {
-    background-color: white;
-    border: 2px solid #004d99;
-    border-radius: 5px;
-    padding: 1.5rem;
-    margin: 1rem auto;
-    height: auto;
-    min-height: 500px;
-    width: 90%;
-    max-width: 800px;
+/* Dashboard Layout */
+.dashboard-wrapper {
+    display: flex;
+    min-height: calc(100vh - 53px); /* Adjust based on your nav height */
+    position: relative;
 }
 
-/* Management Section */
-.manage {
-    background-color: white;
-    border: 2px solid #004d99;
-    border-radius: 5px;
-    padding: 1.5rem;
-    margin: 1rem auto;
-    width: 90%;
-    max-width: 800px;
+/* Admin Functionalities Grid */
+.functionalities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
 }
 
-/* Headings */
-h2 {
-    color: #003366;
+.function-card {
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Specific colors for different functionalities */
+.function-card:nth-child(6n+1) {
+    background: #FFE5E5; /* Light red */
+}
+
+.function-card:nth-child(6n+2) {
+    background: #E5F6FF; /* Light blue */
+}
+
+.function-card:nth-child(6n+3) {
+    background: #E5FFE5; /* Light green */
+}
+
+.function-card:nth-child(6n+4) {
+    background: #FFF0E5; /* Light orange */
+}
+
+.function-card:nth-child(6n+5) {
+    background: #F5E5FF; /* Light purple */
+}
+
+.function-card:nth-child(6n) {
+    background: #E5FFF9; /* Light cyan */
+}
+
+.function-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    filter: brightness(0.95); /* Slightly darken on hover */
+}
+
+.function-card h3 {
+    margin: 0;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
-h3 {
+.function-card h3 a {
     color: #003366;
-    margin: 1rem 0;
-}
-
-/* Lists */
-ol {
+    text-decoration: none;
     font-size: 20px;
-    color: #1a1a1a;
-    line-height: 1.6;
+    display: block;
+    padding: 15px;
 }
 
-/* Section Links */
-#functionalities a {
-    color: #003366;
-    font-size: 18px;
-    padding: 0.5rem;
-    background-color: transparent;
-}
-
-#functionalities a:hover {
+.function-card h3 a:hover {
     color: #004d99;
-    background-color: transparent;
-    text-decoration: underline;
 }
 
-/* Legend */
-legend {
+/* Profile Form Styles */
+.content-section form fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: white;
+}
+
+.content-section form legend {
     color: #003366;
-    padding: 0 1rem;
-    font-size: 1.2rem;
+    font-size: 20px;
+    padding: 0 15px;
 }
 
-/* Current Stats Section */
-#currentstat {
-    margin-bottom: 2rem;
+.content-section form table {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.content-section form td {
+    padding: 12px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.content-section form td:first-child {
+    width: 150px;
+    color: #666;
+}
+
+.content-section form input[type="text"],
+.content-section form input[type="password"],
+.content-section form input[type="date"],
+.content-section form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.content-section form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.content-section form img {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.content-section form input[type="submit"] {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.content-section form input[type="submit"]:hover {
+    background-color: #004d99;
+}
+
+.content-section form input[name="delete"] {
+    background-color: #dc3545;
+}
+
+.content-section form input[name="delete"]:hover {
+    background-color: #c82333;
+}
+
+.content-section form input[name="back"] {
+    background-color: #6c757d;
+}
+
+.content-section form input[name="back"]:hover {
+    background-color: #5a6268;
 }
 

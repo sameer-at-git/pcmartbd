@@ -7,22 +7,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #001f3f; /* Deep Blue Background */
+    background: rgb(1, 1, 79);
+    min-height: 100vh;
     color: #fff; /* White Text */
 }
 
 form {
-    background-color: #ffffff; /* White Background */
-    border: 2px solid #001f3f; /* Deep Blue Border */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
     width: 400px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 h1 {
     text-align: center;
-    color: #001f3f; /* Deep Blue Text */
+    color: #230772; /* Orange Text instead of Deep Blue */
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -45,7 +47,7 @@ td {
     justify-content: space-between;
     padding: 8px;
     font-size: 14px;
-    color: #001f3f; /* Deep Blue Text */
+    color: #36549b; /* Orange Text instead of Deep Blue */
     text-align: center; /* Center text in table cells */
 }
 
@@ -54,14 +56,14 @@ tr a {
     text-decoration: none;
     display: inline-block;
     text-align: center;
-    color: #007bff;
+    color: #267ad3;
     justify-content: center; /* Aligns text to center */
     margin: 5px 0; /* Adds space around link */
 }
 
 tr a:hover {
     text-decoration: underline;
-    color: #0056b3; /* Darker Blue on Hover */
+    color: #01346a; /* Darker Blue on Hover */
 }
 
 input[type="email"], input[type="password"] {
@@ -75,17 +77,19 @@ input[type="email"], input[type="password"] {
 input[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #001f3f; /* Deep Blue Button */
+    background: rgb(0, 0, 138);
     color: #ffffff; /* White Text */
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.2);
 }
 
 input[type="submit"]:hover {
-    background-color: #004080; /* Slightly Lighter Blue */
+    background: rgb(53, 104, 235);
+    transform: translateY(-1px);
 }
 
 /* Additional Styling */

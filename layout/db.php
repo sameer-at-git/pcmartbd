@@ -33,5 +33,16 @@ class UserDB
     {
         $connectionObject->close();
     }
+
+    function getAdminIdByEmail($email, $connectionObject)
+    {
+        $sql = "SELECT admin_id FROM admin WHERE email = '$email'";
+        $result = $connectionObject->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['admin_id'];
+        }
+        return null;
+    }
 }
 ?>

@@ -15,47 +15,25 @@ if (isset($_POST['edit'])) {
     $access = $_POST['access'];
     $number = $_POST['number'];
     $bio = $_POST['bio'];
-    $doj = $_POST['doj'];
     $presentaddress = $_POST['presentaddress'];
     $permanentaddress = $_POST['permanentaddress'];
 
-    $sql = "UPDATE admin SET 
-                name = '$name', 
-                access = '$access', 
-                number = '$number', 
-                bio = '$bio', 
-                doj = '$doj',  
-                presentaddress = '$presentaddress',  
-                permanentaddress = '$permanentaddress'
-            WHERE admin_id = $admin_id";
-
-    if ($conn->query($sql) === TRUE) {
+    if ($db->updateAdmin($conn, $admin_id, $name, $access, $number, $bio, $presentaddress, $permanentaddress)) {
         echo "Admin information updated successfully!";
     } else {
-        echo "Error updating technician: " . $conn->error;
+        echo "Error updating admin: " . $conn->error;
     }
 }
 
 if (isset($_POST['delete'])) {
     $admin_id = $_POST['admin_id'];
 
-    $sql = "DELETE FROM admin WHERE admin_id = $admin_id";
-
-    if ($conn->query($sql) === TRUE) {
+    if ($db->deleteAdmin($conn, $admin_id)) {
         echo "Admin deleted successfully!";
     } else {
-        echo "Error deleting technician: " . $conn->error;
+        echo "Error deleting admin: " . $conn->error;
     }
 }
-if (isset($_POST['editnid'])) {
-    $admin_id = $_POST['admin_id'];
-
-}
-if (isset($_POST['editpic'])) {
-    $admin_id = $_POST['admin_id'];
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -63,32 +41,29 @@ if (isset($_POST['editpic'])) {
 
 <head>
     <title>Manage Admins</title>
+    <link rel="stylesheet" href="../../css/managestyle.css">
+
 </head>
 
 <body>
-
+    <a href="../layout/home.php" class="back-button">← Back to Home</a>
     <h2>Manage Admins</h2>
-
+    <a href="../sign_up/admin_registration.php" class="add-button">Add Admin</a>
     <?php
-    $sql = "SELECT * FROM admin";
-    $result = $conn->query($sql);
+    $result = $db->getAllAdmins($conn);
 
     if ($result->num_rows > 0) {
     ?>
         <table>
             <tr>
-                <th>Admin ID</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Access</th>
-                <th>Number </th>
+                <th>Number</th>
                 <th>Bio</th>
-                <th>Data of Joining</th>
                 <th>Present Address</th>
                 <th>Permanent Address</th>
-                <th>NID </th>
-                <th>Change NID </th>
-                <th>Profile Pic</th>
-                <th>Change Pic</th>
+                <th>Actions</th>
             </tr>
             <?php
             while ($row = $result->fetch_assoc()) {
@@ -96,17 +71,18 @@ if (isset($_POST['editpic'])) {
                 <form method="post">
                     <tr>
                         <td><?php echo $row["admin_id"]; ?></td>
-                        <td><input type="text" name="name" value="<?php echo $row["name"]; ?>"> </td>
-                        <td><input type="text" name="access" value="<?php echo $row["access"]; ?>"></td>
+                        <td><input type="text" name="name" value="<?php echo $row["name"]; ?>"></td>
+                        <td>
+                            <select name="access" class="access-dropdown">
+                                <option value="Full Control" <?php echo ($row["access"] == "Full Control") ? "selected" : ""; ?>>Full Control</option>
+                                <option value="Product Control" <?php echo ($row["access"] == "Product Control") ? "selected" : ""; ?>>Product Control</option>
+                                <option value="Employee Control" <?php echo ($row["access"] == "Employee Control") ? "selected" : ""; ?>>Employee Control</option>
+                            </select>
+                        </td>
                         <td><input type="text" name="number" value="<?php echo $row["number"]; ?>"></td>
                         <td><input type="text" name="bio" value="<?php echo $row["bio"]; ?>"></td>
-                        <td><input type="text" name="doj" value="<?php echo $row["doj"]; ?>"></td>
                         <td><input type="text" name="presentaddress" value="<?php echo $row["presentaddress"]; ?>"></td>
                         <td><input type="text" name="permanentaddress" value="<?php echo $row["permanentaddress"]; ?>"></td>
-                        <td><?php echo '<img src="../' . $row['nidpic'] . '" width="100">'; ?></td>
-                        <td><input type="file" name="editnid" value="Change NID"></td>
-                        <td><?php echo '<img src="../' . $row['propic'] . '" width="100">'; ?></td>
-                        <td><input type="file" name="editpic" value="Change Photo"></td>
                         <td>
                             <input type="hidden" name="admin_id" value="<?php echo $row["admin_id"]; ?>">
                             <input type="submit" name="edit" value="Edit">

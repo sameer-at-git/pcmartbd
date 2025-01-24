@@ -1,53 +1,33 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../../../layout/login.php');
     exit();
 }
 
 include('../../model/db.php');
 $db = new myDB();
-$conn = $db->openCon();
 
 if (isset($_POST['edit'])) {
-    $technician_id = $_POST['technician_id'];
-    $experience = $_POST['experience'];
-    $work_area = $_POST['work_area'];
-    $work_hours = $_POST['work_hours'];
+    $emp_id = $_POST['emp_id'];
     $f_name = $_POST['f_name'];
     $l_name = $_POST['l_name'];
     $phone = $_POST['phone'];
-    $email = $_POST['email']; 
-
-    $sql = "UPDATE technician SET 
-                experience = '$experience', 
-                work_area = '$work_area', 
-                work_hours = '$work_hours', 
-                f_name = '$f_name', 
-                l_name = '$l_name',  
-                phone = '$phone',  
-                email = '$email' 
-            WHERE technician_id = $technician_id";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Technician information updated successfully!";
-    } else {
-        echo "Error updating technician: " . $conn->error;
-    }
+    $email = $_POST['email'];
+    $dob = $_POST['dob'];
+    $pre_add = $_POST['pre_add'];
+    $per_add = $_POST['per_add'];
+    $gender = $_POST['gender'];
+    $marital_status = $_POST['marital_status'];
+    $employment = $_POST['employment'];
+    
+    $db->updateEmployee($emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment);
 }
 
 if (isset($_POST['delete'])) {
-    $technician_id = $_POST['technician_id'];
-
-    $sql = "DELETE FROM technician WHERE technician_id = $technician_id";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Technician deleted successfully!";
-    } else {
-        echo "Error deleting technician: " . $conn->error;
-    }
+    $emp_id = $_POST['emp_id'];
+    $db->deleteEmployee($emp_id);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -55,60 +35,74 @@ if (isset($_POST['delete'])) {
 
 <head>
     <title>Manage Employee</title>
+    <link rel="stylesheet" href="../../css/managestyle.css">
 </head>
 
 <body>
-
-    <h2>Manage Employee</h2>
-
-    <?php
-    $sql = "SELECT * FROM technician";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-    ?>
-        <table>
-            <tr>
-                <th>Technician ID</th>
-                <th>Name</th>
-                <th>Work Hours</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Work Area</th>
-                <th>Experience</th>
-                <th>Actions</th>
-            </tr>
+    <div class="container">
+        <a href="../layout/home.php" class="back-button">← Back to Home</a>
+        <h2>Manage Employee</h2>
+        <a href="../sign_up/employee_registration.php" class="add-button">Add Employee</a>
+        <div class="table-wrapper">
             <?php
-            while ($row = $result->fetch_assoc()) {
+            $result = $db->getAllEmployees();
+            if ($result->num_rows > 0) {
             ?>
-                <form method="post">
+                <table class="manage-table">
                     <tr>
-                        <td><?php echo $row["technician_id"]; ?></td>
-                        <td><input type="text" name="f_name" value="<?php echo $row["f_name"]; ?>"> <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>"></td>
-                        <td><input type="text" name="work_hours" value="<?php echo $row["work_hours"]; ?>"></td>
-                        <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
-                        <td><input type="text" name="email" value="<?php echo $row["email"]; ?>"></td>
-                        <td><input type="text" name="work_area" value="<?php echo $row["work_area"]; ?>"></td>
-                        <td><input type="text" name="experience" value="<?php echo $row["experience"]; ?>"></td>
-                        <td>
-                            <input type="hidden" name="technician_id" value="<?php echo $row["technician_id"]; ?>">
-                            <input type="submit" name="edit" value="Edit">
-                            <input type="submit" name="delete" value="Delete">
-                        </td>
+                        <th class="id-column">ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>DOB</th>
+                        <th>Present Address</th>
+                        <th>Employment</th>
+                        <th>Actions</th>
                     </tr>
-                </form>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <form method="post" class="manage-form">
+                            <tr>
+                                <td class="id-column"><?php echo $row["emp_id"]; ?></td>
+                                <td>
+                                    <input type="text" name="f_name" value="<?php echo $row["f_name"]; ?>" class="input-field">
+                                    <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>" class="input-field">
+                                </td>
+                                <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>" class="input-field"></td>
+                                <td><input type="text" name="email" value="<?php echo $row["email"]; ?>" class="input-field"></td>
+                                <td>
+                                    <select name="gender" class="input-field">
+                                        <option value="Male" <?php echo ($row["gender"] == "Male") ? "selected" : ""; ?>>Male</option>
+                                        <option value="Female" <?php echo ($row["gender"] == "Female") ? "selected" : ""; ?>>Female</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" name="dob" value="<?php echo $row["dob"]; ?>" class="input-field"></td>
+                                <td><input type="text" name="pre_add" value="<?php echo $row["pre_add"]; ?>" class="input-field"></td>
+                                <td>
+                                    <select name="employment" class="input-field">
+                                        <option value="Full" <?php echo ($row["employment"] == "Full") ? "selected" : ""; ?>>Full</option>
+                                        <option value="Part" <?php echo ($row["employment"] == "Part") ? "selected" : ""; ?>>Part</option>
+                                        <option value="Intern" <?php echo ($row["employment"] == "Intern") ? "selected" : ""; ?>>Intern</option>
+                                    </select>
+                                </td>
+                                <td class="action-buttons">
+                                    <input type="hidden" name="emp_id" value="<?php echo $row["emp_id"]; ?>">
+                                    <input type="hidden" name="per_add" value="<?php echo $row["per_add"]; ?>">
+                                    <input type="hidden" name="marital_status" value="<?php echo $row["marital_status"]; ?>">
+                                    <input type="submit" name="edit" value="Edit" class="btn-edit">
+                                    <input type="submit" name="delete" value="Delete" class="btn-delete">
+                                </td>
+                            </tr>
+                        </form>
+                    <?php } ?>
+                </table>
             <?php
+            } else {
+                echo "<p class='no-results'>No employees found</p>";
             }
             ?>
-        </table>
-    <?php
-    } else {
-        echo "0 results";
-    }
-
-    $conn->close();
-    ?>
-
+        </div>
+    </div>
 </body>
 
 </html>

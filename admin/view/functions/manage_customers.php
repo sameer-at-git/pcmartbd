@@ -43,7 +43,7 @@ if (isset($_POST['delete'])) {
     <link rel="stylesheet" href="../../css/managestyle.css">
 </head>
 <body>
-    <a href="../admin_home.php" class="back-button">← Back to Dashboard</a>
+    <a href="../layout/home.php" class="back-button">← Back to Home</a>
     <h2>Manage Customers</h2>
 
     <?php
@@ -53,7 +53,7 @@ if (isset($_POST['delete'])) {
     ?>
         <table>
             <tr>
-                <th>Customer ID</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Password</th>

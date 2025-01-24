@@ -46,3 +46,151 @@ h1 {
     text-align: center;
     margin: 2rem 0;
 }
+
+.notifications-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.filters {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.filter-btn {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #004d99;
+}
+
+.filter-btn.active {
+    background-color: #001a33;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #003366;
+}
+
+/* Different colors for different sender types */
+.message-card.customer {
+    border-left-color: #4CAF50;
+}
+
+.message-card.employee {
+    border-left-color: #2196F3;
+}
+
+.message-card.technician {
+    border-left-color: #FF9800;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sender-type {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.customer .sender-type {
+    background-color: #E8F5E9;
+    color: #4CAF50;
+}
+
+.employee .sender-type {
+    background-color: #E3F2FD;
+    color: #2196F3;
+}
+
+.technician .sender-type {
+    background-color: #FFF3E0;
+    color: #FF9800;
+}
+
+.message-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.message-subject {
+    margin: 10px 0;
+    color: #003366;
+}
+
+.sender-email {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.message-content {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.message-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.reply-btn, .delete-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reply-btn {
+    background-color: #003366;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.reply-btn:hover {
+    background-color: #004d99;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.no-messages {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+    background-color: white;
+    border-radius: 8px;
+}

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_access']) || !isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../../../layout/login.php');
     exit();
 }
 
@@ -20,21 +20,13 @@ if (isset($_POST['edit'])) {
     $gender = $_POST['gender'];
     $marital_status = $_POST['marital_status'];
     $employment = $_POST['employment'];
-
-    if ($db->updateEmployee($emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment)) {
-        echo "<script>alert('Employee information updated successfully!');</script>";
-    } else {
-        echo "<script>alert('Error updating employee!');</script>";
-    }
+    
+    $db->updateEmployee($emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment);
 }
 
 if (isset($_POST['delete'])) {
     $emp_id = $_POST['emp_id'];
-    if ($db->deleteEmployee($emp_id)) {
-        echo "<script>alert('Employee deleted successfully!');</script>";
-    } else {
-        echo "<script>alert('Error deleting employee!');</script>";
-    }
+    $db->deleteEmployee($emp_id);
 }
 ?>
 
@@ -44,21 +36,13 @@ if (isset($_POST['delete'])) {
 <head>
     <title>Manage Employee</title>
     <link rel="stylesheet" href="../../css/managestyle.css">
-
-    <style>
-        .id-column {
-            width: 60px;
-        }
-        .manage-table td:first-child {
-            width: 60px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
+        <a href="../layout/home.php" class="back-button">← Back to Home</a>
         <h2>Manage Employee</h2>
-        <a href="../admin_home.php" class="back-button">← Back to Dashboard</a>
+        <a href="../sign_up/employee_registration.php" class="add-button">Add Employee</a>
         <div class="table-wrapper">
             <?php
             $result = $db->getAllEmployees();
@@ -106,7 +90,7 @@ if (isset($_POST['delete'])) {
                                     <input type="hidden" name="per_add" value="<?php echo $row["per_add"]; ?>">
                                     <input type="hidden" name="marital_status" value="<?php echo $row["marital_status"]; ?>">
                                     <input type="submit" name="edit" value="Edit" class="btn-edit">
-                                    <input type="submit" name="delete" value="Delete" class="btn-delete" onclick="return confirm('Are you sure you want to delete this employee?');">
+                                    <input type="submit" name="delete" value="Delete" class="btn-delete">
                                 </td>
                             </tr>
                         </form>

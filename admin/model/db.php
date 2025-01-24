@@ -16,42 +16,33 @@ class myDB
 
     function insertData($uname, $email, $pass, $access, $number, $gender, $bio, $dob, $doj, $preadd, $peradd, $nidPath, $picPath, $table, $connectionobject)
     {
-        // Insert into admin table
         $sql_admin = "INSERT INTO admin (
             name, email, password, access, number, gender, bio, dob, doj, presentaddress, permanentaddress, 
             nidpic, propic)
             VALUES ('$uname', '$email', '$pass', '$access', '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', 
             '$nidPath', '$picPath')";
-        
         $admin_result = $connectionobject->query($sql_admin);
-
-        // Insert into user table
         $sql_user = "INSERT INTO user (email, password, user_type, subtype) 
                     VALUES ('$email', '$pass', 'Admin', '$access')";
-        
         $user_result = $connectionobject->query($sql_user);
 
         return ($admin_result && $user_result);
     }
 
-     function getAdminByEmail($email) {
+    function getAdminByEmail($email) {
         $conn = $this->openCon();
-    
         $query = "SELECT * FROM admin WHERE email = '$email'";
         $result = $conn->query($query);
-    
+        
         if ($result) {
             $user = $result->fetch_assoc();
-    
             if ($user) {
                 return $user;
-            } else {
-                return null;
             }
-        } else {
-            return null;
         }
+        return null;
     }
+
     function getUserInfo($connectionObject, $id)
     {
         $sql = "SELECT * FROM admin WHERE admin_id=$id";
@@ -59,8 +50,12 @@ class myDB
         return $result->fetch_assoc();
     }
 
-    function updateUserInfo($connectionObject, $id, $name, $number,  $bio, $dob,  $preadd, $peradd, $password)
+    function updateUserInfo($connectionObject, $id, $name, $number, $bio, $dob, $preadd, $peradd, $password)
     {
+        $get_email = "SELECT email FROM admin WHERE admin_id = $id";
+        $email_result = $connectionObject->query($get_email);
+        $admin = $email_result->fetch_assoc();
+        
         $sql = "UPDATE admin SET 
                 name='$name', 
                 number='$number',
@@ -71,7 +66,12 @@ class myDB
                 password='$password'
                 WHERE admin_id=$id";
 
-        return $connectionObject->query($sql);
+        $admin_update = $connectionObject->query($sql);
+        
+        $user_sql = "UPDATE user SET password = '$password' WHERE email = '{$admin['email']}'";
+        $user_update = $connectionObject->query($user_sql);
+        
+        return ($admin_update && $user_update);
     }
 
     function deleteUserById($connectionObject, $userId)
@@ -79,67 +79,10 @@ class myDB
         $sql = "DELETE FROM admin WHERE admin_id = $userId";
         return $connectionObject->query($sql);
     }
-    function getTotalCount($table, $connectionObject)
-    {
-        $sql = "SELECT COUNT(*) as total FROM $table";
-        $result = $connectionObject->query($sql);
-        $row = $result->fetch_assoc();
-        return $row['total'];
-    }
-    function getTotalRevenue($connectionObject)
-    {
-        $sql = "SELECT SUM(price_per_unit*quantity) AS revenue FROM pcmartbd.orders";
-        $result = $connectionObject->query($sql);
-        $row = $result->fetch_assoc();
-        return $row['revenue'];
-    }
-    function ChangePic($connectionObject,$id)
-    {
-        
-    }
 
     function closecon($connectionObject)
     {
         $connectionObject->close();
-    }
-
-    function insertAdmin($uname, $email, $pass, $access, $number, $gender, $bio, $dob, $doj, $preadd, $peradd, $nidPath, $picPath, $connectionobject) {
-        try {
-            // Start transaction
-            $connectionobject->begin_transaction();
-
-            // Insert into admin table
-            $sql_admin = "INSERT INTO admin (name, email, password, access, number, gender, bio, dob, doj, presentaddress, permanentaddress, nidpic, propic) 
-                         VALUES ('$uname', '$email', '$pass', '$access', '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', '$nidPath', '$picPath')";
-            
-            $admin_result = $connectionobject->query($sql_admin);
-
-            // Insert into user table
-            $sql_user = "INSERT INTO user (email, password, user_type, subtype) 
-                        VALUES ('$email', '$pass', 'Admin', '$access')";
-            
-            $user_result = $connectionobject->query($sql_user);
-
-            if ($admin_result && $user_result) {
-                $connectionobject->commit();
-                return true;
-            } else {
-                $connectionobject->rollback();
-                return false;
-            }
-
-        } catch (Exception $e) {
-            // Rollback transaction on error
-            $connectionobject->rollback();
-            return false;
-        }
-    }
-
-    // Add a helper function to check if email exists
-    function checkEmailExists($email, $connectionObject) {
-        $sql = "SELECT * FROM user WHERE email = '$email'";
-        $result = $connectionObject->query($sql);
-        return ($result && $result->num_rows > 0);
     }
 
     function getAllTechnicians($connectionObject) {
@@ -147,31 +90,35 @@ class myDB
         return $connectionObject->query($sql);
     }
 
-    function updateTechnician($connectionObject, $data) {
+    function updateTechnician($connectionObject, $technician_id, $first_name, $last_name, $phone, $email, $experience, $work_area, $work_hour) {
         $sql = "UPDATE technician SET 
-                first_name = '{$data['first_name']}',
-                last_name = '{$data['last_name']}',
-                father_name = '{$data['father_name']}',
-                gender = '{$data['gender']}',
-                dob = '{$data['dob']}',
-                phone = '{$data['phone']}',
-                address = '{$data['address']}',
-                experience = '{$data['experience']}',
-                work_area = '{$data['work_area']}',
-                work_hour = '{$data['work_hour']}',
-                nidpic = '{$data['nidpic']}',
-                photo = '{$data['photo']}',
-                cv = '{$data['cv']}',
-                email = '{$data['email']}',
-                password = '{$data['password']}'
-            WHERE technician_id = {$data['technician_id']}";
+                first_name = '$first_name',
+                last_name = '$last_name',
+                phone = '$phone',
+                experience = '$experience',
+                work_area = '$work_area',
+                work_hour = '$work_hour',
+                email = '$email'
+                WHERE technician_id = $technician_id";
 
-        return $connectionObject->query($sql);
+        $tech_update = $connectionObject->query($sql);
+        
+        // Note: Removed password update since it's not in the form
+        return $tech_update;
     }
 
     function deleteTechnician($connectionObject, $technician_id) {
+        $get_email = "SELECT email FROM technician WHERE technician_id = $technician_id";
+        $email_result = $connectionObject->query($get_email);
+        $tech = $email_result->fetch_assoc();
+        
         $sql = "DELETE FROM technician WHERE technician_id = $technician_id";
-        return $connectionObject->query($sql);
+        $tech_delete = $connectionObject->query($sql);
+        
+        $user_sql = "DELETE FROM user WHERE email = '{$tech['email']}'";
+        $user_delete = $connectionObject->query($user_sql);
+        
+        return ($tech_delete && $user_delete);
     }
 
     function getAllAdmins($connectionObject) {
@@ -180,6 +127,10 @@ class myDB
     }
 
     function updateAdmin($connectionObject, $admin_id, $name, $access, $number, $bio, $presentaddress, $permanentaddress) {
+        $get_email = "SELECT email FROM admin WHERE admin_id = $admin_id";
+        $email_result = $connectionObject->query($get_email);
+        $admin = $email_result->fetch_assoc();
+        
         $sql = "UPDATE admin SET 
                 name = '$name', 
                 access = '$access', 
@@ -189,23 +140,30 @@ class myDB
                 permanentaddress = '$permanentaddress'
                 WHERE admin_id = $admin_id";
         
-        return $connectionObject->query($sql);
+        $admin_update = $connectionObject->query($sql);
+        
+        $user_sql = "UPDATE user SET subtype = '$access' WHERE email = '{$admin['email']}'";
+        $user_update = $connectionObject->query($user_sql);
+        
+        return ($admin_update && $user_update);
     }
 
     function deleteAdmin($connectionObject, $admin_id) {
+        $get_email = "SELECT email FROM admin WHERE admin_id = $admin_id";
+        $email_result = $connectionObject->query($get_email);
+        $admin = $email_result->fetch_assoc();
+        
         $sql = "DELETE FROM admin WHERE admin_id = $admin_id";
-        return $connectionObject->query($sql);
+        $admin_delete = $connectionObject->query($sql);
+        
+        $user_sql = "DELETE FROM user WHERE email = '{$admin['email']}'";
+        $user_delete = $connectionObject->query($user_sql);
+        
+        return ($admin_delete && $user_delete);
     }
 
-    // Customer related methods
     public function getAllCustomers($conn) {
         $sql = "SELECT * FROM customer ORDER BY customer_id";
-        return $conn->query($sql);
-    }
-
-    public function addCustomer($conn, $name, $email, $password, $address, $phone) {
-        $sql = "INSERT INTO customer (email, password, name, address, phone) 
-                VALUES ('$email', '$password', '$name', '$address', '$phone')";
         return $conn->query($sql);
     }
 
@@ -217,56 +175,45 @@ class myDB
                     address='$address', 
                     phone='$phone' 
                 WHERE customer_id=$customer_id";
-        return $conn->query($sql);
+        $customer_update = $conn->query($sql);
+        
+        $user_sql = "UPDATE user SET password = '$password' WHERE email = '$email'";
+        $user_update = $conn->query($user_sql);
+        
+        return ($customer_update && $user_update);
     }
 
     public function deleteCustomer($conn, $customer_id) {
-        $sql = "DELETE FROM customer WHERE customer_id=$customer_id";
-        return $conn->query($sql);
-    }
-
-    public function getCustomerById($conn, $customer_id) {
-        $sql = "SELECT * FROM customer WHERE customer_id=$customer_id";
-        $result = $conn->query($sql);
-        return $result->fetch_assoc();
+        $get_email = "SELECT email FROM customer WHERE customer_id = $customer_id";
+        $email_result = $conn->query($get_email);
+        $customer = $email_result->fetch_assoc();
+        
+        $sql = "DELETE FROM customer WHERE customer_id = $customer_id";
+        $customer_delete = $conn->query($sql);
+        
+        $user_sql = "DELETE FROM user WHERE email = '{$customer['email']}'";
+        $user_delete = $conn->query($user_sql);
+        
+        return ($customer_delete && $user_delete);
     }
 
     public function getProducts() {
+        $conn = $this->openCon();
         $sql = "SELECT * FROM product ORDER BY pid";
-        return $this->conn->query($sql);
+        $result = $conn->query($sql);
+        $this->closecon($conn);
+        return $result;
     }
 
     public function addProduct($type, $brand, $quantity, $price, $about, $photo, $added_by) {
+        $conn = $this->openCon();
         $sql = "INSERT INTO product (type, brand, quantity, price, about, photo, added_by, status) 
-                VALUES ('$type', '$brand', $quantity, $price, '$about', '$photo', '$added_by', 1)";
-        return $this->conn->query($sql);
+                VALUES ('$type', '$brand', $quantity, $price, '$about', '$photo', $added_by, 1)";
+        $result = $conn->query($sql);
+        $this->closecon($conn);
+        return $result;
     }
 
-    public function updateProduct($pid, $type, $brand, $quantity, $price, $about, $photo, $status) {
-        $sql = "UPDATE product 
-                SET type='$type', 
-                    brand='$brand', 
-                    quantity=$quantity, 
-                    price=$price, 
-                    about='$about', 
-                    photo='$photo',
-                    status=$status 
-                WHERE pid=$pid";
-        return $this->conn->query($sql);
-    }
-
-    public function deleteProduct($pid) {
-        $sql = "DELETE FROM product WHERE pid=$pid";
-        return $this->conn->query($sql);
-    }
-
-    public function getProductById($pid) {
-        $sql = "SELECT * FROM product WHERE pid=$pid";
-        $result = $this->conn->query($sql);
-        return $result->fetch_assoc();
-    }
-
-    // Get all employees
     public function getAllEmployees() {
         $conn = $this->openCon();
         $sql = "SELECT * FROM employee";
@@ -275,9 +222,9 @@ class myDB
         return $result;
     }
 
-    // Update employee
     public function updateEmployee($emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment) {
         $conn = $this->openCon();
+        
         $sql = "UPDATE employee SET 
                 f_name = '$f_name',
                 l_name = '$l_name',
@@ -290,55 +237,38 @@ class myDB
                 marital_status = '$marital_status',
                 employment = '$employment'
                 WHERE emp_id = $emp_id";
-        $result = $conn->query($sql);
+        
+        $emp_update = $conn->query($sql);
+        
+        $user_sql = "UPDATE user SET subtype = '$employment' WHERE email = '$email'";
+        $user_update = $conn->query($user_sql);
+        
         $this->closecon($conn);
-        return $result;
+        return ($emp_update && $user_update);
     }
 
-    // Delete employee
     public function deleteEmployee($emp_id) {
         $conn = $this->openCon();
+        
+        $get_email = "SELECT email FROM employee WHERE emp_id = $emp_id";
+        $email_result = $conn->query($get_email);
+        $employee = $email_result->fetch_assoc();
+        
         $sql = "DELETE FROM employee WHERE emp_id = $emp_id";
-        $result = $conn->query($sql);
+        $emp_delete = $conn->query($sql);
+        
+        $user_sql = "DELETE FROM user WHERE email = '{$employee['email']}'";
+        $user_delete = $conn->query($user_sql);
+        
         $this->closecon($conn);
-        return $result;
+        return ($emp_delete && $user_delete);
     }
 
-    // Get employee by ID
-    public function getEmployeeById($emp_id) {
-        $conn = $this->openCon();
-        $sql = "SELECT * FROM employee WHERE emp_id = $emp_id";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        $this->closecon($conn);
-        return $data;
-    }
-
-    // Get employee by email
-    public function getEmployeeByEmail($email) {
-        $conn = $this->openCon();
-        $sql = "SELECT * FROM employee WHERE email = '$email'";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        $this->closecon($conn);
-        return $data;
-    }
-
-    // Update employee profile picture
-    public function updateEmployeePhoto($emp_id, $pic) {
-        $conn = $this->openCon();
-        $sql = "UPDATE employee SET pic = '$pic' WHERE emp_id = $emp_id";
-        $result = $conn->query($sql);
-        $this->closecon($conn);
-        return $result;
-    }
-
-    // Update employee CV
-    public function updateEmployeeCV($emp_id, $cv) {
-        $conn = $this->openCon();
-        $sql = "UPDATE employee SET cv = '$cv' WHERE emp_id = $emp_id";
-        $result = $conn->query($sql);
-        $this->closecon($conn);
-        return $result;
+    public function getAllMessages($connectionObject) {
+        $sql = "SELECT messages.*, user.user_type as sender_type 
+                FROM messages 
+                JOIN user ON messages.sender_email = user.email 
+                ORDER BY sent_date DESC";
+        return $connectionObject->query($sql);
     }
 }

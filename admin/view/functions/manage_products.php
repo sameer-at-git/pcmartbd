@@ -9,43 +9,19 @@ include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
 
-// Add new product functionality
 if (isset($_POST['add_product'])) {
-    $type = $_POST['type'];
-    $brand = $_POST['brand'];
-    $quantity = intval($_POST['quantity']);
-    $price = intval($_POST['price']);
-    $about = $_POST['about'];
-    $photo = $_POST['photo'];
-    $added_by = $_SESSION['user_id']; // Get from session
-    $status = 1; // Default active status
-    
-    $sql = "INSERT INTO product (type, brand, quantity, price, about, photo, added_by, status) 
-            VALUES ('$type', '$brand', $quantity, $price, '$about', '$photo', '$added_by', $status)";
-    
-    if ($conn->query($sql)) {
-        $success_message = "Product added successfully!";
-    } else {
-        $error_message = "Error adding product: " . $conn->error;
-    }
+    $db->addProduct(
+        $_POST['type'],
+        $_POST['brand'],
+        intval($_POST['quantity']),
+        intval($_POST['price']),
+        $_POST['about'],
+        $_POST['photo'],
+        $_SESSION['user_id']
+    );
 }
 
-// Fetch all products
-$sql = "SELECT * FROM product ORDER BY pid";
-$result = $conn->query($sql);
-
-// Check if query was successful
-if ($result === false) {
-    die("Error in query: " . $conn->error);
-}
-
-$products = [];
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $products[] = $row;
-    }
-}
-
+$products = $db->getProducts();
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +36,7 @@ if ($result->num_rows > 0) {
 
 <body>
     <div class="top-bar">
-        <a href="../admin_home.php" class="back-button">Back to Dashboard</a>
+        <a href="../layout/home.php" class="back-button">←Back to Home</a>
         <div class="search-container">
             <img src="../../images/search.png" alt="Search" class="search-icon">
             <input type="text" id="searchProduct" class="search-bar" placeholder="Search products...">
@@ -69,18 +45,9 @@ if ($result->num_rows > 0) {
     
     <h1>Manage Products</h1>
     
-    <?php if (isset($success_message)): ?>
-        <div class="success-message"><?php echo $success_message; ?></div>
-    <?php endif; ?>
-    
-    <?php if (isset($error_message)): ?>
-        <div class="error-message"><?php echo $error_message; ?></div>
-    <?php endif; ?>
-
-    <!-- Add Product Form -->
     <div class="add-product-form">
         <h2>Add New Product</h2>
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="">
             <div class="form-group">
                 <label for="type">Product Type:</label>
                 <input type="text" id="type" name="type" required>
@@ -115,7 +82,6 @@ if ($result->num_rows > 0) {
         </form>
     </div>
 
-    <!-- Products Table -->
     <table>
         <thead>
             <tr>
@@ -128,27 +94,19 @@ if ($result->num_rows > 0) {
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($products)): ?>
-                <?php foreach ($products as $product): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($product['type']); ?></td>
-                        <td><?php echo htmlspecialchars($product['brand']); ?></td>
-                        <td><?php echo htmlspecialchars($product['quantity']); ?></td>
-                        <td>৳<?php echo number_format($product['price']); ?></td>
-                        <td><?php echo $product['status'] ? 'Active' : 'Inactive'; ?></td>
-                        <td class="actions">
-                            <a href="edit_product.php?id=<?php echo $product['pid']; ?>" class="edit-button">Edit</a>
-                            <a href="delete_product.php?id=<?php echo $product['pid']; ?>" 
-                               class="delete-button" 
-                               onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+            <?php while ($product = $products->fetch_assoc()): ?>
                 <tr>
-                    <td colspan="6">No products found</td>
+                    <td><?php echo htmlspecialchars($product['type']); ?></td>
+                    <td><?php echo htmlspecialchars($product['brand']); ?></td>
+                    <td><?php echo htmlspecialchars($product['quantity']); ?></td>
+                    <td>৳<?php echo number_format($product['price']); ?></td>
+                    <td><?php echo $product['status'] ? 'Active' : 'Inactive'; ?></td>
+                    <td class="actions">
+                        <a href="edit_product.php?id=<?php echo $product['pid']; ?>" class="edit-button">Edit</a>
+                        <a href="delete_product.php?id=<?php echo $product['pid']; ?>" class="delete-button">Delete</a>
+                    </td>
                 </tr>
-            <?php endif; ?>
+            <?php endwhile; ?>
         </tbody>
     </table>
     <script src="../../js/managing.js"></script>

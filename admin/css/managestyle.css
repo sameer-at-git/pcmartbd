@@ -269,3 +269,60 @@ a:hover {
     color: white;
     text-decoration: none;
 }
+
+/* Additional styles for manage employee table */
+.id-column {
+    width: 60px;
+}
+
+.manage-table td:first-child {
+    width: 60px;
+}
+
+/* Add any other specific styles needed for the manage employee page */
+.manage-technician {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    padding: 10px;
+}
+
+.manage-technician .specific-style {
+    /* Replaced inline styles here */
+    color: red;
+    margin-bottom: 20px;
+    font-size: inherit;
+}
+
+/* Table column widths */
+table td:first-child, /* Technician ID column */
+table th:first-child {
+    width: 40px;
+    max-width: 40px;
+}
+
+table td:nth-child(3), /* Work Hours column */
+table th:nth-child(3) {
+    width: 80px;
+    max-width: 80px;
+}
+
+table td:nth-child(4), /* Phone column */
+table th:nth-child(4) {
+    width: 120px;
+    max-width: 120px;
+}
+
+table td:nth-child(5), /* Email column */
+table th:nth-child(5) {
+    width: 250px;
+    max-width: 250px;
+}
+
+/* Ensure content doesn't overflow */
+table td input[type="text"],
+table td input[type="email"],
+table td select {
+    width: 100%;
+    box-sizing: border-box;
+}

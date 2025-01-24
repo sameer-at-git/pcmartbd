@@ -27,7 +27,7 @@ if (isset($_POST['edit'])) {
 
 if (isset($_POST['delete'])) {
     $admin_id = $_POST['admin_id'];
-    
+
     if ($db->deleteAdmin($conn, $admin_id)) {
         echo "Admin deleted successfully!";
     } else {
@@ -42,14 +42,13 @@ if (isset($_POST['delete'])) {
 <head>
     <title>Manage Admins</title>
     <link rel="stylesheet" href="../../css/managestyle.css">
-    
+
 </head>
 
 <body>
-    <a href="../admin_home.php" class="back-button">← Back to Dashboard</a>
+    <a href="../layout/home.php" class="back-button">← Back to Home</a>
     <h2>Manage Admins</h2>
     <a href="../sign_up/admin_registration.php" class="add-button">Add Admin</a>
-
     <?php
     $result = $db->getAllAdmins($conn);
 
@@ -57,7 +56,7 @@ if (isset($_POST['delete'])) {
     ?>
         <table>
             <tr>
-                <th>Admin ID</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Access</th>
                 <th>Number</th>

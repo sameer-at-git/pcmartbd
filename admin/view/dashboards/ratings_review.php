@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ../../../layout/login.php');
     exit();
 }
@@ -13,7 +13,7 @@ $conn = $db->openCon();
 <html>
 <head>
     <title>Ratings & Reviews - Admin Dashboard</title>
-    <link rel="stylesheet" href="../../css/homestyle.css">
+    <link rel="stylesheet" href="../../css/home.css">
 </head>
 <body>
     <div class="navbar">

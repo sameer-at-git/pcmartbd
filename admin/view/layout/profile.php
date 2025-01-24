@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
     header('Location: ../../../layout/login.php');
     exit();
 }
@@ -8,8 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$userInfo = $db->getUserInfo($conn, $_SESSION['admin_id']);
-$id = $_SESSION['user_id'];
+$aid = $_SESSION['admin_id'];
+$uid = $_SESSION['user_id'];
+$userInfo = $db->getUserInfo($conn, $aid);
 if (isset($_POST['edit'])) {
 
     $name = $_POST['name'];
@@ -20,8 +21,8 @@ if (isset($_POST['edit'])) {
     $peradd = $_POST['permanentaddress'];
     $password = $_POST['password'];
 
-    $db->updateUserInfo($conn, $id, $name, $number, $bio, $dob,  $preadd, $peradd, $password);
-    $userInfo = $db->getUserInfo($conn, $id);
+    $db->updateUserInfo($conn, $aid, $name, $number, $bio, $dob,  $preadd, $peradd, $password,$uid);
+    $userInfo = $db->getUserInfo($conn, $aid);
 }
 
 
@@ -30,16 +31,16 @@ if (isset($_POST['back'])) {
     exit();
 }
 if (isset($_POST['delete'])) {
-    $db->deleteAdmin($conn, $id);
+    $db->deleteAdmin($conn, $aid,$uid);
     header('Location: ../../../layout/login.php');
     exit();
 }
 if (isset($_POST['editnid'])) {
-    $db->ChangePic($conn, $id);
+    $db->ChangePic($conn, $aid);
     exit();
 }
 if (isset($_POST['editpic'])) {
-    $db->ChangePic($conn, $id);
+    $db->ChangePic($conn, $aid);
     exit();
 }
 
@@ -50,7 +51,7 @@ if (isset($_POST['editpic'])) {
 
 <head>
     <title>Admin Profile</title>
-    <link rel="stylesheet" href="../../css/homestyle.css">
+    <link rel="stylesheet" href="../../css/home.css">
 
 </head>
 

@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
-    <nav class="navbar">
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -23,7 +23,7 @@ session_start();
                 </tr>
             </table>
         </div>
-    </nav>
+</div>
 
     <div class="faq-container">
         <div class="faq-header">

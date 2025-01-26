@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result) {
             $_SESSION['success_message'] = "Admin registered successfully!";
-            header("Location: ../../layout/login.php");
+            header("Location: ../../layout/view/login.php");
             exit();
         }
         

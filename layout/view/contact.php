@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-// Admin contact details
-$admin_email = "admin@example.com";
-$admin_phone = "+1234567890";
-$admin_whatsapp = "+1234567890";
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +9,7 @@ $admin_whatsapp = "+1234567890";
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
-    <nav class="navbar">
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -28,7 +23,7 @@ $admin_whatsapp = "+1234567890";
                 </tr>
             </table>
         </div>
-    </nav>
+</div>
 
     <div class="about-container">
         <div class="about-header">
@@ -41,30 +36,34 @@ $admin_whatsapp = "+1234567890";
                 <h2>Direct Contact Methods</h2>
                 <div class="contact-info">
                     <div class="contact-method">
-                        <div class="contact-icon">📧</div>
+                        <div class="contact-icon">
+                            <img src="../assets/icons/email-icon.png" alt="Email Icon">
+                        </div>
                         <div class="contact-details">
                             <h3>Email Us</h3>
-                            <a href="mailto:<?php echo $admin_email; ?>"><?php echo $admin_email; ?></a>
+                            <p class="contact-link">pcmartbd@gmail.com</p>
                             <p class="contact-description">Available 24/7 for your inquiries</p>
                         </div>
                     </div>
 
                     <div class="contact-method">
-                        <div class="contact-icon">📞</div>
+                        <div class="contact-icon">
+                            <img src="../assets/icons/phone-icon.png" alt="Phone Icon">
+                        </div>
                         <div class="contact-details">
                             <h3>Call Us</h3>
-                            <a href="tel:<?php echo $admin_phone; ?>"><?php echo $admin_phone; ?></a>
+                            <p class="contact-link">+880 184-247-3434</p>
                             <p class="contact-description">Mon-Fri: 9AM to 6PM</p>
                         </div>
                     </div>
 
                     <div class="contact-method">
-                        <div class="contact-icon">💬</div>
+                        <div class="contact-icon">
+                            <img src="../assets/icons/whatsapp-icon.png" alt="WhatsApp Icon">
+                        </div>
                         <div class="contact-details">
                             <h3>WhatsApp</h3>
-                            <a href="https://wa.me/<?php echo str_replace('+', '', $admin_whatsapp); ?>" target="_blank">
-                                Chat on WhatsApp
-                            </a>
+                            <p class="contact-link">+880 184-247-3434</p>
                             <p class="contact-description">Quick responses within minutes</p>
                         </div>
                     </div>

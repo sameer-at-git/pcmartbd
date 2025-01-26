@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../model/db.php';
 
 $db = new UserDB();
 $conn = $db->openCon();
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($admin_id) {
                         $_SESSION['admin_id'] = $admin_id;
                     }
-                    header("Location: ../admin/view/layout/home.php");
+                    header("Location: ../../admin/view/layout/home.php");
                     break;
                 case 'Customer':
                     header("Location: customer_dashboard.php");

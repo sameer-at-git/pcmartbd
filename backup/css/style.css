@@ -1,0 +1,103 @@
+*{
+    font-size: 18px;
+    background-color:  white;
+}
+
+h1{
+    font-size: 40px;
+    justify-self: center;
+    background-color: rgb(40, 85, 136);
+    color: rgb(224, 222, 222);
+}
+
+.nav{
+    align-items: center;
+    background-color: rgb(40, 85, 136);
+    padding: 5px;
+}
+
+fieldset{
+    text-align: center;
+    background-color: aliceblue;
+    border: 3px solid;
+    border-radius: 10px;
+}
+
+table td{
+    background-color: aliceblue;
+}
+table{
+    background-color: aliceblue;
+
+}
+
+#btn{
+    justify-self: center;
+    background-color: white;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin: 5px 0;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #0056b3;
+}
+
+.field{
+    font-size: small;
+}
+
+input::placeholder,
+textarea::placeholder {
+    font-size: 12px;
+    color: #888; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="file"],
+textarea {
+    font-size: 12px; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 5px 0px;
+}
+
+
+select {
+    font-size: 12px; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333; 
+    width: 100%;
+    cursor: pointer;
+}
+
+select option {
+    font-size: 12px; 
+    color: #333;
+}
+
+
+
+
+
+

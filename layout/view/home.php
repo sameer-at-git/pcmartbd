@@ -5,12 +5,11 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PCMartBD - Your Ultimate Hardware Destination</title>
+    <title>PCMartBD - One Stop Solution for Hardware and Repairings</title>
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -24,16 +23,14 @@ session_start();
                 </tr>
             </table>
         </div>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
     <div class="about-container">
         <div class="about-header">
             <h1>Welcome to PCMartBD</h1>
-            <p class="tagline">Your One-Stop Shop for Premium Computer Hardware</p>
+            <p class="tagline">Your One-Stop Shop for Premium Computer Hardware and Repairings</p>
         </div>
 
-        <!-- Featured Categories -->
         <div class="features-container">
             <h2>Featured Categories</h2>
             <div class="features-grid">
@@ -56,21 +53,20 @@ session_start();
             </div>
         </div>
 
-        <!-- Services Section -->
+        
         <div class="about-grid">
             <div class="about-section">
                 <h2>Hardware Sales</h2>
                 <p>Browse our extensive collection of computer parts from trusted brands. We offer competitive prices and genuine products with warranty.</p>
-                <a href="browse.php" class="back-button" style="margin-top: 20px; display: inline-block;">Shop Now</a>
+                <a href="browse.php" class="back-button">Shop Now</a>
             </div>
             <div class="about-section">
                 <h2>Repair Services</h2>
                 <p>Professional computer repair services by certified technicians. Fast, reliable, and affordable solutions for all your hardware problems.</p>
-                <a href="repair.php" class="back-button" style="margin-top: 20px; display: inline-block;">Book Repair</a>
+                <a href="repair.php" class="back-button">Book Repair</a>
             </div>
         </div>
 
-        <!-- Why Choose Us -->
         <div class="team-section">
             <h2>Why Choose Us</h2>
             <div class="team-grid">
@@ -95,12 +91,11 @@ session_start();
             </div>
         </div>
 
-        <!-- Contact Section -->
         <div class="contact-section">
             <h2>Need Help?</h2>
             <div class="contact-info">
-                <p>Email: support@pcmartbd.com</p>
-                <p>Phone: +880 123-456-789</p>
+                <p>Email: pcmartbd@gmail.com</p>
+                <p>Phone: +880 184-247-3434</p>
                 <p>Address: Tech Plaza, Dhaka, Bangladesh</p>
             </div>
         </div>

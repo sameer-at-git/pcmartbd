@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
-    <nav class="navbar">
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -23,10 +23,9 @@ session_start();
                 </tr>
             </table>
         </div>
-    </nav>
+</div>
 
     <div class="browse-container">
-        <!-- Search and Filter Section -->
         <div class="search-filter-section">
             <div class="search-bar">
                 <form action="" method="GET">
@@ -82,29 +81,29 @@ session_start();
             </div>
         </div>
 
-        <!-- Products Grid Section -->
         <div class="products-section">
             <div class="products-grid">
-                <?php
-                // Example product card structure - Replace with dynamic data from database
-                for ($i = 1; $i <= 12; $i++) {
-                    echo '
+                <?php foreach ($products as $product): ?>
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../images/product-placeholder.jpg" alt="Product Image">
+                            <img src="<?= htmlspecialchars($product['image']) ?>" alt="Product Image">
                         </div>
                         <div class="product-details">
-                            <h3>Product Name ' . $i . '</h3>
+                            <h3><?= htmlspecialchars($product['name']) ?></h3>
                             <div class="product-rating">
-                                ★★★★☆ (125)
+                                ★★★★☆ (<?= htmlspecialchars($product['reviews']) ?>)
                             </div>
-                            <div class="product-price">$999.99</div>
-                            <div class="product-stock">In Stock</div>
-                            <button class="add-to-cart">Add to Cart</button>
+                            <div class="product-price">$<?= htmlspecialchars($product['price']) ?></div>
+                            <div class="product-stock"><?= $product['stock'] ? 'In Stock' : 'Out of Stock' ?></div>
+                            <div class="product-actions">
+                                <button class="favorite-btn" title="Add to Favorites">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="add-to-cart">Add to Cart</button>
+                            </div>
                         </div>
-                    </div>';
-                }
-                ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
             <!-- Pagination -->

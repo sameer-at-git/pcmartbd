@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hardware Repair Services</title>
+    <title>Repair Services-PCMartBD</title>
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
+   
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -22,20 +20,18 @@
                 </tr>
             </table>
         </div>
-    </nav>
+</div>
 
-    <!-- Repair Container -->
     <div class="about-container">
         <div class="about-header">
             <h1>Hardware Repair Services</h1>
             <p class="tagline">Professional repair services for all your hardware needs</p>
         </div>
 
-        <!-- Appointment Button Section -->
-        <div class="contact-section" style="text-align: center;">
+        <div class="contact-section">
             <h2>Schedule Your Repair</h2>
-            <p style="margin-bottom: 30px;">Click below to schedule an appointment with our expert technicians</p>
-            <a href="create_appointment.php" class="back-button" style="font-size: 24px; padding: 20px 40px;">
+            <p class="repair-description">Click below to schedule an appointment with our expert technicians</p>
+            <a href="create_appointment.php" class="repair-button">
                 Create Appointment
             </a>
         </div>

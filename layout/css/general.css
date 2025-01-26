@@ -195,7 +195,6 @@
     background-color: #0d1657;
 }
 
-/* Add these styles at the top of your existing CSS */
 .navbar {
     width: 100%;
     background-color: #003366;
@@ -235,7 +234,6 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Browse Page Styles */
 .browse-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -245,7 +243,6 @@
     gap: 30px;
 }
 
-/* Search and Filter Styles */
 .search-bar {
     margin-bottom: 30px;
 }
@@ -302,7 +299,6 @@
     border-radius: 4px;
 }
 
-/* Products Grid Styles */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -367,8 +363,44 @@
     font-size: 14px;
 }
 
+.product-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn i {
+    color: #666;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+    background-color: #ffebee;
+}
+
+.favorite-btn:hover i {
+    color: #e91e63;
+}
+
+.favorite-btn.active i {
+    color: #e91e63;
+}
+
 .add-to-cart {
-    width: 100%;
+    flex: 1;
     padding: 10px;
     background-color: #1a237e;
     color: white;
@@ -382,7 +414,6 @@
     background-color: #0d1657;
 }
 
-/* Pagination Styles */
 .pagination {
     display: flex;
     justify-content: center;
@@ -409,7 +440,6 @@
     background-color: #f0f2f5;
 }
 
-/* FAQ Styles */
 .faq-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -525,7 +555,6 @@
     background-color: #0d1657;
 }
 
-/* Login Page Styles */
 body.login-page {
     background: rgb(1, 1, 79);
     color: #fff;
@@ -538,7 +567,7 @@ body.login-page {
 }
 
 .login-form {
-    margin-top: 120px;
+    margin-top: 50px;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 8px;
     padding: 40px;
@@ -550,30 +579,31 @@ body.login-page {
 .login-form h1 {
     color: #1a237e;
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .login-form fieldset {
-    border: none;
-    padding: 0;
-    margin: 0 0 20px 0;
+    border: 1px solid rgba(26, 35, 126, 0.1);
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 .login-form table {
     width: 100%;
-    margin: 0 auto;
 }
 
 .login-form td {
-    color: #1a237e;
-    padding: 8px;
+    color:#0d1657;
+    padding: 10px;
     text-align: left;
-    font-size: 14px;
+    white-space: nowrap;  
 }
 
-.login-form td:first-child {
-    width: 30%;
+.login-form label {
+    width: 120px; 
+    display: inline-block;
+    color: #1a237e;
 }
 
 .login-form input[type="email"],
@@ -586,20 +616,30 @@ body.login-page {
 }
 
 .login-form input[type="submit"] {
-    width: 200px;
-    padding: 12px;
-    background: #1a237e;
+    background-color: #1a237e;
     color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 20px auto;
-    display: block;
-    font-size: 16px;
+    width: 100%;
+    margin: 10px 0;
 }
 
 .login-form input[type="submit"]:hover {
-    background: #0d1657;
+    background-color: #0d1657;
+}
+
+.error-message {
+    color: #f44336;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: #4caf50;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .login-form a {
@@ -639,3 +679,38 @@ body.login-page {
     text-align: center;
     margin: 15px 0;
 }
+
+.login-form .message {
+    color: #1a237e; 
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgba(26, 35, 126, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    color: #0066cc;
+    text-decoration: underline;
+    margin: 5px 0;
+}
+
+.repair-description {
+    margin-bottom: 30px;
+}
+
+.repair-button {
+    display: inline-block;
+    font-size: 24px;
+    padding: 20px 40px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.repair-button:hover {
+    background-color: #0d1657;
+}
+

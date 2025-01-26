@@ -18,19 +18,19 @@ $adminPages = [
         'Manage Product' => '../functions/manage_products.php',
         'Manage Admin' => '../functions/manage_admin.php',
         'Manage Customers' => '../functions/manage_customers.php',
-        'See All Appointments' => '../functions/manage_appointments.php'
+        'See All Appointments' => '../functions/appointments.php'
     ],
     'Employee Control' => [
         'Manage Technician' => '../ functions/manage_technician.php',
         'Manage Employees' => '../functions/manage_employee.php',
         'Manage Customers' => '../functions/manage_customers.php',
-        'See All Appointments' => '../functions/manage_appointments.php'
+        'See All Appointments' => '../functions/appointments.php'
     ],
     'Product Control' => [
         'Manage Technician' => '../functions/manage_technician.php',
         'Manage Product' => '../functions/manage_products.php',
         'Manage Customers' => '../functions/manage_customers.php',
-        'See All Appointments' => '../functions/manage_appointments.php'
+        'See All Appointments' => '../functions/appointments.php'
     ]
 ];
 ?>

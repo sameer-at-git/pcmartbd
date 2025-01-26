@@ -37,7 +37,7 @@ include '../control/viewAppointment_control.php';
         <table>
             <thead>
                 <tr>
-                    <th>Appointment ID</th>
+                    <th>Appointment ID View</th>
                     <th>Date</th>
                     <th>Status</th>
                     <th>Customer Name</th>

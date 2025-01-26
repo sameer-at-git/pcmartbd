@@ -1,0 +1,716 @@
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f0f2f5;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-header h1 {
+    color: #1a237e;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.tagline {
+    color: #666;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.about-section {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2 {
+    color: #1a237e;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.features-container {
+    margin-bottom: 50px;
+}
+
+.features-container h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 30px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.feature-card h3 {
+    color: #1a237e;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.team-section {
+    margin-bottom: 50px;
+}
+
+.team-section h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 30px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.team-member {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.member-info h3 {
+    color: #1a237e;
+    margin-bottom: 15px;
+}
+
+.contact-section {
+    text-align: center;
+    margin-bottom: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h2 {
+    color: #1a237e;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-method:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.contact-icon {
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a237e;
+    color: white;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-details h3 {
+    color: #1a237e;
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.contact-details a {
+    color: #2196f3;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-details a:hover {
+    color: #1565c0;
+    text-decoration: underline;
+}
+
+.contact-description {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.back-section {
+    text-align: center;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: #0d1657;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #003366;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.navbar table td {
+    text-align: center;
+    padding: 0;
+}
+
+.navbar table td a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 15px 25px;
+    transition: background-color 0.3s;
+}
+
+.navbar table td a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar table td a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.browse-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+}
+
+.search-bar {
+    margin-bottom: 30px;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.search-bar button {
+    padding: 12px 24px;
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-group {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group h3 {
+    color: #1a237e;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.filter-group label {
+    display: block;
+    margin: 10px 0;
+    color: #666;
+}
+
+.filter-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-details {
+    padding: 15px;
+}
+
+.product-title {
+    color: #1a237e;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.product-rating {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.review-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a237e;
+    margin-bottom: 10px;
+}
+
+.product-stock {
+    color: #4caf50;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn i {
+    color: #666;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+    background-color: #ffebee;
+}
+
+.favorite-btn:hover i {
+    color: #e91e63;
+}
+
+.favorite-btn.active i {
+    color: #e91e63;
+}
+
+.add-to-cart {
+    flex: 1;
+    padding: 10px;
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #0d1657;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #1a237e;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #1a237e;
+    color: white;
+    border-color: #1a237e;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #f0f2f5;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f0f2f5;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-header h1 {
+    color: #1a237e;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.faq-section {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h2 {
+    color: #1a237e;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.faq-item {
+    margin-bottom: 25px;
+}
+
+.faq-item h3 {
+    color: #1a237e;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.question-form-section {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.question-form-section h2 {
+    color: #1a237e;
+    margin-bottom: 15px;
+}
+
+.question-form-section p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.question-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #1a237e;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: #1a237e;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0d1657;
+}
+
+body.login-page {
+    background: rgb(1, 1, 79);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-form {
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 40px;
+    width: 450px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-form h1 {
+    color: #1a237e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form fieldset {
+    border: 1px solid rgba(26, 35, 126, 0.1);
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.login-form table {
+    width: 100%;
+}
+
+.login-form td {
+    color:#0d1657;
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap;  
+}
+
+.login-form label {
+    width: 120px; 
+    display: inline-block;
+    color: #1a237e;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.login-form input[type="submit"] {
+    background-color: #1a237e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #0d1657;
+}
+
+.error-message {
+    color: #f44336;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: #4caf50;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-form a {
+    color: #1a237e;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+.login-links {
+    text-align: center;
+    margin: 15px 0;
+    color: #1a237e;
+}
+
+.login-links div {
+    margin-top: 15px;
+    color: #1a237e;
+}
+
+.login-links a {
+    color: #1a237e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+#fp {
+    display: block;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.login-form .message {
+    color: #1a237e; 
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgba(26, 35, 126, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    color: #0066cc;
+    text-decoration: underline;
+    margin: 5px 0;
+}
+
+.repair-description {
+    margin-bottom: 30px;
+}
+
+.repair-button {
+    display: inline-block;
+    font-size: 24px;
+    padding: 20px 40px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.repair-button:hover {
+    background-color: #0d1657;
+}
+

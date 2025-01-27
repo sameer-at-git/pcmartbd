@@ -35,6 +35,14 @@
                 <input type="date" id="dob" name="dob">
             </div>
             <div class="form-group">
+                    <label>Gender:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="Male"> Male</label>
+                        <label><input type="radio" name="gender" value="Female"> Female</label>
+                        <p id="gendererr"></p>
+                    </div>
+                </div>
+            <div class="form-group">
                 <label for="phone">Phone:</label>
                 <input type="number" id="phone" name="phone" placeholder="Enter Your Phone Number">
             </div>

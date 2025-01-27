@@ -1,5 +1,5 @@
 <?php
-require '../model/db.php';
+require '../../model/db.php';
 
 // Ensure the technician is logged in
 session_start();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Get technician ID from session
-$technician_id = $_SESSION['user_id'];
+$technician_id = $_SESSION['technician_id'];
 
 // Get search/filter inputs from the form submission
 $search = isset($_POST['search']) ? $_POST['search'] : null;

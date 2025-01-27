@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
-    header('Location: ../../../layout/login.php');
+    header('Location: ../../../layout/view/login.php');
     exit();
 }
 include('../../model/db.php');

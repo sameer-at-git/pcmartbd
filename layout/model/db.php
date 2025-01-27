@@ -24,6 +24,17 @@ class UserDB
             return null;
         }
     }
+    function getTechnicianIdByEmail($email, $connectionObject)
+    {
+        $sql = "SELECT technician_id FROM technician WHERE email = '$email'";
+        $result = $connectionObject->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['technician_id'];
+        }
+        return null;
+    }
+
     function checkPassword($inputPassword, $storedPassword)
     {
         return $inputPassword === $storedPassword;

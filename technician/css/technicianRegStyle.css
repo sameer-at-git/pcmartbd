@@ -58,6 +58,16 @@ label {
     color: #555;
 }
 
+.radio-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.radio-group label {
+    margin: 0 10px;
+}
+
 input, textarea, select {
     width: 100%;
     padding: 10px;

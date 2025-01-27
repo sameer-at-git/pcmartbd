@@ -7,7 +7,6 @@ $conn = $db->openCon();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['useremail'];
     $password = $_POST['userpass'];
-
     $user = $db->getUserByEmail($email, $conn);
 
     if ($user) {
@@ -28,7 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: customer_dashboard.php");
                     break;
                 case 'Technician':
-                    header("Location: technician_dashboard.php");
+                    $technician_id = $db->getTechnicianIdByEmail($email, $conn);
+                    if ($technician_id) {
+                        $_SESSION['technician_id'] = $technician_id;
+                    }
+                    header("Location: ../../technician/view/layout/home.php");
                     break;
                 case 'Employee':
                     header("Location: employee_dashboard.php");

@@ -37,6 +37,12 @@ class myDB
         $result = $connectionObject->query($sql);
         return $result->fetch_assoc();
     }
+    function getAdminByEmail($connectionObject, $email)
+    {
+        $sql = "SELECT * FROM admin WHERE 'email'=$email";
+        $result = $connectionObject->query($sql);
+        return $result->fetch_assoc();
+    }
 
     function updateUserInfo($connectionObject, $aid, $name, $number, $bio, $dob, $preadd, $peradd, $password,$uid)
     {
@@ -219,11 +225,158 @@ class myDB
         return ($emp_delete && $user_delete);
     }
 
-    public function getAllMessages($connectionObject) {
-        $sql = "SELECT messages.*, user.user_type as sender_type 
-                FROM messages 
-                JOIN user ON messages.sender_email = user.email 
-                ORDER BY sent_date DESC";
+    public function getAllMessages($connectionObject, $filter){
+
+        $sql = "SELECT * from messages where '$filter'= sentby ";
         return $connectionObject->query($sql);
+        }
+
+    // Customer Overview Functions
+    function getTotalCustomers($conn) {
+        $sql = "SELECT COUNT(*) as total FROM customer";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];
+    }
+
+    function getActiveSubscriptions($conn) {
+        /*$sql = "SELECT COUNT(*) as total FROM customer WHERE status = 'active'";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
+    }
+
+    function getCustomerSatisfactionRating($conn) {
+        /*$sql = "SELECT AVG(rating) as avg_rating FROM review WHERE review_type = 'customer'";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return number_format($data['avg_rating'] ?? 0, 1);*/
+    }
+
+    // Employee Performance Functions
+    function getTotalEmployees($conn) {
+        $sql = "SELECT COUNT(*) as total FROM employee";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];
+    }
+
+    function getAverageEmployeePerformance($conn) {
+        /*$sql = "SELECT AVG(performance_rating) as avg_performance FROM employee";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return number_format($data['avg_performance'] ?? 0, 1)     ;  */
+    }
+
+    function getTopPerformersCount($conn) {
+        /*$sql = "SELECT COUNT(*) as total FROM employee WHERE performance_rating >= 8";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
+    }
+
+    // Technician Performance Functions
+    function getTotalTechnicians($conn) {
+        $sql = "SELECT COUNT(*) as total FROM technician";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];
+    }
+
+    function getTechnicianAverageRating($conn) {
+        /*$sql = "SELECT AVG(rating) as avg_rating FROM review WHERE review_type = 'technician'";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return number_format($data['avg_rating'] ?? 0, 1);*/
+    }
+
+    function getTotalCompletedJobs($conn) {
+       /* $sql = "SELECT COUNT(*) as total FROM orders WHERE status = 'completed' AND service_type = 'repair'";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
+    }
+
+    // Overall Revenue Functions
+    function getTotalRevenue($conn) {
+        /*$sql = "SELECT SUM(amount) as total FROM payment";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return number_format($data['total'] ?? 0, 2);*/
+    }
+
+    function getMonthlyGrowthRate($conn) {
+       /* $sql = "SELECT 
+                    (SELECT SUM(amount) FROM payment 
+                     WHERE MONTH(payment_date) = MONTH(CURRENT_DATE)) as current_month,
+                    (SELECT SUM(amount) FROM payment 
+                     WHERE MONTH(payment_date) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)) as last_month";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        
+        if ($data['last_month'] > 0) {
+            $growth = (($data['current_month'] - $data['last_month']) / $data['last_month']) * 100;
+            return number_format($growth, 1);
+        }
+        return 0;*/
+    }
+
+    function getAverageOrderValue($conn) {
+       /* $sql = "SELECT AVG(amount) as avg_amount FROM payment";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return number_format($data['avg_amount'] ?? 0, 2);*/
+    }
+
+    // Product Performance Functions
+    function getTotalProducts($conn) {
+        $sql = "SELECT COUNT(*) as total FROM product";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];
+    }
+
+    function getTopSellingProductCount($conn) {
+       /* $sql = "SELECT COUNT(DISTINCT product_id) as total 
+                FROM orders 
+                WHERE product_id IN (
+                    SELECT product_id 
+                    FROM orders 
+                    GROUP BY product_id 
+                    HAVING COUNT(*) >= 5
+                )";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
+    }
+
+    function getLowStockProductCount($conn) {
+       /*$sql = "SELECT COUNT(*) as total FROM product WHERE stock < 10";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
+    }
+
+    // Ratings & Reviews Functions
+    function getTotalReviews($conn) {
+        /*$sql = "SELECT COUNT(*) as total FROM review";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
+    }
+
+    function getAverageProductRating($conn) {
+        /*$sql = "SELECT AVG(rating) as avg_rating FROM review WHERE review_type = 'product'";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return number_format($data['avg_rating'] ?? 0, 1);*/
+    }
+
+    function getRecentReviewsCount($conn) {
+        /*$sql = "SELECT COUNT(*) as total FROM review 
+                WHERE review_date >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data['total'];*/
     }
 }

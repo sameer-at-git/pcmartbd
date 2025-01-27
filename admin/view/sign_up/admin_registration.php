@@ -109,9 +109,8 @@
 
                 <div class="input-group">
                     <label for="pass">Temporary Password:</label>
-                    <input type="password" name="pass" id="pass" onchange="trackPasswordAttempts()" placeholder="Enter Your Password">
+                    <input type="password" name="pass" id="pass" placeholder="Enter Your Password">
                     <p id="passerr"></p>
-                    <p id="attemptCount"></p>
                 </div>
 
                 <div class="input-group">

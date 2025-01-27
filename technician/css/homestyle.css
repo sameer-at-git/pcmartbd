@@ -10,7 +10,7 @@ body {
 
 .header {
     background-color: #003366;
-    padding: 10px;
+    padding: 0px;
     padding-left: 50px;
     border-bottom: black solid 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -18,12 +18,14 @@ body {
     justify-content: left;
     align-items: center;
     flex-wrap: wrap;
+    height:50px;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 15px;
+    height: 100%;
 }
 
 .main-logo{
@@ -39,6 +41,7 @@ body {
     font-weight: bold;
     color: #ffffff;
     text-decoration: none;
+    padding: -50px;
 }
 
 .logo-container .website-name span {
@@ -140,8 +143,9 @@ body {
     position: relative;
     color: #495057;
     text-decoration: none;
-    padding: 20px;
     border-radius: 8px;
+    padding: 5px;
+    padding-left: 20px;
     box-shadow: 5px 5px 10px #e0e0e0,
                 -5px -5px 10px #ffffff;
     transition: all 0.3s ease;

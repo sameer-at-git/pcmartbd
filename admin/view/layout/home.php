@@ -13,35 +13,39 @@ $admin_type = $_SESSION['user_access'];
 
 $adminPages = [
     'Full Control' => [
-        'Manage Technician' => '../functions/manage_technician.php',
-        'Manage Employees' => '../functions/manage_employee.php',
-        'Manage Product' => '../functions/manage_products.php',
-        'Manage Admin' => '../functions/manage_admin.php',
-        'Manage Customers' => '../functions/manage_customers.php',
-        'See All Appointments' => '../functions/appointments.php'
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Employees' => ['url' => '../functions/manage_employee.php', 'icon' => '../../images/employee-icon.svg'],
+        'Manage Product' => ['url' => '../functions/manage_products.php', 'icon' => '../../images/product-icon.svg'],
+        'Manage Admin' => ['url' => '../functions/manage_admin.php', 'icon' => '../../images/admin-icon.svg'],
+        'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
+        'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg']
     ],
     'Employee Control' => [
-        'Manage Technician' => '../ functions/manage_technician.php',
-        'Manage Employees' => '../functions/manage_employee.php',
-        'Manage Customers' => '../functions/manage_customers.php',
-        'See All Appointments' => '../functions/appointments.php'
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Employees' => ['url' => '../functions/manage_employee.php', 'icon' => '../../images/employee-icon.svg'],
+        'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
+        'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg']
     ],
     'Product Control' => [
-        'Manage Technician' => '../functions/manage_technician.php',
-        'Manage Product' => '../functions/manage_products.php',
-        'Manage Customers' => '../functions/manage_customers.php',
-        'See All Appointments' => '../functions/appointments.php'
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Product' => ['url' => '../functions/manage_products.php', 'icon' => '../../images/product-icon.svg'],
+        'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
+        'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg']
     ]
 ];
 ?>
 <html>
-
 <head>
-    <title>Admin Home</title>
+    <title>Home - Admin Dashboard</title>
     <link rel="stylesheet" href="../../css/home.css">
 </head>
-
 <body>
+<div class="header">
+        <div class="logo-container">
+            <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
     <div class="navbar">
         <div>
             <table>
@@ -61,16 +65,20 @@ $adminPages = [
             <h2>Admin Functionalities</h2>
             <div class="functionalities-grid">
                 <?php
-                foreach ($adminPages[$admin_type] as $title => $url) {
+                foreach ($adminPages[$admin_type] as $title => $details) {
                     $className = str_replace(' ', '', strtolower($title));
                     echo "<div class='function-card {$className}'>";
-                    echo "<h3><a href='$url'>$title</a></h3>";
+                    echo "<img src='{$details['icon']}' alt='{$title} icon'>";
+                    echo "<h3><a href='{$details['url']}'>{$title}</a></h3>";
                     echo "</div>";
                 }
                 ?>
             </div>
         </div>
     </div>
-</body>
 
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+    </div>
+</body>
 </html>

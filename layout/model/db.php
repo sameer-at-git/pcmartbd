@@ -73,4 +73,23 @@ class UserDB
         }
         return null;
     }
+
+    
+    function getEmpIdByEmail($email, $connectionObject)
+    {
+        $sql = "SELECT emp_id FROM employee WHERE email = '$email'";
+        $result = $connectionObject->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['emp_id'];
+        }
+        return null;
+    }
+    function showProducts($connectionObject)
+    {
+        $sql = "SELECT * FROM products ";
+        $result=  $connectionObject->query($sql);
+        $row=$result->fetch_assoc();
+        return $row;
+    }
 }

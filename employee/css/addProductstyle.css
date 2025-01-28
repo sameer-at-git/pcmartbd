@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 30px;
+}
+
+h2 {
+    color: #1a237e;
+    text-align: center;
+    margin: 20px 0 30px 0;
+    font-size: 24px;
+}
+
+.add-product-form {
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.texts {
+    margin-bottom: 20px;
+}
+
+.texts label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1a237e;
+    font-weight: bold;
+}
+
+.texts input,
+.texts select,
+.texts textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.texts textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.texts select {
+    background-color: white;
+}
+
+.submit-button {
+    background-color: #1a237e;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.rst-button {
+    background-color: #ac3939;
+    color: white;
+    margin-left: 50px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    font-size: 16px;
+}
+
+.rst-button:hover {
+    background-color: #881010;
+}
+
+.submit-button:hover {
+    background-color: #0d1657;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0d1657;
+    color: white;
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.success-message {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.radio-group {
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.radio-label {
+    display: flex;
+    margin-right: 25px;
+    align-items: center;
+    cursor: pointer;
+    font-size: 17px;
+    color: #1e6648;
+}
+
+.radio-label input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.radio-label:hover {
+    color: #1a237e;
+}

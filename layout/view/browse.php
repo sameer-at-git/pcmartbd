@@ -1,5 +1,9 @@
 <?php
-session_start();
+
+include('../model/db.php');
+$db = new UserDB();
+$conn = $db->openCon();
+$products=$db->showProducts($conn);
 ?>
 
 <!DOCTYPE html>
@@ -92,14 +96,14 @@ session_start();
                 <?php foreach ($products as $product): ?>
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="<?= htmlspecialchars($product['image']) ?>" alt="Product Image">
+                            <img src="<?= $product['image'] ?>" alt="Product Image">
                         </div>
                         <div class="product-details">
-                            <h3><?= htmlspecialchars($product['name']) ?></h3>
+                            <h3><?= $product['name']?></h3>
                             <div class="product-rating">
-                                ★★★★☆ (<?= htmlspecialchars($product['reviews']) ?>)
+                                ★★★★☆ (<?= $product['reviews'] ?>)
                             </div>
-                            <div class="product-price">$<?= htmlspecialchars($product['price']) ?></div>
+                            <div class="product-price">$<?= $product['price'] ?></div>
                             <div class="product-stock"><?= $product['stock'] ? 'In Stock' : 'Out of Stock' ?></div>
                             <div class="product-actions">
                                 <button class="favorite-btn" title="Add to Favorites">

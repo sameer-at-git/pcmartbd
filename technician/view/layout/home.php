@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technician Home - PCMartBD</title>
-    <link rel="stylesheet" href="../../css/homestyle.css">
+    <link rel="stylesheet" href="../../css/mainstyle.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
             <li><a href="home.php">Home</a></li>
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="settings.php">Settings</a></li>
-            <li><a href=#>Profile</a></li>
+            <li><a href="profile.php">Profile</a></li>
             <li><a href="../../../layout/view/login.php">Logout</a></li>
         </ul>
     </div>
@@ -41,17 +41,17 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="action-card">
                     <h3><img src="../../images/icons/calendar-check-solid.svg" alt="Add Icon" class="icon"></i>Appointments</h3>
                     <div class="action-links">
-                        <a href="../functions/viewAppointment.php">
-                            <img src="../../images/icons/list-solid.svg" alt="Add Icon" class="icon">
-                            <p>View Appointments</p>
+                        <a href="../functions/viewUpcomingAppointment.php">
+                            <img src="../../images/icons/clock-solid.svg" alt="Add Icon" class="icon">
+                            <p>Upcoming Appointments</p>
                         </a>
-                        <a href="../functions/appointmentHistory.php">
+                        <a href="../functions/viewAppointmentHistory.php">
                             <img src="../../images/icons/clock-rotate-left-solid.svg" alt="Add Icon" class="icon">
                             <p>Appointment History</p>
                         </a>
-                        <a href="../functions/scheduleManagement.php">
-                            <img src="../../images/icons/clock-solid.svg" alt="Add Icon" class="icon">
-                            <p>Change Appointment Schedule</p>
+                        <a href="../functions/viewAllAppointment.php">
+                            <img src="../../images/icons/list-solid.svg" alt="Add Icon" class="icon">
+                            <p>View All Appointments</p>
                         </a>
                     </div>
                 </div>
@@ -59,9 +59,9 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="action-card">
                     <h3><img src="../../images/icons/users-solid.svg" alt="Add Icon" class="icon"></i>Customer Interaction</h3>
                     <div class="action-links">
-                        <a href="../functions/liveChat.php">
+                        <a href="../functions/contactCustomers.php">
                             <img src="../../images/icons/comments-solid.svg" alt="Add Icon" class="icon">
-                            <p>Contact Customer</p>
+                            <p>Contact Customers</p>
                         </a>
                         <a href="../functions/rateCustomers.php">
                             <img src="../../images/icons/star-solid.svg" alt="Add Icon" class="icon">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['user_id'])) {
                         </a>
                         <a href="../functions/customerFeedback.php">
                             <img src="../../images/icons/comment-dots-solid.svg" alt="Add Icon" class="icon">
-                            <p>View Feedback</p>
+                            <p>View Customer Feedback</p>
                         </a>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['user_id'])) {
                             <img src="../../images/icons/key-solid.svg" alt="Add Icon" class="icon">
                             <p>Change Password</p>
                         </a>
-                        <a href="../functions/notifications.php">
+                        <a href="profile.php">
                             <img src="../../images/icons/user-solid.svg" alt="Add Icon" class="icon">
                             <p>View Profile</p>
                         </a>
@@ -114,7 +114,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+        <p>&copy; 2025 PCMartBD. All rights reserved.</p>
     </div>
 </body>
 

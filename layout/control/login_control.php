@@ -71,8 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: ../../technician/view/layout/home.php");
                     break;
                 case 'Employee':
-                    header("Location: employee_dashboard.php");
-                    break;
+                    $emp_id = $db->getEmpIdByEmail($email, $conn);
+                    if ($emp_id) {
+                        $_SESSION['emp_id'] = $emp_id;
+                    }
                 default:
                     echo "Invalid user type.";
                     break;

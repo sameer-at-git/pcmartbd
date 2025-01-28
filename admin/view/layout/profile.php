@@ -21,7 +21,7 @@ if (isset($_POST['edit'])) {
     $peradd = $_POST['permanentaddress'];
     $password = $_POST['password'];
 
-    $db->updateUserInfo($conn, $aid, $name, $number, $bio, $dob,  $preadd, $peradd, $password,$uid);
+    $db->updateProfile($conn, $aid, $name, $number, $bio, $dob,  $preadd, $peradd, $password,$uid);
     $userInfo = $db->getUserInfo($conn, $aid);
 }
 
@@ -68,7 +68,7 @@ if (isset($_POST['editpic'])) {
                 <tr>
                     <td><a href="home.php">Home</a></td>
                     <td><a href="dashboard.php">Dashboard</a></td>
-                    <td><a href="notifications.php">Notifications</a></td>
+                    <td><a href="messages.php">Messages</a></td>
                     <td><a href="profile.php" class="active">Profile</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
@@ -182,8 +182,7 @@ if (isset($_POST['editpic'])) {
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
 </body>
-
-</html>
 <?php
 $db->closecon($conn);
 ?>
+</html>

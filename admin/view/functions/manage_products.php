@@ -41,6 +41,7 @@ if (isset($_POST['delete_product'])) {
 }
 
 $products = $db->getProducts($conn);
+
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +62,9 @@ $products = $db->getProducts($conn);
             <input type="text" id="searchProduct" class="search-bar" placeholder="Search products...">
         </div>
     </div>
-    
+
     <h1>Manage Products</h1>
-    
+
     <div class="add-product-form">
         <h2>Add New Product</h2>
         <form method="POST" action="">
@@ -84,32 +85,32 @@ $products = $db->getProducts($conn);
                     <option value="mouse">Mouse</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="brand">Brand:</label>
                 <input type="text" id="brand" name="brand" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="quantity" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="about">About:</label>
                 <textarea id="about" name="about" rows="3"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="photo">Photo URL:</label>
                 <input type="text" id="photo" name="photo">
             </div>
-            
+
             <button type="submit" name="add_product" class="submit-button">Add Product</button>
         </form>
     </div>
@@ -119,6 +120,7 @@ $products = $db->getProducts($conn);
             <tr>
                 <th class="type-column">Type</th>
                 <th>Brand</th>
+                <th>Picture</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Status</th>
@@ -146,6 +148,13 @@ $products = $db->getProducts($conn);
                             </select>
                         </td>
                         <td><input type="text" name="brand" value="<?php echo $product['brand']; ?>"></td>
+                        <td>
+                            <?php
+                            $imagePath = '../../../employee/' . $product['photo'];
+                            ?>
+                            <img src="<?php echo $imagePath; ?>" alt="<?php echo $product['brand']; ?>">
+                            <input type="hidden" name="photo" value="<?php echo $product['photo']; ?>">
+                        </td>
                         <td><input type="number" name="quantity" value="<?php echo $product['quantity']; ?>"></td>
                         <td><input type="number" name="price" value="<?php echo $product['price']; ?>"></td>
                         <td>
@@ -156,7 +165,6 @@ $products = $db->getProducts($conn);
                         </td>
                         <td class="actions">
                             <input type="hidden" name="pid" value="<?php echo $product['pid']; ?>">
-                            <input type="hidden" name="photo" value="<?php echo $product['photo']; ?>">
                             <input type="hidden" name="about" value="<?php echo $product['about']; ?>">
                             <input type="submit" name="edit_product" value="Edit" class="edit-button">
                             <input type="submit" name="delete_product" value="Delete" class="delete-button">
@@ -165,9 +173,24 @@ $products = $db->getProducts($conn);
                 </form>
             <?php endwhile;
             $db->closeCon($conn);
-             ?>
+            ?>
         </tbody>
     </table>
+    <style>
+        table img {
+            display: block;
+            max-width: 100px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 2px;
+            background: #fff;
+        }
+
+        td {
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
     <script src="../../js/managing.js"></script>
 </body>
 

@@ -52,7 +52,7 @@ $adminPages = [
                 <tr>
                     <td><a href="home.php" class="active">Home</a></td>
                     <td><a href="dashboard.php">Dashboard</a></td>
-                    <td><a href="notifications.php">Notifications</a></td>
+                    <td><a href="messages.php">Messages</a></td>
                     <td><a href="profile.php">Profile</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>

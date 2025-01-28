@@ -35,46 +35,119 @@ class myDB
         return $results;
     }
 
-// db.php
-function viewAppointments($technician_id, $connectionobject, $search = null, $filterColumn = null, $filterValue = null)
-{
-    // Base query
-    $sql = "SELECT a.appointment_id, a.appointment_date, a.status, c.name AS customer_name, c.phone AS customer_phone 
+    function viewUpcomingAppointments($technician_id, $connectionobject)
+    {
+        $sql = "SELECT a.appointment_id, a.appointment_date, a.status, c.name AS customer_name, c.phone AS customer_phone 
+            FROM Appointment a
+            JOIN Customer c ON a.customer_id = c.customer_id
+            WHERE a.technician_id = $technician_id AND a.status ='Pending'";
+
+        $result = $connectionobject->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $appointments = [];
+            while ($row = $result->fetch_assoc()) {
+                $appointments[] = $row;
+            }
+            return $appointments;
+        }
+
+        return [];
+    }
+
+    function viewAppointmentHistory($technician_id, $connectionobject)
+    {
+        $sql = "SELECT a.appointment_id, a.appointment_date, a.status, c.name AS customer_name, c.phone AS customer_phone 
+            FROM Appointment a
+            JOIN Customer c ON a.customer_id = c.customer_id
+            WHERE a.technician_id = $technician_id AND a.status ='Completed'";
+
+        $result = $connectionobject->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $appointments = [];
+            while ($row = $result->fetch_assoc()) {
+                $appointments[] = $row;
+            }
+            return $appointments;
+        }
+
+        return [];
+    }
+
+    function viewAllAppointments($technician_id, $connectionobject)
+    {
+        $sql = "SELECT a.appointment_id, a.appointment_date, a.status, c.name AS customer_name, c.phone AS customer_phone 
             FROM Appointment a
             JOIN Customer c ON a.customer_id = c.customer_id
             WHERE a.technician_id = $technician_id";
 
-    // Add search feature
-    if ($search) {
-        $sql .= " AND a.appointment_id LIKE '%$search%'";
-    }
+        $result = $connectionobject->query($sql);
 
-    // Add filtering by column and value
-    if ($filterColumn && $filterValue) {
-        // Map filterColumn to actual database column
-        if ($filterColumn === 'customer_name') {
-            $filterColumn = 'c.first_name'; // Map alias to actual column
+        if ($result && $result->num_rows > 0) {
+            $appointments = [];
+            while ($row = $result->fetch_assoc()) {
+                $appointments[] = $row;
+            }
+            return $appointments;
         }
-        $sql .= " AND $filterColumn = '$filterValue'";
+
+        return [];
     }
 
-    // Add LIMIT for pagination
-    $sql .= " LIMIT 10";
+    public function getCustomersByTechnician($connectionObject, $tech_id)
+    {
+        $sql = "
+        SELECT 
+        a.customer_id, 
+        c.name, 
+        c.email, 
+        c.phone, 
+        a.status AS appointment_status, 
+        a.technician_rating, 
+        a.technician_comment,
+        a.appointment_id
+        FROM 
+        appointment a
+        JOIN 
+        customer c ON a.customer_id = c.customer_id
+        WHERE 
+        a.technician_id = '$tech_id' AND a.status = 'Completed'
+    ";
 
-    // Execute the query
-    $result = $connectionobject->query($sql);
+        $result = $connectionObject->query($sql);
 
-    // Fetch results as an associative array
-    $appointments = [];
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $appointments[] = $row;
+        // Check if query succeeded and rows exist
+        if ($result && $result->num_rows > 0) {
+            $customers = [];
+            // Fetch all rows
+            while ($row = $result->fetch_assoc()) {
+                $customers[] = $row;
+            }
+            return $customers; // Return an array of customers
+        }
+
+        return []; // Return an empty array if no rows are found
+    }
+
+
+
+    public function updateCustomerRating($connectionObject, $appointment_id, $rating, $comment)
+    {
+
+        $sql = "
+        UPDATE appointment 
+        SET technician_rating = '$rating', technician_comment = '$comment'
+        WHERE appointment_id = '$appointment_id'
+    ";
+
+        // Execute the query and return the result
+        if ($connectionObject->query($sql)) {
+            return true;
+        } else {
+            return false;
         }
     }
-
-    // Return the appointment list
-    return $appointments;
-}
 
 
 

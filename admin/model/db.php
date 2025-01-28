@@ -1,8 +1,6 @@
 <?php
-class myDB
-{
-    function openCon()
-    {
+class myDB {
+    function openCon() {
         $DBHost = "localhost:3306";
         $DBUser = "root";
         $DBPassword = "";
@@ -14,59 +12,44 @@ class myDB
         return $connectionObject;
     }
 
-    function insertData($uname, $email, $pass, $access, $number, $gender, $bio, $dob, $doj, $preadd, $peradd, $nidPath, $picPath, $table, $connectionobject)
-    {
-        $sql_admin = "INSERT INTO admin (
-            name, email, password, access, number, gender, bio, dob, doj, presentaddress, permanentaddress, 
-            nidpic, propic)
-            VALUES ('$uname', '$email', '$pass', '$access', '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', 
-            '$nidPath', '$picPath')";
-        $admin_result = $connectionobject->query($sql_admin);
-        $sql_user = "INSERT INTO user (email, password, user_type, subtype) 
-                    VALUES ('$email', '$pass', 'Admin', '$access')";
-        $user_result = $connectionobject->query($sql_user);
+  
+
+    function getMessagesByType($connectionObject, $type) {
+        $type = $connectionObject->real_escape_string($type);
+        $sql = "SELECT * FROM messages WHERE user_type = '$type' ORDER BY sent_date DESC";
+        return $connectionObject->query($sql);
+    }
+
+    function insertData($uname, $email, $pass, $access, $number, $gender, $bio, $dob, $doj, $preadd, $peradd, $nidPath, $picPath, $table, $connectionobject) {
+        $sql = "INSERT INTO admin (username, email, password, access, phone_number, gender, bio, date_of_birth, date_of_joining, present_address, permanent_address, nid_path, profile_pic_path) VALUES ('$uname', '$email', '$pass', '$access', '$number', '$gender', '$bio', '$dob', '$doj', '$preadd', '$peradd', '$nidPath', '$picPath')";
+        $admin_result = $connectionobject->query($sql);
+
+        $sql = "INSERT INTO user (username, email, password, access) VALUES ('$uname', '$email', '$pass', '$access')";
+        $user_result = $connectionobject->query($sql);
 
         return ($admin_result && $user_result);
     }
 
- 
-
-    function getUserInfo($connectionObject, $id)
-    {
+    function getUserInfo($connectionObject, $id) {
         $sql = "SELECT * FROM admin WHERE admin_id=$id";
         $result = $connectionObject->query($sql);
         return $result->fetch_assoc();
     }
-    function getAdminByEmail($connectionObject, $email)
-    {
+
+    function getAdminByEmail($connectionObject, $email) {
         $sql = "SELECT * FROM admin WHERE 'email'=$email";
         $result = $connectionObject->query($sql);
         return $result->fetch_assoc();
     }
 
-    function updateUserInfo($connectionObject, $aid, $name, $number, $bio, $dob, $preadd, $peradd, $password,$uid)
-    {
-        $sql = "UPDATE admin SET 
-                name='$name', 
-                number='$number',
-                bio='$bio',
-                dob='$dob',
-                presentaddress='$preadd',
-                permanentaddress='$peradd',
-                password='$password'
-                WHERE admin_id=$aid";
+    function updateProfile($id, $uname, $email, $pass, $access, $number, $gender, $bio, $dob, $doj, $preadd, $peradd, $nidPath, $picPath, $connectionObject) {
+        $sql = "UPDATE admin SET username='$uname', email='$email', password='$pass', access='$access', phone_number='$number', gender='$gender', bio='$bio', date_of_birth='$dob', date_of_joining='$doj', present_address='$preadd', permanent_address='$peradd', nid_path='$nidPath', profile_pic_path='$picPath' WHERE admin_id=$id";
         $admin_update = $connectionObject->query($sql);
-        $user_sql = "UPDATE user SET
-                     password = '$password'
-                     WHERE user_id = $uid";
-        $user_update = $connectionObject->query($user_sql);
-        
-        return ($admin_update && $user_update);
-    }
 
-    function closecon($connectionObject)
-    {
-        $connectionObject->close();
+        $sql = "UPDATE user SET username='$uname', email='$email', password='$pass', access='$access' WHERE user_id=$id";
+        $user_update = $connectionObject->query($sql);
+
+        return ($admin_update && $user_update);
     }
 
     function getAllTechnicians($connectionObject) {
@@ -225,11 +208,14 @@ class myDB
         return ($emp_delete && $user_delete);
     }
 
-    public function getAllMessages($connectionObject, $filter){
-
-        $sql = "SELECT * from messages where '$filter'= sentby ";
-        return $connectionObject->query($sql);
+    public function getAllMessages($connectionObject, $filter = null) {
+        if ($filter && $filter !== 'all') {
+            $sql = "SELECT * FROM messages WHERE user_type = '$filter' ORDER BY sent_date DESC";
+        } else {
+            $sql = "SELECT * FROM messages ORDER BY sent_date DESC";
         }
+        return $connectionObject->query($sql);
+    }
 
     // Customer Overview Functions
     function getTotalCustomers($conn) {
@@ -380,3 +366,6 @@ class myDB
         return $data['total'];*/
     }
 }
+
+
+?>

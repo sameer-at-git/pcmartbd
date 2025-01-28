@@ -53,11 +53,11 @@ class UserDB
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $senderType = $row['user_type'];
-            $insertSql = "INSERT INTO messages (sender_email, subject, message, sent_date,sentby) 
+            $insertSql = "INSERT INTO messages (email, subject, message, sent_date,user_type) 
                       VALUES ('$email', '$subject', '$message',  NOW(),'$senderType')";
             return $connectionObject->query($insertSql);
         } else {
-            $insertSql = "INSERT INTO messages (sender_email, subject, message, sent_date,sentby) 
+            $insertSql = "INSERT INTO messages (email, subject, message, sent_date,user_type) 
                       VALUES ('$email', '$subject', '$message',  NOW(),'Guest')";
             return $connectionObject->query($insertSql);
         }

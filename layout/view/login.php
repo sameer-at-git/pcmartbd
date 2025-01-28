@@ -7,6 +7,12 @@
 </head>
 
 <body class="login-page">
+<div class="header">
+        <div class="logo-container">
+            <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
     <div class="navbar">
         <div class="nav-container">
             <table>
@@ -50,7 +56,9 @@
 
 
     <script src="../js/login.js"></script>
-
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+    </div>
 </body>
 
 </html>

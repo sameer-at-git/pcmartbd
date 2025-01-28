@@ -29,7 +29,7 @@ $conn = $db->openCon();
                 <tr>
                     <td><a href="home.php">Home</a></td>
                     <td><a href="dashboard.php" class="active">Dashboard</a></td>
-                    <td><a href="notifications.php">Notifications</a></td>
+                    <td><a href="messages.php">Messages</a></td>
                     <td><a href="profile.php">Profile</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>

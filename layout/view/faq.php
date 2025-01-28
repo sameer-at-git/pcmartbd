@@ -9,6 +9,12 @@ session_start();
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
+<div class="header">
+        <div class="logo-container">
+            <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
     <div class="navbar">
         <div class="nav-container">
             <table>
@@ -75,6 +81,9 @@ session_start();
                 <button type="submit" class="submit-button">Submit Question</button>
             </form>
         </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
 </body>
 </html>

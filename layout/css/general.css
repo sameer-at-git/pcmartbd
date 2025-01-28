@@ -1,3 +1,55 @@
+
+.header {
+    background-color: #003366;
+    padding: 0px;
+    padding-left: 50px;
+    border-bottom: black solid 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    height:50px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+}
+
+.main-logo{
+    display: inline-block;
+    max-width: 50px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+}
+
+.logo-container .website-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    padding: -50px;
+}
+
+.logo-container .website-name span {
+    color: #66b2ff;
+}
+
+.footer{
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
 .about-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -203,17 +255,18 @@
 }
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #002147;
-    z-index: 1000;
+    background-color: #007bff;
+    padding: 10px 0;
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .navbar table {
@@ -227,16 +280,15 @@
 }
 
 .navbar table td a {
-    display: inline-block;
+    color: #fff;
     text-decoration: none;
-    color: white;
-    font-size: 16px;
-    padding: 15px 25px;
-    transition: background-color 0.3s;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .navbar table td a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #0056b3;
 }
 
 .browse-container {

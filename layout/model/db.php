@@ -55,5 +55,33 @@ class UserDB
         }
         return null;
     }
+
+    function insertMessage($email, $subject, $message, $connectionObject)
+    {
+        $sql = "SELECT user_type FROM user WHERE email = '$email'";
+        $result = $connectionObject->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $senderType = $row['user_type'];
+            $insertSql = "INSERT INTO messages (email, subject, message, sent_date,user_type) 
+                      VALUES ('$email', '$subject', '$message',  NOW(),'$senderType')";
+            return $connectionObject->query($insertSql);
+        } else {
+            $insertSql = "INSERT INTO messages (email, subject, message, sent_date,user_type) 
+                      VALUES ('$email', '$subject', '$message',  NOW(),'Guest')";
+            return $connectionObject->query($insertSql);
+        }
+    }
+
+    function getTechnicianIdByEmail($email, $connectionObject)
+    {
+        $sql = "SELECT technician_id FROM technician WHERE email = '$email'";
+        $result = $connectionObject->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['technician_id'];
+        }
+        return null;
+    }
 }
-?>

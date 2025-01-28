@@ -32,6 +32,7 @@ td {
     padding: 8px 12px;
     border-bottom: 1px solid #e0e0e0;
     vertical-align: middle;
+    text-align: center;
 }
 
 tr:hover {
@@ -93,7 +94,8 @@ input[type="submit"][value="Delete"]:hover {
 }
 
 img {
-    border-radius: 4px;
+    width: 40px;
+    height: 40px;
     border: 1px solid #ddd;
 }
 
@@ -305,4 +307,17 @@ table input[name="price"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+/* Product Image Styles */
+table img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    max-width: 100px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    padding: 2px;
+    background: #fff;
 }

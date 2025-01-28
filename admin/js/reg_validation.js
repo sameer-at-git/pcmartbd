@@ -9,15 +9,14 @@ function hideEmailMessage() {
     document.getElementById('emailMessage').innerHTML = "";
 }
 
-function trackPasswordAttempts() {
-    passwordAttempts++;
-    document.getElementById('attemptCount').innerHTML = "Password attempts: " + passwordAttempts;
-}
 
 function validateFullName() {
     var fullName = document.getElementById("uname").value;
     if (fullName.trim() === "") {
         document.getElementById("nameerr").innerHTML = "Full Name is required.";
+        return false;
+    } else if (fullName.trim().length < 4) {
+        document.getElementById("nameerr").innerHTML = "Full name must be more than 4 characters.";
         return false;
     } else {
         document.getElementById("nameerr").innerHTML = "";
@@ -74,8 +73,21 @@ function validateEmail() {
 
 function validatePassword() {
     var pass = document.getElementById("pass").value;
+    var hasUpperCase = /[A-Z]/.test(pass);
+    var hasLowerCase = /[a-z]/.test(pass);
+    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
+    
     if (pass.length < 8) {
-        document.getElementById("passerr").innerHTML = "Password must be at least 6 characters long.";
+        document.getElementById("passerr").innerHTML = "Password must be at least 8 characters long.";
+        return false;
+    } else if (!hasUpperCase) {
+        document.getElementById("passerr").innerHTML = "Password must include at least one capital letter.";
+        return false;
+    } else if (!hasLowerCase) {
+        document.getElementById("passerr").innerHTML = "Password must include at least one small letter.";
+        return false;
+    } else if (!hasSpecialChar) {
+        document.getElementById("passerr").innerHTML = "Password must include at least one special character (!@#$%^&*(),.?\":{}|<>).";
         return false;
     } else {
         document.getElementById("passerr").innerHTML = "";
@@ -124,5 +136,3 @@ function confirmationBox() {
         document.getElementById("adminForm").reset(); 
     }
 }
-
-

@@ -1,5 +1,23 @@
 <?php
 session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include('../model/db.php');
+    $db = new UserDB();
+    $conn = $db->openCon();
+    
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+    
+    if ($db->insertMessage($email, $subject, $message, $conn)) {
+        echo "<div class='success-message'>Message sent successfully!</div>";
+    } else {
+        echo "<div class='error-message'>Error sending message. Please try again.</div>";
+    }
+    
+    $db->closeCon($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +27,12 @@ session_start();
     <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
+<div class="header">
+        <div class="logo-container">
+            <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
     <div class="navbar">
         <div class="nav-container">
             <table>
@@ -37,7 +61,7 @@ session_start();
                 <div class="contact-info">
                     <div class="contact-method">
                         <div class="contact-icon">
-                            <img src="../assets/icons/email-icon.png" alt="Email Icon">
+                            <img src="../images/emailus.jpg" alt="Email Icon">
                         </div>
                         <div class="contact-details">
                             <h3>Email Us</h3>
@@ -48,7 +72,7 @@ session_start();
 
                     <div class="contact-method">
                         <div class="contact-icon">
-                            <img src="../assets/icons/phone-icon.png" alt="Phone Icon">
+                            <img src="../images/callus.jpeg" alt="Phone Icon">
                         </div>
                         <div class="contact-details">
                             <h3>Call Us</h3>
@@ -59,7 +83,7 @@ session_start();
 
                     <div class="contact-method">
                         <div class="contact-icon">
-                            <img src="../assets/icons/whatsapp-icon.png" alt="WhatsApp Icon">
+                            <img src="../images/wpus.png" alt="WhatsApp Icon">
                         </div>
                         <div class="contact-details">
                             <h3>WhatsApp</h3>
@@ -75,17 +99,17 @@ session_start();
                 <form method="POST" action="" class="question-form">
                     <div class="form-group">
                         <label for="email">Your Email:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="text" id="email" name="email" >
                     </div>
                     
                     <div class="form-group">
                         <label for="subject">Subject:</label>
-                        <input type="text" id="subject" name="subject" required>
+                        <input type="text" id="subject" name="subject" >
                     </div>
 
                     <div class="form-group">
                         <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
+                        <textarea id="message" name="message" rows="6" ></textarea>
                     </div>
 
                     <button type="submit" class="submit-button">Send Message</button>
@@ -94,8 +118,11 @@ session_start();
         </div>
 
         <div class="back-section">
-            <a href="../index.php" class="back-button">← Back to Home</a>
+            <a href="home.php" class="back-button">← Back to Home</a>
         </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
 </body>
 </html>

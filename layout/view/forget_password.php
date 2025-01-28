@@ -7,7 +7,13 @@
 </head>
 
 <body class="login-page">
-    <nav class="navbar">
+<div class="header">
+        <div class="logo-container">
+            <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -20,33 +26,40 @@
                 </tr>
             </table>
         </div>
-    </nav>
+    </div>
 
-    <form class="login-form" action="../control/forget_pass_control.php" method="POST">
-        <h1>Forgot Password</h1>
-        
-        <div class="message">
-            <?php 
-                session_start();
-                if(isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                    unset($_SESSION['password']);
-                    session_destroy();
-                }
-            ?>
+    <div class="forgot-password-container">
+        <div class="forgot-password-header">
+            <h1>Forgot Password</h1>
         </div>
+        
+        <form class="forgot-password-form" action="../control/forget_pass_control.php" method="POST">
+            <div class="message">
+                <?php 
+                    session_start();
+                    if(isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message']);
+                        unset($_SESSION['password']);
+                        session_destroy();
+                    }
+                ?>
+            </div>
 
-        <fieldset>
-            <input type="email" name="useremail" placeholder="Enter your email address" required>
-        </fieldset>
-        
-        <input type="submit" value="Get Password">
-        
-        <div class="login-links">
-            <div>Remember your password? <a href="login.php">Login</a></div>
-        </div>
-    </form>
+            <fieldset>
+                <input type="text" name="useremail" placeholder="Enter your email address"  >
+            </fieldset>
+            
+            <input type="submit" value="Get Password">
+            
+            <div class="login-links">
+                <div>Remember your password? <a href="login.php">Login</a></div>
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+    </div>
 </body>
 
 </html>

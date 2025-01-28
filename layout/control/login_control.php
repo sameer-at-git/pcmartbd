@@ -1,12 +1,48 @@
 <?php
 include '../model/db.php';
 
+function validateEmail($email) {
+    if (empty(trim($email))) {
+        return "Email field cannot be empty.";
+    }
+    
+    if (!strpos($email, '@') || !strpos($email, '.')) {
+        return "Please enter a valid email address with @ and .";
+    }
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return "Please enter a valid email address.";
+    }
+    
+    return "";
+}
+
+function validatePassword($password) {
+    if (empty(trim($password))) {
+        return "Password field cannot be empty.";
+    }
+    return "";
+}
+
 $db = new UserDB();
 $conn = $db->openCon();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['useremail'];
-    $password = $_POST['userpass'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $emailError = validateEmail($email);
+    $passwordError = validatePassword($password);
+
+    if (!empty($emailError)) {
+        echo $emailError;
+        exit();
+    }
+
+    if (!empty($passwordError)) {
+        echo $passwordError;
+        exit();
+    }
+
     $user = $db->getUserByEmail($email, $conn);
 
     if ($user) {
@@ -15,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_type'] = $user['user_type'];
             $_SESSION['user_access'] = $user['subtype']; 
+
             switch ($user['user_type']) {
                 case 'Admin':
                     $admin_id = $db->getAdminIdByEmail($email, $conn);

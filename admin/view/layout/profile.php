@@ -21,7 +21,7 @@ if (isset($_POST['edit'])) {
     $peradd = $_POST['permanentaddress'];
     $password = $_POST['password'];
 
-    $db->updateUserInfo($conn, $aid, $name, $number, $bio, $dob,  $preadd, $peradd, $password,$uid);
+    $db->updateProfile($conn, $aid, $name, $number, $bio, $dob,  $preadd, $peradd, $password,$uid);
     $userInfo = $db->getUserInfo($conn, $aid);
 }
 
@@ -36,11 +36,11 @@ if (isset($_POST['delete'])) {
     exit();
 }
 if (isset($_POST['editnid'])) {
-    $db->ChangePic($conn, $aid);
+    //$db->ChangePic($conn, $aid);
     exit();
 }
 if (isset($_POST['editpic'])) {
-    $db->ChangePic($conn, $aid);
+    //$db->ChangePic($conn, $aid);
     exit();
 }
 
@@ -56,13 +56,19 @@ if (isset($_POST['editpic'])) {
 </head>
 
 <body>
+<div class="header">
+        <div class="logo-container">
+            <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
     <div class="navbar">
         <div>
             <table>
                 <tr>
                     <td><a href="home.php">Home</a></td>
                     <td><a href="dashboard.php">Dashboard</a></td>
-                    <td><a href="notifications.php">Notifications</a></td>
+                    <td><a href="messages.php">Messages</a></td>
                     <td><a href="profile.php" class="active">Profile</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
@@ -172,9 +178,11 @@ if (isset($_POST['editpic'])) {
             </div>
         </div>
     </div>
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+    </div>
 </body>
-
-</html>
 <?php
 $db->closecon($conn);
 ?>
+</html>

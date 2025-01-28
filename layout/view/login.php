@@ -2,14 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../css/general.css">
 </head>
 
 <body class="login-page">
-    <nav class="navbar">
+<div class="header">
+        <div class="logo-container">
+            <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+    </div>
+    <div class="navbar">
         <div class="nav-container">
             <table>
                 <tr>
@@ -22,33 +26,39 @@
                 </tr>
             </table>
         </div>
-    </nav>
+    </div>
 
-    <form class="login-form" action="../control/login_control.php" method="POST">
-        <h1>Login</h1>
-        <fieldset>
-            <table>
-                <tr>
-                    <td>Email :</td>
-                    <td><input type="email" name="useremail" placeholder="abcd@gmail.com" required></td>
-                </tr>
-                <tr>
-                    <td>Password :</td>
-                    <td><input type="password" name="userpass" placeholder="Enter Your Password"></td>
-                </tr>
-            </table>
-        </fieldset>
-        
-        <div class="login-links">
-            <a id="fp" href="forget_password.php">Forgot Password</a>
-            <input type="submit" value="Log In">
-            <div>Don't Have an Account? <a href="../admin/view/sign_up/admin_registration.php">Sign Up</a></div>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Login</h1>
         </div>
+        
+        <form class="login-form" action="../control/login_control.php" method="POST" onsubmit="validateLoginForm(event)">
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Enter your email">
+                <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <button type="submit" class="login-button">Log In</button>
+            
+            <div class="login-links">
+                <div><a href="forget_password.php">Forgot Password?</a></div>
+                <div>Don't have an account? <a href="../admin/view/sign_up/admin_registration.php">Sign Up</a></div>
+            </div>
     </form>
 
 
-
-
+    <script src="../js/login.js"></script>
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+    </div>
 </body>
 
 </html>

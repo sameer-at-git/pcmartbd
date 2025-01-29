@@ -1,74 +1,9 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+.db {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    min-height: 100vh;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
 }
-.header {
-    background-color: #003366;
-    padding-left: 50px;
-    border-bottom: black solid 2px;
-    display: flex;
-    align-items: center;
-    height:50px;
-}
-.main-logo{
-    display: inline-block;
-    max-width: 50px;
-    max-height: 50px;
-    width: auto;
-    height: auto;
-}
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    height: 100%;
-}
-.logo-container .website-name {
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffffff;
-    text-decoration: none;
-    padding: -50px;
-}
-
-.navbar {
-    background-color: #007bff;
-    padding: 8px 15px;}
-
-.navbar table {
-    width: 100%;
-    padding: 8px ;
-}
-
-.navbar table td {
-    text-align: center;
-}
-
-.navbar table td a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    padding: 20px 40px;
-    font-weight: 500;
-}
-
-.navbar table td a:hover {
-    background-color: #0056b3;
-}
-
-.navbar table td a.active {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
 
 .dashboard-container {
     display: flex;
@@ -80,7 +15,7 @@ body {
 .sidebar {
     width: 250px;
     height: 100%;
-    height:570px;
+    height:580px;
 
     background-color: #003366;
 
@@ -119,16 +54,15 @@ body {
 
 .content {
     flex: 1;
-    padding: 30px;
     background-color: #f0f2f5;
-    min-height: 100%;
+    height:580px;
+    padding-bottom: 0px;
 }
 
 .content-section {
     background-color: #fff;
     border-radius: 8px;
     padding: 30px;
-    margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: none;
 }
@@ -171,9 +105,11 @@ body {
     font-weight: bold;
     margin: 0;
 }
-.footer{
+.fd{
     background-color: #fff;
     text-align: center;
-    padding: 20px;
-    position: relative;
+    padding-bottom: 10px;
+    padding-top: 0px;
+    margin-top: 5px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }

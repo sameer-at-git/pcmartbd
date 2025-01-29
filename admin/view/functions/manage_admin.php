@@ -8,18 +8,18 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$uid=$_SESSION['user_id'];
 
 if (isset($_POST['edit'])) {
     $admin_id = $_POST['admin_id'];
     $name = $_POST['name'];
     $access = $_POST['access'];
     $number = $_POST['number'];
+    $email = $_POST['email'];
     $bio = $_POST['bio'];
     $presentaddress = $_POST['presentaddress'];
     $permanentaddress = $_POST['permanentaddress'];
 
-    if ($db->updateAdmin($conn, $admin_id, $name, $access, $number, $bio, $presentaddress, $permanentaddress,$uid)) {
+    if ($db->updateAdmin($conn, $admin_id, $name, $access, $number, $bio, $presentaddress, $permanentaddress,$email)) {
         echo "Admin information updated successfully!";
     } else {
         echo "Error updating admin: " . $conn->error;
@@ -27,9 +27,9 @@ if (isset($_POST['edit'])) {
 }
 
 if (isset($_POST['delete'])) {
-    $admin_id = $_POST['admin_id'];
+    $email = $_POST['email'];
 
-    if ($db->deleteAdmin($conn, $admin_id,$uid)) {
+    if ($db->deleteAdmin($conn, $email)) {
         echo "Admin deleted successfully!";
     } else {
         echo "Error deleting admin: " . $conn->error;
@@ -47,9 +47,9 @@ if (isset($_POST['delete'])) {
 </head>
 
 <body>
-    <a href="../layout/home.php" class="back-button">← Back to Home</a>
-    <h2>Manage Admins</h2>
-    <a href="../sign_up/admin_registration.php" class="add-button">Add Admin</a>
+<a href="../layout/home.php" class="back-button">Back to Home</a>
+<h2>Manage Admins</h2>
+    <a href="../sign_up/admin_registration.php" class="back-button">Add Admin</a>
     <?php
     $result = $db->getAllAdmins($conn);
 
@@ -88,6 +88,7 @@ if (isset($_POST['delete'])) {
                         <td><input type="text" name="permanentaddress" value="<?php echo $row["permanentaddress"]; ?>"></td>
                         <td>
                             <input type="hidden" name="admin_id" value="<?php echo $row["admin_id"]; ?>">
+                            <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
                             <input type="submit" name="edit" value="Edit">
                             <input type="submit" name="delete" value="Delete">
                         </td>

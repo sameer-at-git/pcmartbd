@@ -12,6 +12,9 @@
             <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
             <a href="home.php" class="website-name"><p>PCMartBD</p></a>
         </div>
+        <div class="signup">
+            <a href="../../customer/view/sign_up.php" class="signup-link">Create Account</a>
+        </div>
     </div>
     <div class="navbar">
         <div class="nav-container">
@@ -23,12 +26,14 @@
                     <td><a href="about.php">About</a></td>
                     <td><a href="contact.php">Contact Admin</a></td>
                     <td><a href="repair.php">Repair</a></td>
+                    <td><a href="login.php" >Login</a></td>
+
                 </tr>
             </table>
         </div>
     </div>
 
-    <div class="forgot-password-container">
+    <div class="login-container">
         <div class="forgot-password-header">
             <h1>Forgot Password</h1>
         </div>
@@ -57,7 +62,7 @@
             </div>
         </form>
     </div>
-    <div class="footer">
+    <div class="fp-footer">
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
 </body>

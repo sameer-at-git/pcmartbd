@@ -33,19 +33,28 @@ $adminPages = [
         'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg']
     ]
 ];
+$aid = $_SESSION['admin_id'];
+$userInfo = $db->getUserInfo($conn, $aid);
 ?>
 <html>
 <head>
     <title>Home - Admin Dashboard</title>
-    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/layout.css">
 </head>
 <body>
 <div class="header">
-        <div class="logo-container">
-            <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
-        </div>
+    <div class="logo-container">
+        <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+        <a href="home.php" class="website-name"><p>PCMartBD</p></a>
     </div>
+    <div class="admin-info">
+        <a href="profile.php" class="admin-link">
+            <img src="<?php echo $userInfo['propic']; ?>" alt="Admin Image" class="admin-image">
+            <div class="admin-name"><?php echo $userInfo['name']; ?></div>
+        </a>
+    </div>
+</div>
     <div class="navbar">
         <div>
             <table>
@@ -53,7 +62,7 @@ $adminPages = [
                     <td><a href="home.php" class="active">Home</a></td>
                     <td><a href="dashboard.php">Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
-                    <td><a href="profile.php">Profile</a></td>
+                    <td><a href="update_profile.php">Account</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
             </table>

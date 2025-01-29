@@ -38,7 +38,7 @@ if ($emp_type == 'Full') {
             <div>
                 <table>
                     <tr>
-                        <td><a href="home.php" class="active">Home</a></td>
+                        <td><a href="full_home.php" class="active">Home</a></td>
                         <td><a href="product.php">Products</a></td>
                         <td><a href="reviews.php">Reviews</a></td>
                         <td><a href="profile.php">Profile</a></td>

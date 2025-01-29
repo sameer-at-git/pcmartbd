@@ -4,7 +4,7 @@ include '../../model/db.php';
 $db = new myDB();
 $conn = $db->openCon();
 $_SESSION['emp_id'] = 1;
-$user= $db->showUserByID( $_SESSION['emp_id'], "employee", $conn);
+$user= $db->showUserByID( $_SESSION['emp_id'],  $conn);
 
 $userInfo = $user->fetch_assoc();
 
@@ -56,7 +56,7 @@ $userInfo = $user->fetch_assoc();
                                 </tr>
                                 <tr>
                                     <td>National ID :</td>
-                                    <td><?php echo '<img src="' . $userInfo['nid'] . '" width="100">';  ?></td>
+                                    <td><?php echo '<img src="' . $userInfo['nid'] . '" >';  ?></td>
                                     <td><input type="submit" name="editnid" value="Change Photo"></td>
                                 </tr>
                                 <tr>

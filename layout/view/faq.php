@@ -14,6 +14,9 @@ session_start();
             <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
             <a href="home.php" class="website-name"><p>PCMartBD</p></a>
         </div>
+        <div class="signup">
+            <a href="../../customer/view/sign_up.php" class="signup-link">Create Account</a>
+        </div>
     </div>
     <div class="navbar">
         <div class="nav-container">
@@ -31,7 +34,7 @@ session_start();
         </div>
 </div>
 
-    <div class="faq-container">
+    <div class="about-container">
         <div class="faq-header">
             <h1>Frequently Asked Questions</h1>
             <p class="tagline">Find answers to common questions about our services and products</p>

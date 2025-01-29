@@ -8,17 +8,15 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$uid=$_SESSION['user_id'];
 
 if (isset($_POST['edit'])) {
-    $customer_id = $_POST['customer_id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     
-    if ($db->updateCustomer($conn, $customer_id, $name, $email, $password, $address, $phone)) {
+    if ($db->updateCustomer($conn, $name, $email, $password, $address, $phone)) {
         echo "Customer information updated successfully!";
     } else {
         echo "Error updating customer: " . $conn->error;
@@ -26,9 +24,9 @@ if (isset($_POST['edit'])) {
 }
 
 if (isset($_POST['delete'])) {
-    $customer_id = $_POST['customer_id'];
+    $email = $_POST['email'];
     
-    if ($db->deleteCustomer($conn, $customer_id,$uid)) {
+    if ($db->deleteCustomer($conn, $email)) {
         echo "Customer deleted successfully!";
     } else {
         echo "Error deleting customer: " . $conn->error;
@@ -44,8 +42,8 @@ if (isset($_POST['delete'])) {
     <link rel="stylesheet" href="../../css/managestyle.css">
 </head>
 <body>
-    <a href="../layout/home.php" class="back-button">← Back to Home</a>
-    <h2>Manage Customers</h2>
+<a href="../layout/home.php" class="back-button">Back to Home</a>
+<h2>Manage Customers</h2>
 
     <?php
     $result = $db->getAllCustomers($conn);
@@ -74,7 +72,7 @@ if (isset($_POST['delete'])) {
                         <td><input type="text" name="address" value="<?php echo $row["address"]; ?>"></td>
                         <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
                         <td>
-                            <input type="hidden" name="customer_id" value="<?php echo $row["customer_id"]; ?>">
+                            <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
                             <input type="submit" name="edit" value="Edit">
                             <input type="submit" name="delete" value="Delete">
                         </td>

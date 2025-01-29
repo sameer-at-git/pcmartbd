@@ -8,6 +8,8 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
+$aid = $_SESSION['admin_id'];
+$userInfo = $db->getUserInfo($conn, $aid);
 
 $initialMessages = $db->getAllMessages($conn, null);
 $messageArray = [];
@@ -24,8 +26,9 @@ $db->closeCon($conn);
 <html>
 <head>
     <title>Messages - PCMartBD Admin</title>
-    <link rel="stylesheet" href="../../css/home.css">
-</head>
+
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/layout.css"></head>
 <body>
     <div class="header">
         <div class="logo-container">
@@ -34,6 +37,12 @@ $db->closeCon($conn);
                 <p>PCMartBD</p>
             </a>
         </div>
+        <div class="admin-info">
+        <a href="profile.php" class="admin-link">
+            <img src="<?php echo $userInfo['propic']; ?>" alt="Admin Image" class="admin-image">
+            <div class="admin-name"><?php echo $userInfo['name']; ?></div>
+        </a>
+    </div>
     </div>
 
     <div class="navbar">
@@ -42,14 +51,13 @@ $db->closeCon($conn);
                 <td><a href="home.php">Home</a></td>
                 <td><a href="dashboard.php">Dashboard</a></td>
                 <td><a href="messages.php" class="active">Messages</a></td>
-                <td><a href="profile.php">Profile</a></td>
+                <td><a href="update_profile.php">Account</a></td>
                 <td><a href="../../control/sessionout.php">Logout</a></td>
             </tr>
         </table>
     </div>
 
     <div class="messages-container">
-        <h1>Messages</h1>
         <div class="filters">
             <button class="filter-btn active-btn" onclick="showAllMessages()">All Messages</button>
             <button class="filter-btn" onclick="showMessagesByType('Admin')">Admin</button>
@@ -59,11 +67,13 @@ $db->closeCon($conn);
             <button class="filter-btn" onclick="showMessagesByType('Guest')">Guest</button>
         </div>
 
-        <div id="messages-list">
+        <div id="messages-list" class="messages-list">
             <?php foreach ($messageArray as $message) { ?>
-                <div>
-                    <p><?php echo $message['message']; ?></p>
-                    <p><?php echo $message['type']; ?></p>
+                <div class="message">
+                    <div class="message__type"><?php echo $message['user_type']; ?></div>
+                    <div class="message__subject"><?php echo $message['subject']; ?></div>
+                    <div class="message__email"><?php echo $message['email']; ?></div>
+                    <div class="message__content"><?php echo $message['message']; ?></div>
                 </div>
             <?php } ?>
         </div>

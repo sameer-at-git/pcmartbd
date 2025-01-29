@@ -7,6 +7,8 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
+$aid = $_SESSION['admin_id'];
+$userInfo = $db->getUserInfo($conn, $aid);
 ?>
 
 <!DOCTYPE html>
@@ -14,15 +16,22 @@ $conn = $db->openCon();
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../../css/dashboardstyle.css">
+    <link rel="stylesheet" href="../../css/index.css">
     <script src="../../js/dashboard.js"></script>
 </head>
-<body>
-    <div class="header">
-        <div class="logo-container">
-            <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
-        </div>
+<body class="db">
+<div class="header">
+    <div class="logo-container">
+        <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+        <a href="home.php" class="website-name"><p>PCMartBD</p></a>
     </div>
+    <div class="admin-info">
+        <a href="profile.php" class="admin-link">
+            <img src="<?php echo $userInfo['propic']; ?>" alt="Admin Image" class="admin-image">
+            <div class="admin-name"><?php echo $userInfo['name']; ?></div>
+        </a>
+    </div>
+</div>
     <div class="navbar">
         <div>
             <table>
@@ -30,7 +39,7 @@ $conn = $db->openCon();
                     <td><a href="home.php">Home</a></td>
                     <td><a href="dashboard.php" class="active">Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
-                    <td><a href="profile.php">Profile</a></td>
+                    <td><a href="update_profile.php">Account</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
             </table>
@@ -159,7 +168,7 @@ $conn = $db->openCon();
             </div>
         </div>
     </div>
-    <div class="footer">
+    <div class="fd">
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
     

@@ -4,15 +4,22 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>PCMartBD - One Stop Solution for Hardware and Repairings</title>
     <link rel="stylesheet" href="../css/general.css">
 </head>
+
 <body>
-<div class="header">
+    <div class="header">
         <div class="logo-container">
             <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+            <a href="home.php" class="website-name">
+                <p>PCMartBD</p>
+            </a>
+        </div>
+        <div class="signup">
+            <a href="../../customer/view/sign_up.php" class="signup-link">Create Account</a>
         </div>
     </div>
     <div class="navbar">
@@ -59,7 +66,7 @@ session_start();
             </div>
         </div>
 
-        
+
         <div class="about-grid">
             <div class="about-section">
                 <h2>Hardware Sales</h2>
@@ -110,4 +117,5 @@ session_start();
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
 </body>
+
 </html>

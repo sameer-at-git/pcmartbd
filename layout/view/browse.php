@@ -1,24 +1,36 @@
 <?php
+include '../model/db.php';
 
-include('../model/db.php');
 $db = new UserDB();
 $conn = $db->openCon();
-$products=$db->showProducts($conn);
+$products_per_page = 12;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $products_per_page;
+$products = $db->fetch_products_with_pagination($conn, $products_per_page, $offset);
+$db->closeCon($conn);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Browse Products - PCMartBD</title>
-    <link rel="stylesheet" href="../css/general.css">
+    <title>Browse</title>
+    <link rel="stylesheet" href="../css/browse.css">
 </head>
+
 <body>
-<div class="header">
+    <div class="header">
         <div class="logo-container">
-            <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+            <img src="../images/laptop-medical-solid.svg" class="main-logo" alt="Logo">
+            <a href="home.php" class="website-name">PCMartBD</a>
+        </div>
+        <div class="signup">
+            <a href="../../customer/view/sign_up.php" class="signup-link">Create Account</a>
         </div>
     </div>
+
     <div class="navbar">
         <div class="nav-container">
             <table>
@@ -27,13 +39,13 @@ $products=$db->showProducts($conn);
                     <td><a href="browse.php" class="active">Browse</a></td>
                     <td><a href="faq.php">FAQ</a></td>
                     <td><a href="about.php">About</a></td>
-                    <td><a href="contact.php">Contact Admin</a></td>
+                    <td><a href="contact.php" >Contact Admin</a></td>
                     <td><a href="repair.php">Repair</a></td>
                     <td><a href="login.php">Login</a></td>
                 </tr>
             </table>
         </div>
-</div>
+    </div>
 
     <div class="browse-container">
         <div class="search-filter-section">
@@ -43,7 +55,7 @@ $products=$db->showProducts($conn);
                     <button type="submit">Search</button>
                 </form>
             </div>
-            
+
             <div class="filter-options">
                 <div class="filter-group">
                     <h3>Categories</h3>
@@ -91,43 +103,39 @@ $products=$db->showProducts($conn);
             </div>
         </div>
 
-        <div class="products-section">
-            <div class="products-grid">
-                <?php foreach ($products as $product): ?>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="<?= $product['image'] ?>" alt="Product Image">
-                        </div>
-                        <div class="product-details">
-                            <h3><?= $product['name']?></h3>
-                            <div class="product-rating">
-                                ★★★★☆ (<?= $product['reviews'] ?>)
-                            </div>
-                            <div class="product-price">$<?= $product['price'] ?></div>
-                            <div class="product-stock"><?= $product['stock'] ? 'In Stock' : 'Out of Stock' ?></div>
-                            <div class="product-actions">
-                                <button class="favorite-btn" title="Add to Favorites">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="add-to-cart">Add to Cart</button>
-                            </div>
-                        </div>
+        <div class="box-container">
+            <?php foreach ($products as $product): ?>
+                <div class="box">
+                    <div class="inner-box">
+                        <img src="../../employee/view/<?= $product['photo'] ?>" alt="Product Image" class="boximg">
+                        <h3><?= $product['brand'] ?> - <?= $product['type'] ?></h3>
+                        <p>Price: $<?= $product['price'] ?></p>
+                        <p><?= $product['about'] ?></p>
+                        <button type="submit" onclick="addToCart(<?= $product['pid'] ?>)">Add To Cart</button>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
 
-            <!-- Pagination -->
-            <div class="pagination">
-                <a href="#">Previous</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">Next</a>
-            </div>
+        </div>
+
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?= $page - 1 ?>" class="page-link">Previous</a>
+            <?php endif; ?>
+            <?php for ($i = 1; $i <= 5; $i++): ?>
+                <a href="?page=<?= $i ?>" class="page-link <?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+            <?php if ($page < 5): ?>
+                <a href="?page=<?= $page + 1 ?>" class="page-link">Next</a>
+            <?php endif; ?>
         </div>
     </div>
+
     <div class="footer">
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
+
+    <script src="../js/browse.js"></script>
 </body>
+
 </html>

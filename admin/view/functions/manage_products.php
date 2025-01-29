@@ -15,10 +15,10 @@ if (isset($_POST['add_product'])) {
         $_POST['type'],
         $_POST['brand'],
         intval($_POST['quantity']),
+        intval($_POST['status']),
         intval($_POST['price']),
         $_POST['about'],
-        $_POST['photo'],
-        $_SESSION['user_id']
+        $_POST['photo']
     );
 }
 
@@ -30,7 +30,6 @@ if (isset($_POST['edit_product'])) {
         $_POST['brand'],
         intval($_POST['quantity']),
         intval($_POST['price']),
-        $_POST['about'],
         $_POST['photo'],
         $_POST['status']
     );
@@ -48,15 +47,13 @@ $products = $db->getProducts($conn);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Products</title>
     <link rel="stylesheet" href="../../css/managestyle.css">
 </head>
 
 <body>
     <div class="top-bar">
-        <a href="../layout/home.php" class="back-button">←Back to Home</a>
+        <a href="../layout/home.php" class="back-button">Back to Home</a>
         <div class="search-container">
             <img src="../../images/search.png" alt="Search" class="search-icon">
             <input type="text" id="searchProduct" class="search-bar" placeholder="Search products...">
@@ -70,7 +67,7 @@ $products = $db->getProducts($conn);
         <form method="POST" action="">
             <div class="form-group">
                 <label for="type">Product Type:</label>
-                <select id="type" name="type" required>
+                <select id="type" name="type" >
                     <option value="laptop">Laptop</option>
                     <option value="ram">RAM</option>
                     <option value="ssd">SSD</option>
@@ -88,17 +85,21 @@ $products = $db->getProducts($conn);
 
             <div class="form-group">
                 <label for="brand">Brand:</label>
-                <input type="text" id="brand" name="brand" required>
+                <input type="text" id="brand" name="brand" >
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" required>
+                <input type="number" id="quantity" name="quantity" >
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="number" id="status" name="status" >
             </div>
 
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required>
+                <input type="number" id="price" name="price" >
             </div>
 
             <div class="form-group">
@@ -122,8 +123,8 @@ $products = $db->getProducts($conn);
                 <th>Brand</th>
                 <th>Picture</th>
                 <th>Quantity</th>
-                <th>Price</th>
                 <th>Status</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -156,16 +157,16 @@ $products = $db->getProducts($conn);
                             <input type="hidden" name="photo" value="<?php echo $product['photo']; ?>">
                         </td>
                         <td><input type="number" name="quantity" value="<?php echo $product['quantity']; ?>"></td>
-                        <td><input type="number" name="price" value="<?php echo $product['price']; ?>"></td>
                         <td>
                             <select name="status">
                                 <option value="1" <?php echo $product['status'] ? 'selected' : ''; ?>>Active</option>
                                 <option value="0" <?php echo !$product['status'] ? 'selected' : ''; ?>>Inactive</option>
                             </select>
                         </td>
+                        <td><input type="number" name="price" value="<?php echo $product['price']; ?>"></td>
+
                         <td class="actions">
                             <input type="hidden" name="pid" value="<?php echo $product['pid']; ?>">
-                            <input type="hidden" name="about" value="<?php echo $product['about']; ?>">
                             <input type="submit" name="edit_product" value="Edit" class="edit-button">
                             <input type="submit" name="delete_product" value="Delete" class="delete-button">
                         </td>
@@ -176,21 +177,7 @@ $products = $db->getProducts($conn);
             ?>
         </tbody>
     </table>
-    <style>
-        table img {
-            display: block;
-            max-width: 100px;
-            margin: 0 auto;
-            border: 1px solid #ddd;
-            padding: 2px;
-            background: #fff;
-        }
-
-        td {
-            vertical-align: middle;
-            text-align: center;
-        }
-    </style>
+    
     <script src="../../js/managing.js"></script>
 </body>
 

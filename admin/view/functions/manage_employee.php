@@ -8,27 +8,23 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$uid=$_SESSION['user_id'];
 
 if (isset($_POST['edit'])) {
-    $emp_id = $_POST['emp_id'];
     $f_name = $_POST['f_name'];
     $l_name = $_POST['l_name'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $dob = $_POST['dob'];
     $pre_add = $_POST['pre_add'];
-    $per_add = $_POST['per_add'];
     $gender = $_POST['gender'];
-    $marital_status = $_POST['marital_status'];
     $employment = $_POST['employment'];
     
-    $db->updateEmployee($conn, $emp_id, $f_name, $l_name, $phone, $email, $dob, $pre_add, $per_add, $gender, $marital_status, $employment, $uid);
+    $db->updateEmployee($conn, $f_name, $l_name, $phone, $email, $dob, $pre_add, $gender, $employment);
 }
 
 if (isset($_POST['delete'])) {
     $emp_id = $_POST['emp_id'];
-    $db->deleteEmployee($conn, $emp_id, $uid);
+    $db->deleteEmployee($conn, $email);
 }
 ?>
 
@@ -42,9 +38,9 @@ if (isset($_POST['delete'])) {
 
 <body>
     <div class="container">
-        <a href="../layout/home.php" class="back-button">← Back to Home</a>
+    <a href="../layout/home.php" class="back-button">Back to Home</a>
         <h2>Manage Employee</h2>
-        <a href="../sign_up/employee_registration.php" class="add-button">Add Employee</a>
+        <a href="../sign_up/employee_registration.php" class="back-button">Add Employee</a>
         <div class="table-wrapper">
             <?php
             $result = $db->getAllEmployees($conn);
@@ -88,9 +84,7 @@ if (isset($_POST['delete'])) {
                                     </select>
                                 </td>
                                 <td class="action-buttons">
-                                    <input type="hidden" name="emp_id" value="<?php echo $row["emp_id"]; ?>">
-                                    <input type="hidden" name="per_add" value="<?php echo $row["per_add"]; ?>">
-                                    <input type="hidden" name="marital_status" value="<?php echo $row["marital_status"]; ?>">
+                                    <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
                                     <input type="submit" name="edit" value="Edit" class="btn-edit">
                                     <input type="submit" name="delete" value="Delete" class="btn-delete">
                                 </td>
@@ -100,7 +94,7 @@ if (isset($_POST['delete'])) {
                 </table>
             <?php
             } else {
-                echo "<p class='no-results'>No employees found</p>";
+                echo "No employees found";
                 $db->closeCon($conn);
             }
             ?>

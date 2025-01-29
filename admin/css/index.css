@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #003366;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    background-color: #003366;
+    display: flex;
+    justify-content: space-between; /* Space between logo and admin info */
+    align-items: center; /* Center items vertically */
+    padding: 20px;
+    height:50px; /* Add some padding */
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+}
+
+.admin-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold; /* Removes underline from link */
+    color: #333; /* Text color */
+}
+
+.admin-image {
+    border-radius: 50%; /* Makes the image round */
+    width: 40px; /* Sets width */
+    height: 40px; /* Sets height */
+    margin-right: 8px; /* Space between image and name */
+}
+
+.admin-name {
+    font-size: 20px;
+    color:white; /* Font size for the name */
+}
+.main-logo{
+    display: inline-block;
+    max-width: 50px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+}
+.logo-container .website-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    padding: -50px;
+}
+
+.navbar {
+    background-color: #007bff;
+    padding: 10px 0;
+}
+
+.nav-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.navbar table {
+    width: 100%;
+}
+
+.navbar table td {
+    text-align: center;
+    padding: 0;
+}
+
+.navbar table td a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar table td a:hover {
+    background-color: #0056b3;
+}
+.navbar table td a.active {
+    color: #030269;
+    background-color: #e8ecf0;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+.footer{
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}

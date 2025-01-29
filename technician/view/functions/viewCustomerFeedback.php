@@ -1,5 +1,5 @@
 <?php
-require '../../control/viewAppointmentHistoryControl.php';
+require '../../control/viewCustomerFeedbackControl.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ require '../../control/viewAppointmentHistoryControl.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View All Appointments - PCMartBD</title>
+    <title>View Customer Feedback - PCMartBD</title>
     <link rel="stylesheet" href="../../css/mainstyle.css">
 </head>
 
@@ -34,39 +34,48 @@ require '../../control/viewAppointmentHistoryControl.php';
         <div class="content">
             <div class="page-header">
                 <button onclick="window.history.back()" class="back-button">
-                    <i class="fas fa-arrow-left"></i>
                     Back
                 </button>
-                <h2>View Appointment History</h2>
+                <h2>View Customer Feedback</h2>
             </div>
 
             <!-- Appointment Table -->
-            <?php if (empty($appointments)): ?>
+            <?php if (empty($feedback)): ?>
                 <p>No appointments found.</p>
             <?php else: ?>
                 <table>
                     <thead>
                         <tr>
                             <th>Appointment ID</th>
-                            <th>Date</th>
-                            <th>Status</th>
                             <th>Customer Name</th>
-                            <th>Customer Phone</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Appointment Status</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($appointments as $appointment): ?>
+                        <?php foreach ($feedback as $row): ?>
                             <tr>
-                                <td><?= htmlspecialchars($appointment['appointment_id']) ?></td>
-                                <td><?= htmlspecialchars($appointment['appointment_date']) ?></td>
-                                <td><?= htmlspecialchars($appointment['status']) ?></td>
-                                <td><?= htmlspecialchars($appointment['customer_name']) ?></td>
-                                <td><?= htmlspecialchars($appointment['customer_phone']) ?></td>
+                                <td><?= htmlspecialchars($row['appointment_id']) ?></td>
+                                <td><?= htmlspecialchars($row['name']) ?></td>
+                                <td><?= htmlspecialchars($row['email']) ?></td>
+                                <td><?= htmlspecialchars($row['phone']) ?></td>
+                                <td><?= htmlspecialchars($row['appointment_status']) ?></td>
+                                <td>
+                                    <?= htmlspecialchars($row['customer_rating'] == 0 || $row['customer_rating'] === null ? 'Not Rated' : $row['customer_rating']) ?>
+                                </td>
+                                <td>
+                                    <?= htmlspecialchars(empty($row['customer_comment']) ? 'No Comment' : $row['customer_comment']) ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
+
                     </tbody>
                 </table>
             <?php endif; ?>
+
 </body>
 
 </html>

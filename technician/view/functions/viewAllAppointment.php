@@ -34,7 +34,6 @@ require '../../control/viewAllAppointmentControl.php';
         <div class="content">
             <div class="page-header">
                 <button onclick="window.history.back()" class="back-button">
-                    <i class="fas fa-arrow-left"></i>
                     Back
                 </button>
                 <h2>View All Appointments</h2>

@@ -8,12 +8,9 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 include('../../model/db.php');
 $db = new myDB();
 $conn = $db->openCon();
-$uid=$_SESSION['user_id'];
-
 if (isset($_POST['edit'])) {
     if ($db->updateTechnician(
         $conn,
-        $_POST['technician_id'],
         $_POST['first_name'],
         $_POST['last_name'],
         $_POST['phone'],
@@ -29,9 +26,9 @@ if (isset($_POST['edit'])) {
 }
 
 if (isset($_POST['delete'])) {
-    $technician_id = $_POST['technician_id'];
+    $email = $_POST['email'];
     
-    if ($db->deleteTechnician($conn, $technician_id,$uid)) {
+    if ($db->deleteTechnician($conn, $email)) {
         echo "Technician deleted successfully!";
     } else {
         echo "Error deleting technician: " . $conn->error;
@@ -50,8 +47,8 @@ if (isset($_POST['delete'])) {
 </head>
 
 <body>
-    <a href="../layout/home.php" class="back-button">← Back to Home</a>
-    <h2>Manage Technicians</h2>
+<a href="../layout/home.php" class="back-button">Back to Home</a>
+<h2>Manage Technicians</h2>
 
     <?php
     $result = $db->getAllTechnicians($conn);
@@ -105,7 +102,7 @@ if (isset($_POST['delete'])) {
                         </td>
                         <td><input type="text" name="experience" value="<?php echo $row["experience"]; ?>"></td>
                         <td>
-                            <input type="hidden" name="technician_id" value="<?php echo $row["technician_id"]; ?>">
+                            <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
                             <input type="submit" name="edit" value="Edit">
                             <input type="submit" name="delete" value="Delete">
                         </td>

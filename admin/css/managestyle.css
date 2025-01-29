@@ -1,323 +1,294 @@
+/* Modernized CSS for Enhanced Appearance */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+    background: rgb(255, 255, 255);
     margin: 0;
     padding: 30px;
 }
 
 h1, h2 {
-    color: #1a237e;
+    color: #000000;
     margin: 20px 0 30px 0;
-    font-size: 24px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
 }
 
+/* Top Bar Styling */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* Back Button Styling */
+.back-button {
+    padding: 10px 20px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0d1657;
+}
+
+/* Search Container Styling */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.search-bar {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 300px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #3949ab;
+    outline: none;
+    box-shadow: 0 0 5px rgba(57, 73, 171, 0.3);
+}
+
+/* Modernized Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: #003366;
+    border-radius: 8px;
     margin-bottom: 20px;
-    table-layout: fixed;
 }
 
 th {
-    background-color: #1a237e;
+    background: #007bff;
     color: white;
-    padding: 12px;
-    text-align: left;
-    white-space: nowrap;
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
 }
 
 td {
-    padding: 8px 12px;
+    padding: 12px;
     border-bottom: 1px solid #e0e0e0;
     vertical-align: middle;
     text-align: center;
+    font-weight: bold;
+}
+
+tr {
+    border-bottom: 1px solid #e0e0e0;
+    color: #ffffff;
 }
 
 tr:hover {
-    background-color: #f5f5f5;
+    background-color: #f0f2f5;
+    transition: background-color 0.3s;
+    color: #000000;
 }
 
+/* Form Input and Button Styles */
 input[type="text"],
 input[type="email"],
 input[type="file"] {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     width: 90%;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus {
+    border-color: #3949ab;
+    box-shadow: 0 0 5px rgba(57, 73, 171, 0.3);
 }
 
 input[type="submit"],
 a {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 6px;
     text-decoration: none;
     display: inline-block;
     margin: 2px;
+    font-weight: 600;
+    transition: background-color 0.3s;
 }
 
-input[type="submit"][value="Edit"] {
-    background-color: #2196f3;
+input[type="submit"] {
     color: white;
 }
 
+input[type="submit"][value="Edit"] {
+    background-color: #3949ab;
+}
+
 input[type="submit"][value="Edit"]:hover {
-    background-color: #1976d2;
+    background-color: #1a237e;
 }
 
 input[type="submit"][value="Delete"] {
     background-color: #f44336;
-    color: white;
 }
 
 input[type="submit"][value="Delete"]:hover {
     background-color: #d32f2f;
 }
 
+/* Status and Message Styling */
 .success-message {
-    background-color: #4caf50;
+    background: #4caf50;
     color: white;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-weight: 500;
 }
 
 .error-message {
-    background-color: #f44336;
+    background: #f44336;
     color: white;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-weight: 500;
 }
 
-img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #ddd;
-}
-
-a {
-    color: #2196f3;
-}
-
-a:hover {
-    color: #1976d2;
-    text-decoration: underline;
-}
-
-.status-active {
-    color: #4caf50;
-    font-weight: bold;
-}
-
-.status-inactive {
-    color: #f44336;
-    font-weight: bold;
-}
-
-.back-button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #1a237e;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-}
-
-.back-button:hover {
-    background-color: #0d1657;
-    color: white;
-    text-decoration: none;
-}
-
+/* Dropdown Styling */
 .access-dropdown {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     width: 90%;
     background-color: white;
     font-size: 14px;
+    transition: border-color 0.3s;
 }
 
 .access-dropdown:focus {
     outline: none;
-    border-color: #2196f3;
-    box-shadow: 0 0 3px rgba(33, 150, 243, 0.3);
+    border-color: #3949ab;
+    box-shadow: 0 0 5px rgba(57, 73, 171, 0.3);
 }
 
-.add-product-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 4px;
-    margin-bottom: 30px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #1a237e;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.submit-button {
-    background-color: #1a237e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.submit-button:hover {
-    background-color: #0d1657;
-}
-
-.edit-button, .delete-button {
-    padding: 6px 12px;
-    margin: 0 5px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.edit-button {
-    background-color: #2196f3;
-    color: white;
-}
-
-.delete-button {
-    background-color: #f44336;
-    color: white;
-}
-
-.actions {
-    white-space: nowrap;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-}
-
-.search-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-.search-bar {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 800px !important;
-    max-width: 800px;
-    box-sizing: border-box;
-}
-
-.add-button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #1a237e;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-}
-
-.add-button:hover {
-    background-color: #0d1657;
-    color: white;
-    text-decoration: none;
-}
 
 .id-column {
-    width: 20px;
-    max-width: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 50px;
+    text-align: center;
 }
 
-.work-hours-column {
-    width: 80px;
-    max-width: 80px;
-}
-
-.phone-column {
-    width: 120px;
-    max-width: 120px;
-}
-
+.phone-column,
 .email-column {
-    width: 250px;
-    max-width: 250px;
+    text-align: left;
 }
 
-.type-column {
-    width: 300px;
-    max-width: 300px;
+.search-button {
+    padding: 10px 20px;
+    background: linear-gradient(120deg, #3949ab, #1a237e);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.manage-technician {
-    font-size: 16px;
-    color: #333;
-    margin: 0;
-    padding: 10px;
+.search-button:hover {
+    background-color: #1a237e;
 }
 
-.manage-technician .specific-style {
-    color: red;
+/* Add Product Form Styling */
+.add-product-form {
+    max-width: 800px;
+    margin: 20px auto;
+    background: rgb(211, 210, 215);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-form h2 {
+    text-align: center;
     margin-bottom: 20px;
-    font-size: inherit;
+    color: #1a237e;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-table input[name="quantity"],
-table input[name="price"] {
-    width: 80px;
-    padding: 8px;
+.add-product-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.add-product-form input,
+.add-product-form select,
+.add-product-form textarea {
+    width: calc(100% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
+    font-size: 14px;
 }
 
-/* Product Image Styles */
+.add-product-form input:focus,
+.add-product-form select:focus,
+.add-product-form textarea:focus {
+    border-color: #3949ab;
+    box-shadow: 0 0 5px rgba(57, 73, 171, 0.3);
+    outline: none;
+}
+
+.add-product-form button {
+    width: 100%;
+    padding: 12px;
+    background: #0d1657;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Table Image Styling */
 table img {
     display: block;
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
     max-width: 100px;
     margin: 0 auto;
     border: 1px solid #ddd;
     padding: 2px;
     background: #fff;
+}
+
+/* General Button Alignment */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }

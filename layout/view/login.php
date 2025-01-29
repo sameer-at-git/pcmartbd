@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="../css/general.css">
 </head>
 
-<body class="login-page">
+<body >
 <div class="header">
         <div class="logo-container">
             <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
             <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        </div>
+        <div class="signup">
+            <a href="../../customer/view/sign_up.php" class="signup-link">Create Account</a>
         </div>
     </div>
     <div class="navbar">
@@ -23,6 +26,8 @@
                     <td><a href="about.php">About</a></td>
                     <td><a href="contact.php">Contact Admin</a></td>
                     <td><a href="repair.php">Repair</a></td>
+                    <td><a href="login.php" class="active">Login</a></td>
+
                 </tr>
             </table>
         </div>
@@ -56,6 +61,7 @@
 
 
     <script src="../js/login.js"></script>
+</div>
     <div class="footer">
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>

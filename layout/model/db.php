@@ -85,11 +85,17 @@ class UserDB
         }
         return null;
     }
-    function showProducts($connectionObject)
-    {
-        $sql = "SELECT * FROM products ";
-        $result=  $connectionObject->query($sql);
-        $row=$result->fetch_assoc();
-        return $row;
+    function fetch_products_with_pagination($conn, $products_per_page, $offset) {
+        $query = "SELECT pid, type, brand, photo, price, about FROM product LIMIT $products_per_page OFFSET $offset";
+        $result = $conn->query($query);
+
+        $products = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+        }
+
+        return $products;
     }
 }

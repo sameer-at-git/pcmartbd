@@ -56,16 +56,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $mydb->insertData(
             $uname, $email, $pass, $access, $number, 
             $gender, $bio, $dob, $doj, $preadd, 
-            $peradd, $nidPath, $picPath, 'admin', $conObj
+            $peradd, $nidPath, $picPath,  $conObj
         );
 
         if ($result) {
-            $_SESSION['success_message'] = "Admin registered successfully!";
-            header("Location: ../../layout/view/login.php");
+            
+            header("Location: ../view/functions/manage_admin.php");
             exit();
         }
         
         $mydb->closecon($conObj);
+    }
+    else{
+        echo $hasError;
     }
 }
 ?>

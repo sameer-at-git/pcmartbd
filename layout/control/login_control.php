@@ -75,6 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($emp_id) {
                         $_SESSION['emp_id'] = $emp_id;
                     }
+                    header("Location: ../../employee/view/layout/full_home.php");
+                    break;
                 default:
                     echo "Invalid user type.";
                     break;

@@ -32,6 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
             <a href="home.php" class="website-name"><p>PCMartBD</p></a>
         </div>
+        <div class="signup">
+            <a href="../../customer/view/sign_up.php" class="signup-link">Create Account</a>
+        </div>
     </div>
     <div class="navbar">
         <div class="nav-container">

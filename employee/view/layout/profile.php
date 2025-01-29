@@ -3,8 +3,7 @@ session_start();
 include '../../model/db.php';
 $db = new myDB();
 $conn = $db->openCon();
-$_SESSION['emp_id'] = 1;
-$user= $db->showUserByID( $_SESSION['emp_id'], "employee", $conn);
+$user= $db->showUserByID( $_SESSION['emp_id'],  $conn);
 
 $userInfo = $user->fetch_assoc();
 

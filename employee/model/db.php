@@ -39,9 +39,9 @@ class myDB
     }
 
 
-    function showUserbyID($id, $table, $connectionObject)
+    function showUserbyID($id, $connectionObject)
     {
-        $sql = "SELECT * FROM $table WHERE  emp_id = $id";
+        $sql = "SELECT * FROM employee WHERE  emp_id = $id";
         $result = $connectionObject->query($sql);
         return $result;
     }

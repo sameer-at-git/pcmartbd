@@ -13,5 +13,5 @@ $mydb = new myDB();
 $conObj = $mydb->openCon();
 
 // Get the filtered appointments
-$appointments = $mydb->viewAllAppointments($technician_id, $conObj);
+$feedback = $mydb->getCustomerFeedback($conObj, $technician_id);
 ?>

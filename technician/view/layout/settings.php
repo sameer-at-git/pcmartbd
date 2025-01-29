@@ -67,7 +67,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+        <p>&copy; 2025 PCMartBD. All rights reserved.</p>
     </div>
 </body>
 </html>

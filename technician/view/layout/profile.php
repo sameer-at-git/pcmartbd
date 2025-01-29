@@ -4,6 +4,12 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
+require '../../model/db.php';
+
+$technician_id = $_SESSION['technician_id'];
+$mydb = new myDB();
+$conObj = $mydb->openCon();
+$userInfo = $mydb->getUserInfo($conObj, $technician_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,31 +49,31 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="profile-info">
                         <div class="info-group">
                             <label>First Name:</label>
-                            <p>John</p>
+                            <p><?php echo $userInfo['first_name']?></p>
                         </div>
                         <div class="info-group">
                             <label>Last Name:</label>
-                            <p>Doe</p>
+                            <p><?php echo $userInfo['last_name']?></p>
                         </div>
                         <div class="info-group">
                             <label>Father's Name:</label>
-                            <p>James Doe</p>
+                            <p><?php echo $userInfo['father_name']?></p>
                         </div>
                         <div class="info-group">
                             <label>Gender:</label>
-                            <p>Male</p>
+                            <p><?php echo $userInfo['gender']?></p>
                         </div>
                         <div class="info-group">
                             <label>Date of Birth:</label>
-                            <p>1990-01-01</p>
+                            <p><?php echo $userInfo['dob']?></p>
                         </div>
                         <div class="info-group">
                             <label>Phone:</label>
-                            <p>+880 1234567890</p>
+                            <p><?php echo $userInfo['phone']?></p>
                         </div>
                         <div class="info-group">
                             <label>Address:</label>
-                            <p>123 Street, Dhaka, Bangladesh</p>
+                            <p><?php echo $userInfo['address']?></p>
                         </div>
                     </div>
                 </div>
@@ -80,15 +86,15 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="profile-info">
                         <div class="info-group">
                             <label>Experience:</label>
-                            <p>5 years of experience in computer hardware repair and maintenance</p>
+                            <p><?php echo $userInfo['experience']?></p>
                         </div>
                         <div class="info-group">
                             <label>Preferred Work Area:</label>
-                            <p>Mirpur, Uttora, Dhanmondi</p>
+                            <p><?php echo $userInfo['work_area']?></p>
                         </div>
                         <div class="info-group">
                             <label>Work Hours:</label>
-                            <p>Slot 1 - 7:00 AM to 12:00 PM</p>
+                            <p><?php echo $userInfo['work_hour']?></p>
                         </div>
                     </div>
                 </div>
@@ -101,11 +107,11 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="profile-info">
                         <div class="info-group">
                             <label>Email:</label>
-                            <p>john.doe@example.com</p>
+                            <p><?php echo $userInfo['email']?></p>
                         </div>
                         <div class="info-group">
                             <label>Member Since:</label>
-                            <p>January 2024</p>
+                            <p><?php echo $userInfo['join_date']?></p>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,26 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit;
+    header("Location: login.php");
+    exit();
 }
+require '../../model/db.php';
+
+$technician_id = $_SESSION['technician_id'];
+$mydb = new myDB();
+$conObj = $mydb->openCon();
+$upcomingAppointments = $mydb->viewUpcomingAppointments($technician_id, $conObj);
+$completedAppointments = $mydb->viewAppointmentHistory($technician_id, $conObj);
+$allAppointments = $mydb->totalAppointmentByTechnicianID($conObj, $technician_id);
+$allAppointmentsCount = $allAppointments->fetch_assoc()['total_appointments'];
+$pendingAppoitments = $mydb->pendingAppointmentByTechnicianID($conObj, $technician_id);
+$pendingAppoitmentsCount = $pendingAppoitments->fetch_assoc()['pending_appointments'];
+$completedAppoitments = $mydb->completedAppointmentByTechnicianID($conObj, $technician_id);
+$completedAppoitmentsCount = $completedAppoitments->fetch_assoc()['completed_appointments'];
+$totalReviews = $mydb->totalReviewsByTechnicianID($conObj, $technician_id);
+$totalReviewsCount = $totalReviews->fetch_assoc()['total_reviews'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +31,7 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="../../css/mainstyle.css">
 </head>
 
-<body>
+<body class="table-pages">
     <div class="header">
         <div class="logo-container">
             <img src="../../images/icons/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
@@ -42,28 +58,75 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="stats-container">
                     <div class="stat-box">
                         <h3>All Appointments</h3>
-                        <p>0</p>
+                        <p><?php echo $allAppointmentsCount ?></p>
                     </div>
                     <div class="stat-box">
                         <h3>Pending Appointments</h3>
-                        <p>0</p>
+                        <p><?php echo $pendingAppoitmentsCount ?></p>
                     </div>
                     <div class="stat-box">
                         <h3>Completed Appointments</h3>
-                        <p>0</p>
+                        <p><?php echo $completedAppoitmentsCount ?></p>
                     </div>
                     <div class="stat-box">
                         <h3>Total Reviews</h3>
-                        <p>0</p>
+                        <p><?php echo $totalReviewsCount ?></p>
                     </div>
                 </div>
-                </section>
-
-                <section>
-                    <h2>Recent Activities</h2>
-                    <div class="activities">
-                        <p>No recent activities to display.</p>
-                    </div>
+                <h2>Upcoming Appointments</h2>
+                <div class="activities">
+                    <?php if (empty($upcomingAppointments)): ?>
+                        <p>No appointments found.</p>
+                    <?php else: ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Customer Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($upcomingAppointments as $row): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['appointment_id']) ?></td>
+                                        <td><?= htmlspecialchars($row['appointment_date']) ?></td>
+                                        <td><?= htmlspecialchars($row['status']) ?></td>
+                                        <td><?= htmlspecialchars($row['customer_name']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
+                </div>
+                <h2>Recently Completed Appointments</h2>
+                <div class="activities">
+                    <?php if (empty($completedAppointments)): ?>
+                        <p>No appointments found.</p>
+                    <?php else: ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Customer Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($completedAppointments as $row): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['appointment_id']) ?></td>
+                                        <td><?= htmlspecialchars($row['appointment_date']) ?></td>
+                                        <td><?= htmlspecialchars($row['status']) ?></td>
+                                        <td><?= htmlspecialchars($row['customer_name']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

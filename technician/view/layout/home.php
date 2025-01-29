@@ -67,7 +67,7 @@ if (!isset($_SESSION['user_id'])) {
                             <img src="../../images/icons/star-solid.svg" alt="Add Icon" class="icon">
                             <p>Rate Customers</p>
                         </a>
-                        <a href="../functions/customerFeedback.php">
+                        <a href="../functions/viewCustomerFeedback.php">
                             <img src="../../images/icons/comment-dots-solid.svg" alt="Add Icon" class="icon">
                             <p>View Customer Feedback</p>
                         </a>
@@ -85,9 +85,9 @@ if (!isset($_SESSION['user_id'])) {
                             <img src="../../images/icons/flag-solid.svg" alt="Add Icon" class="icon">
                             <p>Report Issue</p>
                         </a>
-                        <a href="../functions/helpCenter.php">
+                        <a href="../functions/faqPage.php">
                             <img src="../../images/icons/circle-question-solid.svg" alt="Add Icon" class="icon">
-                            <p>Help Center</p>
+                            <p>Frequently Asked Questions</p>
                         </a>
                     </div>
                 </div>

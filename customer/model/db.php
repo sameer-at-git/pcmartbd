@@ -13,7 +13,11 @@ class myDB2
         }
         return $connectionObject;
     }
-
+    function insertAppointment($customer_id,$date,$type,$details,$Conobj){
+        $sql="INSERT INTO appointment (customer_id,appointment_date,type,details,status) VALUES ($customer_id,'$date','$type','$details','Pending')";
+        $result = $Conobj->query($sql);
+        return $result;
+    }
     function fetch_products_with_pagination($conn, $products_per_page, $offset) {
         $query = "SELECT pid, type, brand, photo, price, about FROM product LIMIT $products_per_page OFFSET $offset";
         $result = $conn->query($query);

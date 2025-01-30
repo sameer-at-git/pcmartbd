@@ -51,7 +51,7 @@
             <button type="submit">Sign Up</button>
         </form>
         <div class="note">
-            Already have an account? <a href="/login">Log In</a>
+            Already have an account? <a href="../../layout/view/login.php">Log In</a>
         </div>
     </div>
     <script src="../js/script.js"></script>

@@ -32,6 +32,14 @@ body {
     color: #333; /* Text color */
 }
 
+.admin-link-active {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold; /* Removes underline from link */
+    color: #ffffff; /* Text color */
+}
+
 .admin-image {
     border-radius: 50%; /* Makes the image round */
     width: 40px; /* Sets width */

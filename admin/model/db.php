@@ -35,6 +35,39 @@ class myDB
         return $result->fetch_assoc();
     }
 
+
+    function getUsersByTypeOrEmail($connectionObject, $type, $query)
+    {
+        $sql = "SELECT user_id, email FROM user WHERE 1";
+    
+        if (!empty($type)) {
+            $sql .= " AND user_type = '" . $type . "'";  
+        } elseif (!empty($query)) {
+            $sql .= " AND email LIKE '%" . $query . "%'"; 
+        }
+        $result= $connectionObject->query($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result; 
+        } else {
+            return []; 
+        }
+    }
+    
+    function insertContactUser($connectionObject, $admin_id, $user_id, $subject, $message)
+{
+    $sql = "INSERT INTO contactuser (admin_id, user_id, subject, message) 
+            VALUES ($admin_id, $user_id, '$subject', '$message')";
+
+    $result = $connectionObject->query($sql);
+
+    if ($result) {
+        return "Message inserted successfully!";
+    } else {
+        return "Error: " . $connectionObject->error;
+    }
+}
+
+
     function getAdminByEmail($connectionObject, $email)
     {
         $sql = "SELECT * FROM admin WHERE email=$email";
@@ -42,12 +75,12 @@ class myDB
         return $result->fetch_assoc();
     }
 
-    function updateProfile($id, $uname, $number,$bio,$dob,$preadd, $peradd, $pass,$access , $email, $connectionObject)
+    function updateProfile($id, $uname, $number,$bio,$preadd, $peradd, $pass,$access , $email, $connectionObject)
     {
-        $sql = "UPDATE admin SET name='$uname',  password='$pass',  number='$number',  bio='$bio', dob='$dob',  presentaddress='$preadd', permanentaddress='$peradd' WHERE admin_id=$id";
+        $sql = "UPDATE admin SET name='$uname',  password='$pass',  number='$number',  bio='$bio',  presentaddress='$preadd', permanentaddress='$peradd' WHERE admin_id=$id";
         $admin_update = $connectionObject->query($sql);
 
-        $sql = "UPDATE user SET name='$uname',  password='$pass', user_type='$access' WHERE email='$email' ";
+        $sql = "UPDATE user SET password='$pass', user_type='$access' WHERE email='$email' ";
         $user_update = $connectionObject->query($sql);
 
         return ($admin_update && $user_update);
@@ -238,8 +271,14 @@ class myDB
         }
         return $connectionObject->query($sql);
     }
-
-    // Customer Overview Functions
+    function insertMessage($email, $subject, $message, $conn) {
+        $sql = "INSERT INTO messages (email,subject,message,sent_date,user_type  ) 
+              VALUES ('$email', '$subject','$message', NOW(), 'Admin' )";
+        $result = $conn->query($sql);
+    
+        return $result;
+    }
+   
     function getTotalCustomers($conn)
     {
         $sql = "SELECT COUNT(*) as total FROM customer";

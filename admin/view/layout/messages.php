@@ -47,13 +47,15 @@ $db->closeCon($conn);
 
     <div class="navbar">
         <table>
-            <tr>
-                <td><a href="home.php">Home</a></td>
-                <td><a href="dashboard.php">Dashboard</a></td>
-                <td><a href="messages.php" class="active">Messages</a></td>
-                <td><a href="update_profile.php">Account</a></td>
-                <td><a href="../../control/sessionout.php">Logout</a></td>
-            </tr>
+        <tr>
+                    <td><a href="home.php">Home</a></td>
+                    <td><a href="dashboard.php" >Dashboard</a></td>
+                    <td><a href="messages.php" class="active">Messages</a></td>
+                    <td><a href="update_profile.php">Account</a></td>
+                    <td><a href="contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="contact_user.php">Contact User</a></td>
+                    <td><a href="../../control/sessionout.php">Logout</a></td>
+                </tr>
         </table>
     </div>
 
@@ -70,11 +72,22 @@ $db->closeCon($conn);
         <div id="messages-list" class="messages-list">
             <?php foreach ($messageArray as $message) { ?>
                 <div class="message">
-                    <div class="message__type"><?php echo $message['user_type']; ?></div>
-                    <div class="message__subject"><?php echo $message['subject']; ?></div>
-                    <div class="message__email"><?php echo $message['email']; ?></div>
-                    <div class="message__content"><?php echo $message['message']; ?></div>
-                </div>
+    <div class="message__type"><?php echo $message['user_type']; ?></div>
+    <div class="message__content-wrapper">
+        <div class="message__info">
+            <div class="message__subject"><?php echo $message['subject']; ?></div>
+            <div class="message__email"><?php echo $message['email']; ?></div>
+            <div class="message__content"><?php echo $message['message']; ?></div>
+        </div>
+        <div class="message__actions">
+    <?php if ($message['user_type'] == "Admin") { ?>
+        <a href="contact_admin.php" class="reply-btn">Reply User</a>
+    <?php } else { ?>
+        <a href="contact_user.php?email=<?php echo urlencode($message['email']); ?>&type=<?php echo $message['user_type']; ?>" class="reply-btn">Reply User</a>
+    <?php } ?>
+</div>
+    </div>
+</div>
             <?php } ?>
         </div>
     </div>

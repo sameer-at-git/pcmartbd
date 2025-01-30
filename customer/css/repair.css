@@ -1,0 +1,151 @@
+.navbar {
+    background-color: #007bff;
+    padding: 10px 0;
+}
+
+.nav-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.navbar table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.navbar table td {
+    text-align: center;
+    padding: 0;
+}
+
+.navbar table td a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar table td a:hover {
+    background-color: #0056b3;
+}
+
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f0f2f5;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-header h1 {
+    color: #1a237e;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+.contact-section {
+    text-align: center;
+    margin-bottom: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h2 {
+    color: #1a237e;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-method:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.contact-icon {
+    width: 40px; /* Set a consistent width */
+    height: 40px; /* Set a consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a237e;
+    color: white;
+    border-radius: 50%;
+    margin-right: 15px;
+    overflow: hidden; /* Ensures image fits within the circle */
+}
+
+.contact-icon img {
+    width: 100%; /* Ensures image fills the circle */
+    height: 100%;
+    object-fit: cover; /* Ensures the image scales properly */
+}
+
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-details h3 {
+    color: #1a237e;
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.contact-details a {
+    color: #2196f3;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-details a:hover {
+    color: #1565c0;
+    text-decoration: underline;
+}
+
+.contact-description {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+.repair-button {
+    display: inline-block;
+    font-size: 24px;
+    padding: 20px 40px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.repair-button:hover {
+    background-color: #0d1657;
+}

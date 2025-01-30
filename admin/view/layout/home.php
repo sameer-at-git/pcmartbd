@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
-    header('Location: ../../../layout/login.php');
+    header('Location: ../../../layout/view/login.php');
     exit();
 }
 include('../../model/db.php');
@@ -58,11 +58,13 @@ $userInfo = $db->getUserInfo($conn, $aid);
     <div class="navbar">
         <div>
             <table>
-                <tr>
+            <tr>
                     <td><a href="home.php" class="active">Home</a></td>
-                    <td><a href="dashboard.php">Dashboard</a></td>
+                    <td><a href="dashboard.php" >Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
                     <td><a href="update_profile.php">Account</a></td>
+                    <td><a href="contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="contact_user.php">Contact User</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
             </table>

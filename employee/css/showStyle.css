@@ -6,8 +6,11 @@ body {
 }
 
 .container {
-    max-width: 1200px;
-    margin: auto;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
 }
 
 h2 {
@@ -16,6 +19,11 @@ h2 {
     text-align: center;
     align-self: center;
     font-size: 24px;
+}
+h3{
+    color: #007bff;
+    margin: 20px 0 30px 0;
+    font-size: 20px;
 }
 
 .table-wrapper {
@@ -115,7 +123,7 @@ select.input-field {
     padding: 20px;
 }
 
-/* Column widths */
+
 .id-column {
     width: 60px;
 }
@@ -133,7 +141,75 @@ select.input-field {
     text-align: center;
 }
 
-/* Form specific styles */
-.manage-form {
-    margin: 0;
+
+
+
+
+
+
+
+.report-info {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 20px;
 }
+
+.report-message {
+    background: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #007bff;
+    margin-bottom: 20px;
+    color: #1a237e;
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.report-response{
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #1a237e;
+    border-left: 5px solid #27a17d;
+    border-radius: 10px;
+    font-size: 15px;
+}
+.response-message {
+    background: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #34e4a0;
+    margin-bottom: 20px;
+    color: #1a237e;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.priority{
+    font-size: 17px;
+    color: #dd0f0f;
+    font-weight: bold;
+}
+
+

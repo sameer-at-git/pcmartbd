@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['emp_id']) || !isset($_SESSION['user_id'])) {
-    header('Location: ../../../layout/login.php');
+    header('Location: ../../../layout/view/login.php');
     exit();
 }
 include('../../model/db.php');
@@ -68,8 +68,8 @@ if ($emp_type == 'Full') {
                             <h3><a href="../functions/show_employee.php">Total Employee <p><?php echo $emp_count; ?></p></a></h3>
                             <h3><a href="../functions/faq.php">All Questions</a></h3>
                             <h3><a href="../functions/ufaq.php">Unasnwered Questions <p><?php echo $emp_count; ?></p></a></h3>
-                            <h3><a href="../functions/showEmployee.php">Appointment Information</a></h3>
-                            <h3><a href="../functions/showEmployee.php">Technician Reports</a></h3>
+                            <h3><a href="../functions/allTechnicianReport.php">All Technitian Reports</a></h3>
+                            <h3><a href="../functions/technicianReport.php">Unresponded Reports</a></h3>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ if ($emp_type == 'Full') {
         <div class="header">
             <div class="logo-container">
                 <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-                <a href="home.php" class="website-name">
+                <a href="full_home.php" class="website-name">
                     <p>PCMartBD</p>
                 </a>
             </div>
@@ -101,7 +101,7 @@ if ($emp_type == 'Full') {
             <div>
                 <table>
                     <tr>
-                        <td><a href="home.php" class="active">Home</a></td>
+                        <td><a href="full_home.php" class="active">Home</a></td>
                         <td><a href="product.php">Products</a></td>
                         <td><a href="reviews.php">Reviews</a></td>
                         <td><a href="profile.php">Profile</a></td>

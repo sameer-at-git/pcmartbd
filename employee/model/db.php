@@ -13,31 +13,6 @@ class myDB
         return $connectionObject;
     }
 
-    function addEmployee(
-        $fname,
-        $lname,
-        $phone,
-        $dob,
-        $preAdd,
-        $perAdd,
-        $gender,
-        $martstat,
-        $joinDate,
-        $employment,
-        $email,
-        $epass,
-        $approved,
-        $connectionObject
-    ) {
-        $sql = "INSERT INTO employee(f_name, l_name, phone, dob, pre_add, per_add, gender, marital_status, joining_date, employment, email, password, approved) 
-        VALUES('$fname','$lname','$phone','$dob','$preAdd','$perAdd','$gender','$martstat','$joinDate','$employment','$email','$epass',$approved)";
-        if ($connectionObject->query($sql)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
 
     function showUserbyID($id, $connectionObject)
     {
@@ -65,6 +40,33 @@ class myDB
         $result = $connectionObject->query($sql);
         return $result;
     }
+
+    function technicianReports( $connectionObject)
+    {
+        $sql = "SELECT * FROM reports WHERE emp_response=''";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+    function getTechnicianName($tech_id, $connectionObject)
+    {
+        $sql = "SELECT * FROM technician WHERE technician_id = '$tech_id'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function addReportResponse($report_id, $report_response, $connectionObject)
+    {
+        $sql = "UPDATE reports SET emp_response = '$report_response' WHERE r_id = '$report_id'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+    function allTechnicianReports( $connectionObject)
+    {
+        $sql = "SELECT * FROM reports WHERE 1";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
 
 
 

@@ -44,8 +44,8 @@ if (isset($_POST['delete'])) {
 
 <head>
     <title>Manage Technicians</title>
-    <link rel="stylesheet" href="../../css/managestyle.css">
     <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/test.css">
 
 </head>
 
@@ -53,7 +53,7 @@ if (isset($_POST['delete'])) {
 <div class="header">
     <div class="logo-container">
         <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-        <a href="../layout/home.php" class="website-name"><p>PCMartBD</p></a>
+        <a href="../layout/home.php" class="website-name">PCMartBD</a>
     </div>
     <div class="admin-info">
         <a href="../layout/profile.php" class="admin-link">
@@ -77,14 +77,16 @@ if (isset($_POST['delete'])) {
             </table>
         </div>
     </div>
-<h2>Manage Technicians</h2>
+    <div class="tec-container">
+    <h2>Manage Technicians</h2>
+    <div class="tec-table-wrapper">
 
     <?php
     $result = $db->getAllTechnicians($conn);
 
     if ($result->num_rows > 0) {
     ?>
-        <table>
+        <table class="tec-manage-table">
             <tr>
                 <th class="id-column">ID</th>
                 <th>Name</th>
@@ -98,23 +100,22 @@ if (isset($_POST['delete'])) {
             <?php
             while ($row = $result->fetch_assoc()) {
             ?>
-                <form method="post">
+                <form method="post" class="tec-manage-form">
                     <tr>
-                        <td><?php echo $row["technician_id"]; ?></td>
-                        <td><input type="text" name="first_name" value="<?php echo $row["first_name"]; ?>"> <input type="text" name="last_name" value="<?php echo $row["last_name"]; ?>"></td>
-                        <td>
+                        <td class="tec-id-column"><?php echo $row["technician_id"]; ?></td>
+                        <td class="tec-name-inputs"><input class="tec-input-field" type="text" name="first_name" value="<?php echo $row["first_name"]; ?>"> <input class="tec-input-field" type="text" name="last_name" value="<?php echo $row["last_name"]; ?>"></td>
+                        <td class="tec-work-hours-column">
                             <select name="work_hour">
                                 <option value="Slot-1" <?php echo ($row["work_hour"] == "Slot-1") ? "selected" : ""; ?>>Slot-1</option>
                                 <option value="Slot-2" <?php echo ($row["work_hour"] == "Slot-2") ? "selected" : ""; ?>>Slot-2</option>
                                 <option value="Slot-3" <?php echo ($row["work_hour"] == "Slot-3") ? "selected" : ""; ?>>Slot-3</option>
                                 <option value="Slot-4" <?php echo ($row["work_hour"] == "Slot-4") ? "selected" : ""; ?>>Slot-4</option>
                             </select>
-                        </td>
-                        <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <td>
-                            <select name="work_area">
-                                <option value="Dhanmondi" <?php echo ($row["work_area"] == "Dhanmondi") ? "selected" : ""; ?>>Dhanmondi</option>
+                        </td class="tec-id-column">
+                        <td class="tec-phone-column"><input class="tec-input-field" type="text" name="phone" value="<?php echo $row["phone"]; ?>"></td>
+                        <td class="tec-id-column"><p><?php echo $row["email"]; ?></p></td>
+                        <td class="tec-id-column">
+                            <select class="tec-work-area-select" name="work_area">
                                 <option value="Farmgate" <?php echo ($row["work_area"] == "Farmgate") ? "selected" : ""; ?>>Farmgate</option>
                                 <option value="Gulshan" <?php echo ($row["work_area"] == "Gulshan") ? "selected" : ""; ?>>Gulshan</option>
                                 <option value="Jatrabari" <?php echo ($row["work_area"] == "Jatrabari") ? "selected" : ""; ?>>Jatrabari</option>
@@ -129,11 +130,11 @@ if (isset($_POST['delete'])) {
                                 <option value="Uttara" <?php echo ($row["work_area"] == "Uttara") ? "selected" : ""; ?>>Uttara</option>
                             </select>
                         </td>
-                        <td><input type="text" name="experience" value="<?php echo $row["experience"]; ?>"></td>
-                        <td>
+                        <td class="tec-id-column"><input class="tec-experience-input" type="text" name="experience" value="<?php echo $row["experience"]; ?>"></td>
+                        <td class="tec-action-buttons">
                             <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
-                            <input type="submit" name="edit" value="Edit">
-                            <input type="submit" name="delete" value="Delete">
+                            <input type="submit" class="tec-btn-edit" name="edit" value="Edit">
+                            <input type="submit" class="tec-btn-delete" name="delete" value="Delete">
                         </td>
                     </tr>
                 </form>
@@ -148,7 +149,8 @@ if (isset($_POST['delete'])) {
 
     $db->closeCon($conn);
     ?>
-
+</div>
+</div>
 </body>
 
 </html>

@@ -1,0 +1,247 @@
+.emp-container {
+    max-width: 1400px;
+    margin: 40px ;
+    padding: 0 20px;
+}
+
+.emp-container h2 {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 24px;
+    font-size: 28px;
+}
+
+.emp-back-button {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    transition: background-color 0.3s ease;
+}
+
+.emp-back-button:hover {
+    background-color: #2980b9;
+}
+
+.emp-table-wrapper {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emp-manage-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.emp-manage-table th {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 16px;
+    text-align: left;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.emp-manage-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.emp-input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.emp-input-field:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.emp-action-buttons {
+    white-space: nowrap;
+}
+
+.emp-btn-edit, 
+.emp-btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.emp-btn-edit {
+    background-color: #2ecc71;
+    color: white;
+    margin-right: 8px;
+}
+
+.emp-btn-edit:hover {
+    background-color: #27ae60;
+}
+
+.emp-btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.emp-btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.emp-id-column {
+    width: 80px;
+}
+
+.emp-phone-column {
+    width: 120px;
+}
+
+.emp-email-column {
+    width: 200px;
+}
+
+
+
+.tec-container {
+width:1500px;
+    margin: 20px ;
+    padding:0px 10px;
+}
+
+.tec-container h2 {
+    color: #ffffff;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.tec-table-wrapper {
+
+    background-color: white;
+}
+
+.tec-manage-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+.tec-manage-table th {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    font-weight: bold   ;
+    padding: 16px;
+    text-align: center;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.tec-manage-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: center;
+
+}
+
+.tec-input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
+/* Style for select dropdowns */
+.tec-input-field select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+.tec-action-buttons {
+    width:100px;
+    white-space: nowrap;
+}
+
+
+.tec-btn-edit, 
+.tec-btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.tec-btn-edit {
+    background-color: #3498db;
+    color: white;
+    margin-right: 8px;
+}
+
+.tec-btn-edit:hover {
+    background-color: #2980b9;
+}
+
+.tec-btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.tec-btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Column specific widths */
+.tec-id-column {
+    width: 120px;
+}
+
+.tec-work-hours-column {
+    width: 50px;
+}
+
+.tec-phone-column {
+    width: 160px;
+}
+
+p{
+    font-size: 15px;
+    width:100px;
+}
+
+.tec-name-inputs {
+width:80px;
+}
+
+.tec-name-inputs input {
+    width: 100px;
+}
+
+/* Work area select styling */
+.tec-work-area-select {
+    min-width: 140px;
+}
+
+/* Experience input specific width */
+.tec-experience-input {
+    width: 80px;
+    height:20px;
+    border:none;
+    border-radius: 5px;
+    text-align: center;
+}
+

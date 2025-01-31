@@ -13,7 +13,7 @@ $admin_type = $_SESSION['user_access'];
 
 $adminPages = [
     'Full Control' => [
-        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/tech.svg'],
         'Manage Employees' => ['url' => '../functions/manage_employee.php', 'icon' => '../../images/employee-icon.svg'],
         'Manage Product' => ['url' => '../functions/manage_products.php', 'icon' => '../../images/product-icon.svg'],
         'Manage Admin' => ['url' => '../functions/manage_admin.php', 'icon' => '../../images/admin-icon.svg'],
@@ -30,7 +30,7 @@ $adminPages = [
         'Update Profile' => ['url' => 'update_profile.php', 'icon' => '../../images/profile.svg']
     ],
     'Employee Control' => [
-        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/tech.svg'],
         'Manage Employees' => ['url' => '../functions/manage_employee.php', 'icon' => '../../images/employee-icon.svg'],
         'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
         'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg'],
@@ -46,7 +46,7 @@ $adminPages = [
 
     ],
     'Product Control' => [
-        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/tech.svg'],
         'Manage Product' => ['url' => '../functions/manage_products.php', 'icon' => '../../images/product-icon.svg'],
         'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
         'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg'],

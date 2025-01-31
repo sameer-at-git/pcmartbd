@@ -126,7 +126,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div id="searchResults"></div>
     </div>
-
+    <div class="footer">
+        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+    </div>
     <script src="../../js/contact.js"></script>
 </body>
 </html>

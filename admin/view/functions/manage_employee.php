@@ -34,7 +34,7 @@ if (isset($_POST['delete'])) {
 
 <head>
     <title>Manage Employee</title>
-    <link rel="stylesheet" href="../../css/managestyle.css">
+    <link rel="stylesheet" href="../../css/test.css">
     <link rel="stylesheet" href="../../css/index.css">
 
 </head>
@@ -43,7 +43,7 @@ if (isset($_POST['delete'])) {
 <div class="header">
     <div class="logo-container">
         <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-        <a href="../layout/home.php" class="website-name"><p>PCMartBD</p></a>
+        <a href="../layout/home.php" class="website-name">PCMartBD</a>
     </div>
     <div class="admin-info">
         <a href="../layout/profile.php" class="admin-link">
@@ -67,20 +67,20 @@ if (isset($_POST['delete'])) {
             </table>
         </div>
     </div>
-    <div class="container">
+    <div class="emp-container">
         <h2>Manage Employee</h2>
-        <a href="../sign_up/employee_registration.php" class="back-button">Add Employee</a>
-        <div class="table-wrapper">
+        <a href="../sign_up/employee_registration.php" class="emp-back-button">Add Employee</a>
+        <div class="emp-table-wrapper">
             <?php
             $result = $db->getAllEmployees($conn);
             if ($result->num_rows > 0) {
             ?>
-                <table class="manage-table">
+                <table class="emp-manage-table">
                     <tr>
-                        <th class="id-column">ID</th>
+                        <th class="emp-id-column">ID</th>
                         <th>Name</th>
-                        <th class="phone-column">Phone</th>
-                        <th class="email-column">Email</th>
+                        <th class="emp-phone-column">Phone</th>
+                        <th class="emp-email-column">Email</th>
                         <th>Gender</th>
                         <th>DOB</th>
                         <th>Present Address</th>
@@ -88,34 +88,34 @@ if (isset($_POST['delete'])) {
                         <th>Actions</th>
                     </tr>
                     <?php while ($row = $result->fetch_assoc()) { ?>
-                        <form method="post" class="manage-form">
+                        <form method="post" class="emp-manage-form">
                             <tr>
-                                <td class="id-column"><?php echo $row["emp_id"]; ?></td>
+                                <td class="emp-id-column"><?php echo $row["emp_id"]; ?></td>
                                 <td>
-                                    <input type="text" name="f_name" value="<?php echo $row["f_name"]; ?>" class="input-field">
-                                    <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>" class="input-field">
+                                    <input type="text" name="f_name" value="<?php echo $row["f_name"]; ?>" class="emp-input-field">
+                                    <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>" class="emp-input-field">
                                 </td>
-                                <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>" class="input-field"></td>
+                                <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>" class="emp-input-field"></td>
                                 <td><?php echo $row["email"]; ?></td>
                                 <td>
-                                    <select name="gender" class="input-field">
+                                    <select name="gender" class="emp-input-field">
                                         <option value="Male" <?php echo ($row["gender"] == "Male") ? "selected" : ""; ?>>Male</option>
                                         <option value="Female" <?php echo ($row["gender"] == "Female") ? "selected" : ""; ?>>Female</option>
                                     </select>
                                 </td>
-                                <td><input type="date" name="dob" value="<?php echo $row["dob"]; ?>" class="input-field"></td>
-                                <td><input type="text" name="pre_add" value="<?php echo $row["pre_add"]; ?>" class="input-field"></td>
+                                <td><input type="date" name="dob" value="<?php echo $row["dob"]; ?>" class="emp-input-field"></td>
+                                <td><input type="text" name="pre_add" value="<?php echo $row["pre_add"]; ?>" class="emp-input-field"></td>
                                 <td>
-                                    <select name="employment" class="input-field">
+                                    <select name="employment" class="emp-input-field">
                                         <option value="Full" <?php echo ($row["employment"] == "Full") ? "selected" : ""; ?>>Full</option>
                                         <option value="Part" <?php echo ($row["employment"] == "Part") ? "selected" : ""; ?>>Part</option>
                                         <option value="Intern" <?php echo ($row["employment"] == "Intern") ? "selected" : ""; ?>>Intern</option>
                                     </select>
                                 </td>
-                                <td class="action-buttons">
+                                <td class="emp-action-buttons">
                                     <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
-                                    <input type="submit" name="edit" value="Edit" class="btn-edit">
-                                    <input type="submit" name="delete" value="Delete" class="btn-delete">
+                                    <input type="submit" name="edit" value="Edit" class="emp-btn-edit">
+                                    <input type="submit" name="delete" value="Delete" class="emp-btn-delete">
                                 </td>
                             </tr>
                         </form>

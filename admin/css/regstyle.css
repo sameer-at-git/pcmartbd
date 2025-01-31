@@ -15,7 +15,7 @@ form {
 
 h2 {
     text-align: center;
-    color: #000000;
+    color: #ffffff;
     font-size: 26px;
     margin-bottom: 20px;
     font-weight: bold;
@@ -75,7 +75,7 @@ input[type="date"]:focus,
 textarea:focus,
 select:focus {
     border-color: #ffffff;
-    background-color: #050025;
+    background-color: #ffffff;
 }
 
 input[type="radio"] {

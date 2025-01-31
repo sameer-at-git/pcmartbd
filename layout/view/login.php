@@ -55,7 +55,7 @@
             
             <div class="login-links">
                 <div><a href="forget_password.php">Forgot Password?</a></div>
-                <div>Don't have an account? <a href="../admin/view/sign_up/admin_registration.php">Sign Up</a></div>
+                <div>Don't have an account? <a href="../../customer/view/sign_up.php">Sign Up</a></div>
             </div>
     </form>
 

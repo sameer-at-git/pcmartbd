@@ -28,7 +28,7 @@
                 </a>
             </div>
             <div class="admin-info">
-                <a href="profile.php" class="admin-link">
+                <a href="profile.php" class="admin-link-active" >
                     <img src="<?php echo $userInfo['propic']; ?>" alt="Admin Image" class="admin-image">
                     <div class="admin-name"><?php echo $userInfo['name']; ?></div>
                 </a>
@@ -40,13 +40,17 @@
         <div class="navbar">
             <div>
                 <table>
-                    <tr>
-                        <td><a href="home.php" >Home</a></td>
-                        <td><a href="dashboard.php">Dashboard</a></td>
-                        <td><a href="messages.php">Messages</a></td>
-                        <td><a href="update_profile.php">Account</a></td>
-                        <td><a href="../../control/sessionout.php">Logout</a></td>
-                    </tr>
+                <tr>
+                    <td><a href="home.php">Home</a></td>
+                    <td><a href="dashboard.php" >Dashboard</a></td>
+                    <td><a href="messages.php">Messages</a></td>
+                    <td><a href="update_profile.php">Account</a></td>
+                    <td><a href="contact_admin.php" >Contact Admins</a></td>
+                    <td><a href="contact_user.php">Contact User</a></td>
+                    <td><a href="../functions/reviews.php">Reviews</a></td>
+
+                    <td><a href="../../control/sessionout.php">Logout</a></td>
+                </tr>
                 </table>
             </div>
         </div>

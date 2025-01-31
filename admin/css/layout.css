@@ -1,7 +1,7 @@
 /*home-page*/
 
 .content {
-    padding-bottom: 50px;
+    padding: 50px;
 }
 
 
@@ -150,7 +150,8 @@ h1 {
 
 /*Uupdate_profile*/
 h2 {
-    color: #000000;
+    color: #ffffff;
+    text-align: center;
 }
 .up{
  background-color: white;
@@ -241,6 +242,19 @@ h2 {
 
 
 /*messages/php*/
+.message {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+}
+.message__content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
 .messages-container {
     width: 90%;
     max-width: 1000px;
@@ -250,7 +264,27 @@ h2 {
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
+.reply-btn {
+    display: inline-block;
+    background-color: #3e77b5;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+.reply-btn:hover {
+    background-color: #2c5a8f;
+    transform: translateY(-1px);
+}
 
+.reply-btn:active {
+    transform: translateY(1px);
+}
 /* Filter Buttons */
 .filters {
     display: flex;
@@ -326,3 +360,160 @@ h2 {
 }
 
 
+
+
+/*contact_user page*/
+/* Existing CSS remains unchanged */
+
+/* New styles for contact user form */
+#searchResults {
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+}
+
+#searchResults p {
+    padding: 10px 15px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#searchResults p:hover {
+    background-color: #f5f5f5;
+}
+
+#errorMessages {
+    color: #dc3545;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#errorMessages p {
+    margin: 5px 0;
+}
+
+/* Modern input styles */
+#userType,
+#searchUser,
+#subject,
+#message {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+#userType:focus,
+#searchUser:focus,
+#subject:focus,
+#message:focus {
+    border-color: #3e77b5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(62, 119, 181, 0.1);
+}
+
+#message {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Modern button style */
+#sendMessage {
+    background-color: #3e77b5;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#sendMessage:hover {
+    background-color: #2c5a8f;
+}
+
+
+
+.content fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.content fieldset table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.content fieldset table td {
+    padding: 8px 15px;
+    vertical-align: top;
+}
+
+
+
+
+.contact-form-wrapper {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+
+
+/* Style the form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.btn-primary {
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #007BFF; /* Adjust to match your brand color */
+    color: #fff;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Slightly darker on hover */
+}
+.hidden {
+    display: none;
+}

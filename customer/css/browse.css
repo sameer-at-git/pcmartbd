@@ -58,15 +58,16 @@
     height: auto;
 }
 
-.logo-container .website-name {
+.logo-container #website-name p{
     font-size: 30px;
     font-weight: bold;
     color: #ffffff;
     text-decoration: none;
+    margin-top: 7px;
     padding: -50px;
 }
 
-.logo-container .website-name span {
+.logo-container #website-name p {
     color: #66b2ff;
 }
 

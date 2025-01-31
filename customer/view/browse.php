@@ -1,6 +1,11 @@
 <?php
-include '../model/db.php'; 
+session_start();
 
+if (!isset($_SESSION['customer_id']) || !isset($_SESSION['user_id'])) {
+    header('Location: ../../layout/view/login.php');
+    exit();
+}
+include '../model/db.php'; 
 $db = new myDB2();
 $conn = $db->openCon();
 $products_per_page = 12;
@@ -9,9 +14,6 @@ $offset = ($page - 1) * $products_per_page;
 $products = $db->fetch_products_with_pagination($conn, $products_per_page, $offset);
 $db->closeCon($conn);
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,17 +26,19 @@ $db->closeCon($conn);
 <div class="header">
     <div class="logo-container">
         <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-        <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+        <a href="browse.php" id="website-name"><p>PCMartBD</p></a>
     </div>
 </div>
 
 <div class="navbar">
     <ul>
-        <li><a href="home.php">Home</a></li>
+        <li><a href="browse.php">Home</a></li>
         <li><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="settings.php">Settings</a></li>
         <li><a href="#">Profile</a></li>
-        <li><a href="../../../layout/view/login.php">Logout</a></li>
+        <li><a href="repair.php">Repair</a></li>
+        <li><a href="#">Contact Admin</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="../control/sessionout.php">Logout</a></li>
     </ul>
 </div>
 
@@ -98,7 +102,7 @@ $db->closeCon($conn);
         <?php foreach ($products as $product): ?>
             <div class="box">
                 <div class="inner-box">
-                <img src="../../employee/view/<?= $product['photo'] ?>" alt="Product Image" class="boximg">
+                <img src="../../employee/<?= $product['photo'] ?>" alt="Product Image" class="boximg">
                 <h3><?= $product['brand'] ?> - <?= $product['type'] ?></h3>
                     <p>Price: $<?= $product['price'] ?></p>
                     <p><?= $product['about'] ?></p>
@@ -106,7 +110,6 @@ $db->closeCon($conn);
                 </div>
             </div>
         <?php endforeach; ?>
-      
     </div>
 
     <div class="pagination">

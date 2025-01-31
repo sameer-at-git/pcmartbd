@@ -61,7 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: ../../admin/view/layout/home.php");
                     break;
                 case 'Customer':
-                    header("Location: customer_dashboard.php");
+                    $customer_id = $db->getCustomerIdByEmail($email, $conn);
+                    if ($customer_id) {
+                        $_SESSION['customer_id'] = $customer_id;
+                    }
+                    header("Location: ../../customer/view/browse.php");
                     break;
                 case 'Technician':
                     $technician_id = $db->getTechnicianIdByEmail($email, $conn);

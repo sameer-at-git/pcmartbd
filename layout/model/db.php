@@ -72,6 +72,15 @@ class UserDB
             return $row['technician_id'];
         }
         return null;
+    } function getCustomerIdByEmail($email, $connectionObject)
+    {
+        $sql = "SELECT customer_id FROM customer WHERE email = '$email'";
+        $result = $connectionObject->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['customer_id'];
+        }
+        return null;
     }
 
     

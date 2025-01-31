@@ -80,8 +80,10 @@ if (isset($_POST['editpic'])) {
                     <td><a href="dashboard.php" >Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
                     <td><a href="update_profile.php" class="active">Account</a></td>
-                    <td><a href="contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="contact_admin.php" >Contact Admins</a></td>
                     <td><a href="contact_user.php">Contact User</a></td>
+                    <td><a href="../functions/reviews.php">Reviews</a></td>
+
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
             </table>

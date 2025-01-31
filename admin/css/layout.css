@@ -514,3 +514,6 @@ h2 {
 .btn-primary:hover {
     background-color: #0056b3; /* Slightly darker on hover */
 }
+.hidden {
+    display: none;
+}

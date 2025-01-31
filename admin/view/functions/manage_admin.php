@@ -77,15 +77,18 @@ if (isset($_POST['delete'])) {
             </table>
         </div>
     </div>
-<h2>Manage Admins</h2>
+
+    <div class="admin-container">
+        <h2 class="admin-header">Manage Admins</h2>
     <a href="../sign_up/admin_registration.php" class="back-button">Add Admin</a>
     <?php
     $result = $db->getAllAdmins($conn);
 
     if ($result->num_rows > 0) {
     ?>
-        <table>
-            <tr>
+        <table class="admin-table">
+            <thead>
+                <tr>
                 <th class="id-column">ID</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -96,6 +99,8 @@ if (isset($_POST['delete'])) {
                 <th>Permanent Address</th>
                 <th>Actions</th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             while ($row = $result->fetch_assoc()) {
             ?>
@@ -119,14 +124,15 @@ if (isset($_POST['delete'])) {
                             <input type="hidden" name="admin_id" value="<?php echo $row["admin_id"]; ?>">
                             <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
                             <input type="hidden" name="password" value="<?php echo $row["password"]; ?>">
-                            <input type="submit" name="edit" value="Edit">
-                            <input type="submit" name="delete" value="Delete">
+                            <input type="submit" name="edit" class="btn btn-edit" value="Edit">
+                            <input type="submit" name="delete" class="btn btn-delete" value="Delete">
                         </td>
                     </tr>
                 </form>
             <?php
             }
             ?>
+            </tbody>
         </table>
     <?php
     } else {

@@ -70,7 +70,7 @@ class myDB
 
     function getAdminByEmail($connectionObject, $email)
     {
-        $sql = "SELECT * FROM admin WHERE email=$email";
+        $sql = "SELECT * FROM admin WHERE email='$email' ";
         $result = $connectionObject->query($sql);
         return $result->fetch_assoc();
     }
@@ -445,6 +445,63 @@ class myDB
         return $data['total'];*/
     }
     
+    
+    function getTechnicianReviews($connectionObject) {
+        $sql = "SELECT appointment_id, customer_id, technician_id, 
+                       technician_rating AS rating, 
+                       technician_comment AS review
+                FROM appointment
+                WHERE technician_rating > 0";
+    
+        $result = $connectionObject->query($sql);
+        if (!$result) {
+            die("SQL Error in getTechnicianReviews: " . $connectionObject->error);
+        }
+        return $result;
+    }
+    
+    
+    
+    
+    function getCustomerReviews($connectionObject) {
+        $sql = "SELECT appointment_id, customer_id, technician_id, 
+                       customer_rating AS rating, 
+                       customer_comment AS review
+                FROM appointment
+                WHERE customer_rating > 0";
+    
+        $result = $connectionObject->query($sql);
+        if (!$result) {
+            die("SQL Error in getCustomerReviews: " . $connectionObject->error);
+        }
+        return $result;
+    }
+    
+    
+    
+    
+
+    function getProductReviews($connectionObject) {
+        $sql = "SELECT o.order_id, 
+                       c.email AS customer_email, 
+                       p.type AS product_name, 
+                       o.customer_rating AS rating, 
+                       o.customer_review AS review, 
+                       o.order_date
+                FROM orders o
+                JOIN user c ON o.customer_id = c.user_id
+                JOIN product p ON o.product_id = p.pid
+                WHERE o.customer_rating IS NOT NULL";
+    
+        $result = $connectionObject->query($sql);
+        if (!$result) {
+            die("SQL Error in getProductReviews: " . $connectionObject->error);
+        }
+        return $result;
+    }
+    
+
+
     function closecon($connectionObject)
     {
         $connectionObject->close();

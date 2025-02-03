@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
-    //header('Location: ../../../layout/login.php');
-    //exit();
-}
+
 
 include('../../model/db.php');
 $db = new myDB();
@@ -15,10 +12,12 @@ if (isset($_POST['edit'])) {
     $l_name = $_POST['l_name'];
     $phone = $_POST['phone'];
     $pre_add = $_POST['pre_add'];
-    $gender = $_POST['gender'];
-    $employment = $_POST['employment'];
+    $per_add = $_POST['per_add'];
+    $password = $_POST['password'];
+    $dob = $_POST['dob'];
+
     
-    $db->updateEmployee( $emp_id, $f_name, $l_name, $phone, $gender, $employment, $conn);
+    $db->updateEmployee( $emp_id, $f_name, $l_name, $phone, $dob, $pre_add, $per_add, $password, $conn);
 }
 ?>
 
@@ -65,16 +64,23 @@ if (isset($_POST['edit'])) {
                                 </td>
                                 <td><input type="text" name="pre_add" value="<?php echo $row["pre_add"]; ?>" class="input-field"></td>
                                 <td>
-                                    <select name="employment" class="input-field">
-                                        <option value="Full" <?php echo ($row["employment"] == "Full") ? "selected" : ""; ?>>Full-Time</option>
-                                        <option value="Part" <?php echo ($row["employment"] == "Part") ? "selected" : ""; ?>>Part-Time</option>
-                                        <option value="Intern" <?php echo ($row["employment"] == "Intern") ? "selected" : ""; ?>>Internship</option>
-                                    </select>
+                                    <?php
+                                    if($row["employment"] == "Full"){
+                                        echo "Full-Time";
+                                    }
+                                    elseif($row["employment"] == "Part"){
+                                        echo "Part-Time";
+                                    }
+                                    else{
+                                        echo "Internship";
+                                    }
+                                    ?>
                                 </td>
                                 <td class="action-buttons">
                                     <input type="hidden" name="emp_id" value="<?php echo $row["emp_id"]; ?>">
                                     <input type="hidden" name="per_add" value="<?php echo $row["per_add"]; ?>">
-                                    <input type="hidden" name="marital_status" value="<?php echo $row["marital_status"]; ?>">
+                                    <input type="hidden" name="password" value="<?php echo $row["password"]; ?>">
+                                    <input type="hidden" name="dob" value="<?php echo $row["dob"]; ?>">
                                     <input type="submit" class="edit-btn" name="edit" value="Edit" >
                                 </td>
                             </tr>

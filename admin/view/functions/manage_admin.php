@@ -6,37 +6,13 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['user_id'])) {
 }
 
 include('../../model/db.php');
+
 $db = new myDB();
 $conn = $db->openCon();
 $aid = $_SESSION['admin_id'];
 $userInfo = $db->getUserInfo($conn, $aid);
 
-if (isset($_POST['edit'])) {
-    $admin_id = $_POST['admin_id'];
-    $name = $_POST['name'];
-    $access = $_POST['access'];
-    $number = $_POST['number'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $bio = $_POST['bio'];
-    $presentaddress = $_POST['presentaddress'];
-    $permanentaddress = $_POST['permanentaddress'];
-    if ($db->updateProfile( $admin_id, $name,  $number, $bio, $presentaddress, $permanentaddress,$password,$access,$email,$conn)) {
-        echo "Admin information updated successfully!";
-    } else {
-        echo "Error updating admin: " . $conn->error;
-    }
-}
 
-if (isset($_POST['delete'])) {
-    $email = $_POST['email'];
-
-    if ($db->deleteAdmin($conn, $email)) {
-        echo "Admin deleted successfully!";
-    } else {
-        echo "Error deleting admin: " . $conn->error;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +22,7 @@ if (isset($_POST['delete'])) {
     <title>Manage Admins</title>
     <link rel="stylesheet" href="../../css/managestyle.css">
     <link rel="stylesheet" href="../../css/index.css">
-
+    <script src="../../js/admin_validation.js"></script>
 </head>
 
 <body>
@@ -67,10 +43,8 @@ if (isset($_POST['delete'])) {
             <table>
             <tr>
                     <td><a href="../layout/home.php" class="active">Home</a></td>
-                    <td><a href="../layout/dashboard.php" >Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
-                    <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="../layout/broadcast.php" >Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
@@ -103,20 +77,35 @@ if (isset($_POST['delete'])) {
             <tbody>
             <?php
             while ($row = $result->fetch_assoc()) {
+                $aid=$row['admin_id'];
             ?>
-                <form method="post">
+                <form method="post" action="../../control/admin_control.php" id="adminForm_<?php echo $row["admin_id"]; ?>">
                     <tr>
-                        <td><?php echo $row["admin_id"]; ?></td>
-                        <td><input type="text" name="name" value="<?php echo $row["name"]; ?>"></td>
+                        <td><?php echo $aid; ?></td>
+                        <td>
+                            <input type="text" name="name" id="admin_name_<?php echo $aid; ?>" 
+                                   value="<?php echo $row["name"]; ?>" 
+                                   onkeyup="validateName(<?php echo $aid; ?>)">
+                            <div class="error-message" id="nameerr_<?php echo $aid; ?>"></div>
+                        </td>
                         <td><?php echo $row["email"]; ?></td>
                         <td>
-                            <select name="access" class="access-dropdown">
+                            <select name="access" id="admin_access_<?php echo $aid; ?>" 
+                                    class="access-dropdown" 
+                                    onchange="validateAccess(<?php echo $aid; ?>)">
+                                <option value="">Select Access Level</option>
                                 <option value="Full Control" <?php echo ($row["access"] == "Full Control") ? "selected" : ""; ?>>Full Control</option>
                                 <option value="Product Control" <?php echo ($row["access"] == "Product Control") ? "selected" : ""; ?>>Product Control</option>
                                 <option value="Employee Control" <?php echo ($row["access"] == "Employee Control") ? "selected" : ""; ?>>Employee Control</option>
                             </select>
+                            <div class="error-message" id="accesserr_<?php echo $aid; ?>"></div>
                         </td>
-                        <td><input type="text" name="number" value="<?php echo $row["number"]; ?>"></td>
+                        <td>
+                            <input type="text" name="number" id="admin_phone_<?php echo $aid; ?>" 
+                                   value="<?php echo $row["number"]; ?>" 
+                                   onkeyup="validatePhone(<?php echo $aid; ?>)">
+                            <div class="error-message" id="phoneerr_<?php echo $aid; ?>"></div>
+                        </td>
                         <td><input type="text" name="bio" value="<?php echo $row["bio"]; ?>"></td>
                         <td><input type="text" name="presentaddress" value="<?php echo $row["presentaddress"]; ?>"></td>
                         <td><input type="text" name="permanentaddress" value="<?php echo $row["permanentaddress"]; ?>"></td>
@@ -145,3 +134,4 @@ if (isset($_POST['delete'])) {
 </body>
 
 </html>
+

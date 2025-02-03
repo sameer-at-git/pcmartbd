@@ -25,9 +25,9 @@ if (!isset($_SESSION['user_id'])) {
         <ul>
             <li><a href="home.php">Home</a></li>
             <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="settings.php">Settings</a></li>
+            <li><a class="active" href="settings.php">Settings</a></li>
             <li><a href="profile.php">Profile</a></li>
-            <li><a href="../../../layout/view/login.php">Logout</a></li>
+            <li><a href="../../../technician/control/sessionout.php">Logout</a></li>
         </ul>
     </div>
 
@@ -35,7 +35,6 @@ if (!isset($_SESSION['user_id'])) {
         <div class="content">
             <h2>Settings</h2>
             <div class="settings-container">
-                <!-- Profile Settings Card -->
                 <div class="settings-card">
                     <h3>
                         <img src="../../images/icons/user-gear-solid.svg" alt="Profile Icon" class="icon">
@@ -49,7 +48,6 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                 </div>
 
-                <!-- Account Security Card -->
                 <div class="settings-card">
                     <h3>
                         <img src="../../images/icons/user-shield-solid.svg" alt="Security Icon" class="icon">
@@ -67,7 +65,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+        <p>&copy; 2025 PCMartBD. All rights reserved.</p>
     </div>
 </body>
 </html>

@@ -2,7 +2,6 @@
 
 class myDB
 {
-    ///All Employee Functions
     function openCon()
     {
         $DBHost = "localhost:3306";
@@ -13,33 +12,8 @@ class myDB
         return $connectionObject;
     }
 
-    function addEmployee(
-        $fname,
-        $lname,
-        $phone,
-        $dob,
-        $preAdd,
-        $perAdd,
-        $gender,
-        $martstat,
-        $joinDate,
-        $employment,
-        $email,
-        $epass,
-        $approved,
-        $connectionObject
-    ) {
-        $sql = "INSERT INTO employee(f_name, l_name, phone, dob, pre_add, per_add, gender, marital_status, joining_date, employment, email, password, approved) 
-        VALUES('$fname','$lname','$phone','$dob','$preAdd','$perAdd','$gender','$martstat','$joinDate','$employment','$email','$epass',$approved)";
-        if ($connectionObject->query($sql)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
 
-
-    function showUserbyID($id,  $connectionObject)
+    function showUserbyID($id, $connectionObject)
     {
         $sql = "SELECT * FROM employee WHERE  emp_id = $id";
         $result = $connectionObject->query($sql);
@@ -59,9 +33,84 @@ class myDB
         return $result;
     }
 
-    function updateEmployee($id, $f_name, $l_name, $phone, $gender, $employment, $connectionObject)
+    function updateEmployee($id, $f_name, $l_name, $phone, $dob, $pre_add, $per_add, $password, $connectionObject)
     {
-        $sql = "UPDATE employee SET f_name = '$f_name', l_name = '$l_name', phone = '$phone', gender = '$gender', employment = '$employment' WHERE emp_id = $id";
+        $sql = "UPDATE employee SET f_name = '$f_name', l_name = '$l_name', phone = '$phone', dob = '$dob',pre_add = '$pre_add',per_add = '$per_add' ,password = '$password' WHERE emp_id = $id";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function technicianReports( $connectionObject)
+    {
+        $sql = "SELECT * FROM reports WHERE emp_response=''";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+    function getTechnicianName($tech_id, $connectionObject)
+    {
+        $sql = "SELECT * FROM technician WHERE technician_id = '$tech_id'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+
+    function addReportResponse($report_id, $report_response, $connectionObject)
+    {
+        $sql = "UPDATE reports SET emp_response = '$report_response' WHERE r_id = '$report_id'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+    function allTechnicianReports( $connectionObject)
+    {
+        $sql = "SELECT * FROM reports WHERE 1";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function allFAQ( $connectionObject)
+    {
+        $sql = "SELECT * FROM faq WHERE 1";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function unAnsweredFAQ( $connectionObject)
+    {
+        $sql = "SELECT * FROM faq WHERE answer=''";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+    function getTotalFAQ($connectionObject)
+    {
+        $sql = "SELECT COUNT(*) as total_faq FROM faq WHERE answer=''";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function addFAQResponse($faq_id, $faq_response, $connectionObject)
+    {
+        $sql = "UPDATE faq SET answer='$faq_response' WHERE faqID='$faq_id'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function getTechnicianReviews($connectionObject)
+    {
+        $sql = "SELECT * FROM reviews WHERE review_type='technician'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function getCustomerReviews($connectionObject)
+    {
+        $sql = "SELECT * FROM reviews WHERE review_type='customer'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
+
+    function getProductReviews($connectionObject)
+    {
+        $sql = "SELECT * FROM reviews WHERE review_type='product'";
         $result = $connectionObject->query($sql);
         return $result;
     }
@@ -71,7 +120,11 @@ class myDB
 
 
 
-    ///All Product Functions
+
+
+
+
+
     function addProduct($pType, $pBrand, $pQuantity, $pStatus, $pPic, $pAbout, $pPrice, $connectionObject)
     {
         $sql = "INSERT INTO product(type,brand,quantity,status,photo,about,price)
@@ -117,6 +170,12 @@ class myDB
         return $result;
     }
 
+    function searchProducts($search, $connectionObject)
+    {
+        $sql = "SELECT * FROM product WHERE type LIKE '%$search%' OR brand LIKE '%$search%'";
+        $result = $connectionObject->query($sql);
+        return $result;
+    }
 
 
     function closecon($connectionObject)

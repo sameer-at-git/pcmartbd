@@ -34,7 +34,7 @@ if (isset($_POST['delete'])) {
 
 <head>
     <title>Manage Employee</title>
-    <link rel="stylesheet" href="../../css/managestyle.css">
+    <link rel="stylesheet" href="../../css/test.css">
     <link rel="stylesheet" href="../../css/index.css">
 
 </head>
@@ -43,7 +43,7 @@ if (isset($_POST['delete'])) {
 <div class="header">
     <div class="logo-container">
         <img src="../../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-        <a href="../layout/home.php" class="website-name"><p>PCMartBD</p></a>
+        <a href="../layout/home.php" class="website-name">PCMartBD</a>
     </div>
     <div class="admin-info">
         <a href="../layout/profile.php" class="admin-link">
@@ -57,30 +57,28 @@ if (isset($_POST['delete'])) {
             <table>
             <tr>
                     <td><a href="../layout/home.php" class="active">Home</a></td>
-                    <td><a href="../layout/dashboard.php" >Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
-                    <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="../layout/broadcast.php" >Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="container">
+    <div class="emp-container">
         <h2>Manage Employee</h2>
-        <a href="../sign_up/employee_registration.php" class="back-button">Add Employee</a>
-        <div class="table-wrapper">
+        <a href="../sign_up/employee_registration.php" class="emp-back-button">Add Employee</a>
+        <div class="emp-table-wrapper">
             <?php
             $result = $db->getAllEmployees($conn);
             if ($result->num_rows > 0) {
             ?>
-                <table class="manage-table">
+                <table class="emp-manage-table">
                     <tr>
-                        <th class="id-column">ID</th>
+                        <th class="emp-id-column">ID</th>
                         <th>Name</th>
-                        <th class="phone-column">Phone</th>
-                        <th class="email-column">Email</th>
+                        <th class="emp-phone-column">Phone</th>
+                        <th class="emp-email-column">Email</th>
                         <th>Gender</th>
                         <th>DOB</th>
                         <th>Present Address</th>
@@ -88,34 +86,69 @@ if (isset($_POST['delete'])) {
                         <th>Actions</th>
                     </tr>
                     <?php while ($row = $result->fetch_assoc()) { ?>
-                        <form method="post" class="manage-form">
+                        <form method="post" action="../../control/employee_control.php" class="emp-manage-form">
                             <tr>
-                                <td class="id-column"><?php echo $row["emp_id"]; ?></td>
+                                <td class="emp-id-column"><?php echo $row["emp_id"]; ?></td>
                                 <td>
-                                    <input type="text" name="f_name" value="<?php echo $row["f_name"]; ?>" class="input-field">
-                                    <input type="text" name="l_name" value="<?php echo $row["l_name"]; ?>" class="input-field">
+                                    <input type="text" name="f_name" id="emp_f_name_<?php echo $row["emp_id"]; ?>" 
+                                           value="<?php echo $row["f_name"]; ?>" 
+                                           class="emp-input-field" 
+                                           onkeyup="validateEmployeeName(<?php echo $row["emp_id"]; ?>, 'f')">
+                                    <div class="error-message" id="fnameerr_<?php echo $row["emp_id"]; ?>"></div>
+                                    
+                                    <input type="text" name="l_name" id="emp_l_name_<?php echo $row["emp_id"]; ?>" 
+                                           value="<?php echo $row["l_name"]; ?>" 
+                                           class="emp-input-field" 
+                                           onkeyup="validateEmployeeName(<?php echo $row["emp_id"]; ?>, 'l')">
+                                    <div class="error-message" id="lnameerr_<?php echo $row["emp_id"]; ?>"></div>
                                 </td>
-                                <td><input type="text" name="phone" value="<?php echo $row["phone"]; ?>" class="input-field"></td>
+                                <td>
+                                    <input type="text" name="phone" id="emp_phone_<?php echo $row["emp_id"]; ?>" 
+                                           value="<?php echo $row["phone"]; ?>" 
+                                           class="emp-input-field" 
+                                           onkeyup="validateEmployeePhone(<?php echo $row["emp_id"]; ?>)">
+                                    <div class="error-message" id="phoneerr_<?php echo $row["emp_id"]; ?>"></div>
+                                </td>
                                 <td><?php echo $row["email"]; ?></td>
                                 <td>
-                                    <select name="gender" class="input-field">
+                                    <select name="gender" id="emp_gender_<?php echo $row["emp_id"]; ?>" 
+                                            class="emp-input-field" 
+                                            onchange="validateEmployeeGender(<?php echo $row["emp_id"]; ?>)">
+                                        <option value="">Select Gender</option>
                                         <option value="Male" <?php echo ($row["gender"] == "Male") ? "selected" : ""; ?>>Male</option>
                                         <option value="Female" <?php echo ($row["gender"] == "Female") ? "selected" : ""; ?>>Female</option>
                                     </select>
+                                    <div class="error-message" id="gendererr_<?php echo $row["emp_id"]; ?>"></div>
                                 </td>
-                                <td><input type="date" name="dob" value="<?php echo $row["dob"]; ?>" class="input-field"></td>
-                                <td><input type="text" name="pre_add" value="<?php echo $row["pre_add"]; ?>" class="input-field"></td>
                                 <td>
-                                    <select name="employment" class="input-field">
-                                        <option value="Full" <?php echo ($row["employment"] == "Full") ? "selected" : ""; ?>>Full</option>
-                                        <option value="Part" <?php echo ($row["employment"] == "Part") ? "selected" : ""; ?>>Part</option>
+                                    <input type="date" name="dob" id="emp_dob_<?php echo $row["emp_id"]; ?>" 
+                                           value="<?php echo $row["dob"]; ?>" 
+                                           class="emp-input-field" 
+                                           onchange="validateEmployeeDOB(<?php echo $row["emp_id"]; ?>)">
+                                    <div class="error-message" id="doberr_<?php echo $row["emp_id"]; ?>"></div>
+                                </td>
+                                <td>
+                                    <input type="text" name="pre_add" id="emp_address_<?php echo $row["emp_id"]; ?>" 
+                                           value="<?php echo $row["pre_add"]; ?>" 
+                                           class="emp-input-field" 
+                                           onkeyup="validateEmployeeAddress(<?php echo $row["emp_id"]; ?>)">
+                                    <div class="error-message" id="addresserr_<?php echo $row["emp_id"]; ?>"></div>
+                                </td>
+                                <td>
+                                    <select name="employment" id="emp_type_<?php echo $row["emp_id"]; ?>" 
+                                            class="emp-input-field" 
+                                            onchange="validateEmployeeType(<?php echo $row["emp_id"]; ?>)">
+                                        <option value="">Select Type</option>
+                                        <option value="Full" <?php echo ($row["employment"] == "Full") ? "selected" : ""; ?>>Full Time</option>
+                                        <option value="Part" <?php echo ($row["employment"] == "Part") ? "selected" : ""; ?>>Part Time</option>
                                         <option value="Intern" <?php echo ($row["employment"] == "Intern") ? "selected" : ""; ?>>Intern</option>
                                     </select>
+                                    <div class="error-message" id="employerr_<?php echo $row["emp_id"]; ?>"></div>
                                 </td>
-                                <td class="action-buttons">
+                                <td class="emp-action-buttons">
                                     <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
-                                    <input type="submit" name="edit" value="Edit" class="btn-edit">
-                                    <input type="submit" name="delete" value="Delete" class="btn-delete">
+                                    <input type="submit" name="edit" value="Edit" class="emp-btn-edit">
+                                    <input type="submit" name="delete" value="Delete" class="emp-btn-delete">
                                 </td>
                             </tr>
                         </form>
@@ -129,6 +162,8 @@ if (isset($_POST['delete'])) {
             ?>
         </div>
     </div>
+    <script src="../../js/employee_validation.js"></script>
+
 </body>
 
 </html>

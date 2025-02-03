@@ -67,8 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $mydb->closecon($conObj);
     }
-    else{
-        echo $hasError;
+    else {
+        foreach ($hasError as $error) {
+            echo $error . "<br>";
+        };
     }
 }
 ?>

@@ -23,7 +23,8 @@
 }
 .content-employee h3{
     margin-left: 40px;
-    font-size: 25px;
+    font-family: Arial;
+    font-size: 30px;
     font-weight: bold;
     color: #1a237e;
     text-align: left;
@@ -267,3 +268,65 @@
 }
 
 
+.error {
+    color: red;
+}
+
+#reset {
+    text-decoration: none;
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#reset:hover {
+    background-color: #004d99;
+}
+
+
+.appointments-container {
+    padding: 30px;
+}
+
+.appointments-container h2 {
+    color: #1a237e;
+    margin: 20px 0 30px 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.reviews-section {
+    margin-bottom: 40px;
+}
+
+.reviews-section h3 {
+    color: #1a237e;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-bottom: 20px;
+    table-layout: fixed;
+}
+
+.appointments-table th {
+    background-color: #1a237e;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.appointments-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+}
+
+.appointments-table tr:hover {
+    background-color: #d8f0ea;
+}

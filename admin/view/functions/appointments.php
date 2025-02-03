@@ -43,10 +43,8 @@ $userInfo = $db->getUserInfo($conn, $aid);
             <table>
                 <tr>
                     <td><a href="../layout/home.php" class="active">Home</a></td>
-                    <td><a href="../layout/dashboard.php">Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
-                    <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php">Contact Admin</a></td>
+                    <td><a href="../layout/broadcast.php" >Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>

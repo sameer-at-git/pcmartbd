@@ -139,6 +139,20 @@ input, select {
     width: 100%;
 }
 
+/* Error Message Styling */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    min-height: 20px;
+}
+
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin: 10px 0;
+}
 
 .btn {
     padding: 8px 12px;
@@ -260,6 +274,88 @@ input[type="text"] {
 
 .delete-btn:hover {
     background-color: #b02a37;
+}
+
+.reviews-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.appointments-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.appointments-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #333;
+}
+
+.appointments-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.error-row td {
+    border-top: none;
+    padding-top: 0;
+}
+
+/* Error message styling */
+.error-message-cell {
+    color: #dc3545;
+    font-size: 14px;
+    padding: 5px 0;
+    min-height: 24px;
+}
+
+/* Style for input fields with errors */
+input.error {
+    border-color: #dc3545;
+}
+
+/* Style for select fields with errors */
+select.error {
+    border-color: #dc3545;
+}
+
+.admin-table td {
+    vertical-align: top;
+    padding: 12px;
+    position: relative;
+}
+
+.admin-table input[type="text"],
+.admin-table select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 2px;
 }
 
 

@@ -40,7 +40,7 @@ $products = $db->showProduct($conn);
         <a href="../layout/product.php" class="back-button">← Go Back</a>
         <div class="search-container">
             <img src="../images/search.png" alt="Search" class="search-icon">
-            <input type="text" id="searchProduct" class="search-bar" placeholder="Search products...">
+            <a href="searchProduct.php" class="back-button">Search products</a>
         </div>
     </div>
 
@@ -49,9 +49,8 @@ $products = $db->showProduct($conn);
 
 
     <table>
-        <thead>
             <tr>
-                <th class="type-column">Type</th>
+                <th>Type</th>
                 <th>Brand</th>
                 <th>Picture</th>
                 <th>Quantity</th>
@@ -60,8 +59,6 @@ $products = $db->showProduct($conn);
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
             <?php while ($product = $products->fetch_assoc()): ?>
                 <form method="post">
                     <tr>
@@ -103,9 +100,7 @@ $products = $db->showProduct($conn);
             <?php endwhile;
             $db->closeCon($conn);
             ?>
-        </tbody>
     </table>
-    <script src="../../js/managing.js"></script>
 </body>
 
 </html>

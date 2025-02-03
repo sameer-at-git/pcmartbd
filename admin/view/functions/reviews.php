@@ -41,10 +41,8 @@ $db->closeCon($conn);
             <table>
             <tr>
                     <td><a href="../layout/home.php">Home</a></td>
-                    <td><a href="../layout/dashboard.php" >Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
-                    <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="../layout/broadcast.php" >Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="reviews.php" class="active" >Reviews</a></td>
 
@@ -54,45 +52,79 @@ $db->closeCon($conn);
         </div>
     </div>
 
-    <div class="container">
-    <h2>Customer Reviews on Technicians</h2>
-    <div class="reviews-list" id="customer-reviews">
-        <?php while ($row = $technician_reviews->fetch_assoc()) { ?>
-            <div class="review-item">
-                <p><?php echo $row['customer_id']; ?> (Customer)</p>
-                <p>Technician: <?php echo $row['technician_id']; ?></p>
-                <p><?php echo $row['review']; ?></p>
-                <p>Rating: <?php echo $row['rating']; ?>/5</p>
-            </div>
-        <?php } ?>
-    </div>
-</div>
+    <div class="appointments-container">
+        <h2>Reviews Management</h2>
+        
+        <div class="reviews-section">
+            <h3>Customer Reviews on Technicians</h3>
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Technician</th>
+                        <th>Review</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $technician_reviews->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $row['customer_id']; ?></td>
+                            <td><?php echo $row['technician_id']; ?></td>
+                            <td><?php echo $row['review']; ?></td>
+                            <td><?php echo $row['rating']; ?>/5</td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
 
-<div class="container">
-    <h2>Technician Reviews on Customers</h2>
-    <div class="reviews-list" id="technician-reviews">
-        <?php while ($row = $customer_reviews->fetch_assoc()) { ?>
-            <div class="review-item">
-                <p><?php echo $row['technician_id']; ?> (Technician)</p>
-                <p>Customer: <?php echo $row['customer_id']; ?></p>
-                <p><?php echo $row['review']; ?></p>
-                <p>Rating: <?php echo $row['rating']; ?>/5</p>
-            </div>
-        <?php } ?>
-    </div>
-</div>
+        <div class="reviews-section">
+            <h3>Technician Reviews on Customers</h3>
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Technician</th>
+                        <th>Customer</th>
+                        <th>Review</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $customer_reviews->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $row['technician_id']; ?></td>
+                            <td><?php echo $row['customer_id']; ?></td>
+                            <td><?php echo $row['review']; ?></td>
+                            <td><?php echo $row['rating']; ?>/5</td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="container">
-        <h2>Product Reviews</h2>
-        <div class="reviews-list" id="product-reviews">
-            <?php while ($row = $product_reviews->fetch_assoc()) { ?>
-                <div class="review-item">
-                    <p><?php echo $row['name']; ?> (Customer)</p>
-                    <p>Product: <?php echo $row['reviewed_entity']; ?></p>
-                    <p><?php echo $row['review_text']; ?></p>
-                    <p>Rating: <?php echo $row['rating']; ?>/5</p>
-                </div>
-            <?php } ?>
+        <div class="reviews-section">
+            <h3>Product Reviews</h3>
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Review</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $product_reviews->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['reviewed_entity']; ?></td>
+                            <td><?php echo $row['review_text']; ?></td>
+                            <td><?php echo $row['rating']; ?>/5</td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

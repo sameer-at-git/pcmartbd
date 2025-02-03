@@ -13,8 +13,9 @@ h2 {
 }
 
 .add-product-form {
-    width: 60%;
-    max-width: 800px;
+
+    width: 1200px;
+    height: 1000px;
     margin: 0 auto;
     background-color: white;
     padding: 30px;
@@ -104,20 +105,7 @@ h2 {
     color: white;
 }
 
-.error-message {
-    color: #f44336;
-    font-size: 14px;
-    margin-top: 5px;
-}
 
-.success-message {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    text-align: center;
-}
 
 .radio-group {
     display: flex;
@@ -145,4 +133,9 @@ h2 {
 
 .radio-label:hover {
     color: #1a237e;
+}
+
+p{
+    color: red;
+    font-size: 15px;
 }

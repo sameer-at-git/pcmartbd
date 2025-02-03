@@ -3,8 +3,7 @@ session_start();
 include '../../model/db.php';
 $db = new myDB();
 $conn = $db->openCon();
-$_SESSION['emp_id'] = 1;
-$user= $db->showUserByID( $_SESSION['emp_id'],  $conn);
+$user = $db->showUserByID($_SESSION['emp_id'],  $conn);
 
 $userInfo = $user->fetch_assoc();
 
@@ -18,10 +17,13 @@ $userInfo = $user->fetch_assoc();
 </head>
 
 <body>
+ <script src="../../js/updateProfile.js"></script>
     <div class="header">
         <div class="logo-container">
             <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
-            <a href="home.php" class="website-name"><p>PCMartBD</p></a>
+            <a href="full_home.php" class="website-name">
+                <p>PCMartBD</p>
+            </a>
         </div>
     </div>
     <div class="navbar">
@@ -41,27 +43,38 @@ $userInfo = $user->fetch_assoc();
         <div class="info-section">
             <h2>Your Information</h2>
             <div>
-                <form action="../../control/employee_reg_control.php" method="POST" enctype="multipart/form-data">
+                <form action="../../control/employee_profile_control.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
                     <fieldset>
                         <legend><b>Personal Information</b></legend>
                         <div>
                             <table>
                                 <tr>
                                     <td>First Name :</td>
-                                    <td><input type="text" name="fname" value="<?php echo $userInfo['f_name']; ?>"></td>
+                                    <td><input type="text" id="fname" name="fname" value="<?php echo $userInfo['f_name']; ?>"></td>
+                                    </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="fname-err"></p></td>
                                 </tr>
                                 <tr>
                                     <td>Last Name :</td>
-                                    <td><input type="text" name="lname" value="<?php echo $userInfo['l_name']; ?>"></td>
+                                    <td><input type="text" id="lname" name="lname" value="<?php echo $userInfo['l_name']; ?>"></td>
                                 </tr>
                                 <tr>
-                                    <td>National ID :</td>
-                                    <td><?php echo '<img src="' . $userInfo['nid'] . '" >';  ?></td>
-                                    <td><input type="submit" name="editnid" value="Change Photo"></td>
+                                    <td></td>
+                                    <td><p class="error" id="lname-err"></p></td>
+                                </tr>
+                                <tr>
+                                    <td>Photo :</td>
+                                    <td><?php echo '<img src="../' . $userInfo['pic'] . '" width="300">'; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Phone Number :</td>
-                                    <td><input type="text" name="phone" value="<?php echo $userInfo['phone']; ?>"></td>
+                                    <td><input type="text" id="phone" name="phone" value="<?php echo $userInfo['phone']; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="phone-err"></p></td>
                                 </tr>
                                 <tr>
                                     <td>Gender :</td>
@@ -70,15 +83,27 @@ $userInfo = $user->fetch_assoc();
                                 </tr>
                                 <tr>
                                     <td>Date of Birth :</td>
-                                    <td><input type="date" name="dob" value="<?php echo $userInfo['dob']; ?>"></td>
+                                    <td><input type="date" id="dob" name="dob" value="<?php echo $userInfo['dob']; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="dob-err"></p></td>
                                 </tr>
                                 <tr>
                                     <td>Present Address :</td>
-                                    <td><input type="text" name="pre_add" value="<?php echo $userInfo['pre_add']; ?>"></td>
+                                    <td><input type="text" id="pre_add" name="pre_add" value="<?php echo $userInfo['pre_add']; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="pre_add-err"></p></td>
                                 </tr>
                                 <tr>
                                     <td>Permanent Address :</td>
-                                    <td><input type="text" name="per_add" value="<?php echo $userInfo['per_add']; ?>"></td>
+                                    <td><input type="text" id="per_add" name="per_add" value="<?php echo $userInfo['per_add']; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="per_add-err"></p></td>
                                 </tr>
                                 <tr>
                                     <td>Marital Status :</td>
@@ -86,9 +111,8 @@ $userInfo = $user->fetch_assoc();
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Photo :</td>
-                                    <td><?php echo '<img src="' . $userInfo['pic'] . '" width="100">'; ?></td>
-                                    <td><input type="submit" name="editpic" value="Change Photo"></td>
+                                    <td>National ID :</td>
+                                    <td><?php echo '<img src="../' . $userInfo['nid'] . '" width="300">';  ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -105,7 +129,7 @@ $userInfo = $user->fetch_assoc();
                                 </tr>
                                 <tr>
                                     <td>Joining Date :</td>
-                                    <td><input type="date" name="joining_date" value="<?php echo $userInfo['joining_date']; ?>"></td>
+                                    <td><?php echo $userInfo['joining_date']; ?></td>
                                 </tr>
                             </table>
                         </div>
@@ -121,7 +145,19 @@ $userInfo = $user->fetch_assoc();
                                 </tr>
                                 <tr>
                                     <td>Password :</td>
-                                    <td><input type="password" name="password" value="<?php echo $userInfo['password']; ?>"></td>
+                                    <td><input type="password" id="password" name="password" value="<?php echo $userInfo['password']; ?>" onkeyup="validatePassword()"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="password-err"></p></td>
+                                </tr>
+                                <tr>
+                                    <td>Confirm Password :</td>
+                                    <td><input type="password" id="cpassword" name="cpassword"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><p class="error" id="cpassword-err"></p></td>
                                 </tr>
                             </table>
                         </div>
@@ -131,7 +167,7 @@ $userInfo = $user->fetch_assoc();
                         <table>
                             <tr>
                                 <td><input type="submit" name="edit" value="Confirm Changes"></td>
-                                <td><input type="reset" value="Reset"></td>
+                                <td><a href="profile.php" id="reset">Reset</a></td>
                             </tr>
                         </table>
                     </div>

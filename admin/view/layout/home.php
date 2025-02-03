@@ -13,52 +13,43 @@ $admin_type = $_SESSION['user_access'];
 
 $adminPages = [
     'Full Control' => [
-        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/tech.svg'],
         'Manage Employees' => ['url' => '../functions/manage_employee.php', 'icon' => '../../images/employee-icon.svg'],
-        'Manage Product' => ['url' => '../functions/manage_products.php', 'icon' => '../../images/product-icon.svg'],
+        'Search Product' => ['url' => '../functions/search_products.php', 'icon' => '../../images/product-icon.svg'],
         'Manage Admin' => ['url' => '../functions/manage_admin.php', 'icon' => '../../images/admin-icon.svg'],
         'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
         'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg'],
-        'Dashboard' => ['url' => 'dashboard.php', 'icon' => '../../images/dashboard.svg'],
         'Check Messages' => ['url' => 'messages.php', 'icon' => '../../images/message-solid.svg'],
-        'Broadcast' => ['url' => 'contact_admin.php', 'icon' => '../../images/bullhorn-solid.svg'],
+        'Broadcast' => ['url' => 'broadcast.php', 'icon' => '../../images/bullhorn-solid.svg'],
         'Contact Users' => ['url' => 'contact_user.php', 'icon' => '../../images/user.svg'],
         'Add Admin ' => ['url' => '../sign_up/admin_registration.php', 'icon' => '../../images/admin.svg'],
         'Add Employee' => ['url' => '../sign_up/employee_registration.php', 'icon' => '../../images/employee.svg'],
-        'Add Product' => ['url' => '../functions/add_product.php', 'icon' => '../../images/product.svg'],
-        'Check All Reviews' => ['url' => '../functions/reviews.php', 'icon' => '../../images/comment-solid.svg'],
-        'Update Profile' => ['url' => 'update_profile.php', 'icon' => '../../images/profile.svg']
+        'Check All Reviews' => ['url' => '../functions/reviews.php', 'icon' => '../../images/comment-solid.svg']
     ],
     'Employee Control' => [
-        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/tech.svg'],
         'Manage Employees' => ['url' => '../functions/manage_employee.php', 'icon' => '../../images/employee-icon.svg'],
         'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
         'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg'],
-        'Dashboard' => ['url' => 'dashboard.php', 'icon' => '../../images/dashboard.svg'],
         'Check Messages' => ['url' => 'messages.php', 'icon' => '../../images/message-solid.svg'],
-        'Broadcast' => ['url' => 'contact_admin.php', 'icon' => '../../images/bullhorn-solid.svg'],
+        'Broadcast' => ['url' => 'broadcast.php', 'icon' => '../../images/bullhorn-solid.svg'],
         'Contact Users' => ['url' => 'contact_user.php', 'icon' => '../../images/user.svg'],
         'Add Admin ' => ['url' => '../sign_up/admin_registration.php', 'icon' => '../../images/admin.svg'],
         'Add Employee' => ['url' => '../sign_up/employee_registration.php', 'icon' => '../../images/employee.svg'],
-        'Add Product' => ['url' => '../functions/add_product.php', 'icon' => '../../images/product.svg'],
-        'Check All Reviews' => ['url' => '../functions/reviews.php', 'icon' => '../../images/comment-solid.svg'],
-        'Update Profile' => ['url' => 'update_profile.php', 'icon' => '../../images/profile.svg']
+        'Check All Reviews' => ['url' => '../functions/reviews.php', 'icon' => '../../images/comment-solid.svg']
 
     ],
     'Product Control' => [
-        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/technician-icon.svg'],
-        'Manage Product' => ['url' => '../functions/manage_products.php', 'icon' => '../../images/product-icon.svg'],
+        'Manage Technician' => ['url' => '../functions/manage_technician.php', 'icon' => '../../images/tech.svg'],
+        'Search Product' => ['url' => '../functions/search_products.php', 'icon' => '../../images/product-icon.svg'],
         'Manage Customers' => ['url' => '../functions/manage_customers.php', 'icon' => '../../images/customer-icon.svg'],
         'See All Appointments' => ['url' => '../functions/appointments.php', 'icon' => '../../images/appointment-icon.svg'],
-        'Dashboard' => ['url' => 'dashboard.php', 'icon' => '../../images/dashboard.svg'],
         'Check Messages' => ['url' => 'messages.php', 'icon' => '../../images/message-solid.svg'],
-        'Broadcast' => ['url' => 'contact_admin.php', 'icon' => '../../images/bullhorn-solid.svg'],
+        'Broadcast' => ['url' => 'broadcast.php', 'icon' => '../../images/bullhorn-solid.svg'],
         'Contact Users' => ['url' => 'contact_user.php', 'icon' => '../../images/user.svg'],
         'Add Admin ' => ['url' => '../sign_up/admin_registration.php', 'icon' => '../../images/admin.svg'],
         'Add Employee' => ['url' => '../sign_up/employee_registration.php', 'icon' => '../../images/employee.svg'],
-        'Add Product' => ['url' => '../functions/add_product.php', 'icon' => '../../images/product.svg'],
-        'Check All Reviews' => ['url' => '../functions/reviews.php', 'icon' => '../../images/comment-solid.svg'],
-        'Update Profile' => ['url' => 'update_profile.php', 'icon' => '../../images/profile.svg']
+        'Check All Reviews' => ['url' => '../functions/reviews.php', 'icon' => '../../images/comment-solid.svg']
 
     ]
 ];
@@ -95,10 +86,8 @@ $userInfo = $db->getUserInfo($conn, $aid);
             <table>
                 <tr>
                     <td><a href="home.php" class="active">Home</a></td>
-                    <td><a href="dashboard.php">Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
-                    <td><a href="update_profile.php">Account</a></td>
-                    <td><a href="contact_admin.php">Contact Admins</a></td>
+                    <td><a href="broadcast.php" >Broadcast</a></td>
                     <td><a href="contact_user.php">Contact User</a></td>
                     <td><a href="../functions/reviews.php">Reviews</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
@@ -124,7 +113,7 @@ $userInfo = $db->getUserInfo($conn, $aid);
                     $className = str_replace(' ', '', strtolower($title));
                     echo "<div class='function-card {$className}'>";
                     echo "<img src='{$details['icon']}' alt='{$title} icon'>";
-                    echo "<h3><a href='{$details['url']}'>{$title}</a></h3>";
+                    echo "<h3> <a href='{$details['url']}'>{$title}</a></h3>";
                     echo "</div>";
                 }
                 ?>

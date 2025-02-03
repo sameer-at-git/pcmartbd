@@ -12,9 +12,7 @@ $conn = $db->openCon();
 $aid = $_SESSION['admin_id'];
 $userInfo = $db->getUserInfo($conn, $aid);
 
-if (isset($_POST['edit']) || isset($_POST['delete'])) {
-    handleAdminActions($_POST);
-}
+
 ?>
 
 <!DOCTYPE html>

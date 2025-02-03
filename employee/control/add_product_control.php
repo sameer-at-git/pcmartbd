@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if (empty($pQuantity)) {
         $hasError[]  = "Enter quantity";
+    } elseif (!preg_match("/^[0-9]+$/", $pQuantity)) {
+            $hasError[] = "Quantity must be a valid number";
     }
     if (empty($pStatus)) {
         $hasError[]  = "Enter Availability status";
@@ -34,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if (empty($pPrice)) {
         $hasError[]  = "Enter product price";
+    } elseif (!preg_match("/^[0-9]+$/", $pPrice)) {
+        $hasError[] = "Price must be a valid number";
     }
     if (!isset($_FILES['photo']) || $_FILES['photo']['error'] != 0) {
         $hasError[] = "Error uploading the product image.";

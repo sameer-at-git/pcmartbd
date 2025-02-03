@@ -13,22 +13,22 @@ if (!isset($_SESSION['customer_id']) || !isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="../css/repair.css">
 </head>
 <body>
-   
-    <div class="navbar">
-        <div class="nav-container">
-            <table>
-                <tr>
-                    <td><a href="home.php">Home</a></td>
-                    <td><a href="browse.php">Browse</a></td>
-                    <td><a href="faq.php">FAQ</a></td>
-                    <td><a href="about.php">About</a></td>
-                    <td><a href="contact.php">Contact Admin</a></td>
-                    <td><a href="repair.php" class="active">Repair</a></td>
-                    <td><a href="../control/sessionout.php">LogOut</a></td>
-                </tr>
-            </table>
-        </div>
+<div class="header">
+    <div class="logo-container">
+        <img src="../images/laptop-medical-solid.svg" alt="PCMartBD Logo" class="main-logo">
+        <a href="browse.php" id="website-name"><p>PCMartBD</p></a>
+    </div>
 </div>
+
+<div class="navbar">
+    <ul>
+        <li><a href="browse.php">Home</a></li>
+        <li><a href="profile.php">Profile</a></li>
+        <li><a href="repair.php">Repair</a></li>
+        <li><a href="../control/sessionout.php">Logout</a></li>
+    </ul>
+</div>
+
 
     <div class="about-container">
         <div class="about-header">
@@ -44,5 +44,9 @@ if (!isset($_SESSION['customer_id']) || !isset($_SESSION['user_id'])) {
             </a>
         </div>
     </div>
+    <div class="footer">
+    <p>&copy; 2024 PCMartBD. All rights reserved.</p>
+</div>
+
 </body>
 </html>

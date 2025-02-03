@@ -177,9 +177,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //     echo "Failed to save data.";
         // }
 
-        $nidPhotoPath = $nidPhoto ? "../uploads/nid_" . uniqid() . "." . pathinfo($nidPhoto["name"], PATHINFO_EXTENSION) : null;
+        $nidPhotoPath = $nidPhoto ? "../../uploads/nid_" . uniqid() . "." . pathinfo($nidPhoto["name"], PATHINFO_EXTENSION) : null;
         $photoPath = $photo ? "../uploads/photo_" . uniqid() . "." . pathinfo($photo["name"], PATHINFO_EXTENSION) : null;
-        $cvPath = $cv ? "../uploads/cv_" . uniqid() . "." . pathinfo($cv["name"], PATHINFO_EXTENSION) : null;
+        $cvPath = $cv ? "../../uploads/cv_" . uniqid() . "." . pathinfo($cv["name"], PATHINFO_EXTENSION) : null;
 
         if ($nidPhoto && !empty($nidPhoto["tmp_name"])) {
             move_uploaded_file($nidPhoto["tmp_name"], $nidPhotoPath);
@@ -198,28 +198,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Database connection failed.");
         }
 
-        $result = $mydb->insertData(
-            $fname,
-            $lname,
-            $fathersname,
-            $gender,
-            $dob,
-            $phone,
-            $address,
-            $experience,
-            $workarea,
-            $workhour,
-            $nidPhotoPath,
-            $photoPath,
-            $cvPath,
-            $email,
-            $password,
-            'technician',
-            $conObj
-        );
+        $result = $mydb->insertData($fname, $lname, $fathersname, $gender, $dob, $phone, $address, $experience, $workarea, $workhour, $nidPhotoPath, $photoPath, $cvPath, $email, $password,
+        'technician', $conObj);
 
         if ($result) {
-            header("Location:../view/login.php");
+            header("Location:../../layout/view/login.php");
         } else {
             echo "Error occurred during registration.";
         }

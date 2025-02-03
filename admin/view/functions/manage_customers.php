@@ -10,29 +10,6 @@ $db = new myDB();
 $conn = $db->openCon();
 $aid = $_SESSION['admin_id'];
 $userInfo = $db->getUserInfo($conn, $aid);
-if (isset($_POST['edit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    
-    if ($db->updateCustomer($conn, $name, $email, $password, $address, $phone)) {
-        echo "Customer information updated successfully!";
-    } else {
-        echo "Error updating customer: " . $conn->error;
-    }
-}
-
-if (isset($_POST['delete'])) {
-    $email = $_POST['email'];
-    
-    if ($db->deleteCustomer($conn, $email)) {
-        echo "Customer deleted successfully!";
-    } else {
-        echo "Error deleting customer: " . $conn->error;
-    }
-}
 
 ?>
 
@@ -62,10 +39,8 @@ if (isset($_POST['delete'])) {
     <table>
         <tr>
             <td><a href="../layout/home.php" class="active">Home</a></td>
-            <td><a href="../layout/dashboard.php">Dashboard</a></td>
             <td><a href="../layout/messages.php">Messages</a></td>
-            <td><a href="../layout/update_profile.php">Account</a></td>
-            <td><a href="../layout/contact_admin.php">Contact Admin</a></td>
+            <td><a href="../layout/broadcast.php" >Broadcast</a></td>
             <td><a href="../layout/contact_user.php">Contact User</a></td>
             <td><a href="../../control/sessionout.php">Logout</a></td>
         </tr>
@@ -90,26 +65,18 @@ if (isset($_POST['delete'])) {
                     <div class="table-cell password-col">Password</div>
                     <div class="table-cell address-col">Address</div>
                     <div class="table-cell phone-col">Phone</div>
-                    <div class="table-cell action-col">Actions</div>
                 </div>
                 <?php
                 while ($row = $result->fetch_assoc()) {
                 ?>
-                    <form method="post">
-                        <div class="table-row">
-                            <div class="table-cell id-col"><?php echo $row["customer_id"]; ?></div>
-                            <div class="table-cell name-col"><input type="text" name="name" value="<?php echo $row["name"]; ?>"></div>
-                            <div class="table-cell email-col"><?php echo $row["email"]; ?></div>
-                            <div class="table-cell password-col"><input type="text" name="password" value="<?php echo $row["password"]; ?>"></div>
-                            <div class="table-cell address-col"><input type="text" name="address" value="<?php echo $row["address"]; ?>"></div>
-                            <div class="table-cell phone-col"><input type="text" name="phone" value="<?php echo $row["phone"]; ?>"></div>
-                            <div class="table-cell action-col">
-                                <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
-                                <input type="submit" name="edit" value="Edit" class="edit-btn">
-                                <input type="submit" name="delete" value="Delete" class="delete-btn">
-                            </div>
-                        </div>
-                    </form>
+                    <div class="table-row">
+                        <div class="table-cell id-col"><?php echo $row["customer_id"]; ?></div>
+                        <div class="table-cell name-col"><?php echo $row["name"]; ?></div>
+                        <div class="table-cell email-col"><?php echo $row["email"]; ?></div>
+                        <div class="table-cell password-col"><?php echo $row["password"]; ?></div>
+                        <div class="table-cell address-col"><?php echo $row["address"]; ?></div>
+                        <div class="table-cell phone-col"><?php echo $row["phone"]; ?></div>
+                    </div>
                 <?php
                 }
                 ?>

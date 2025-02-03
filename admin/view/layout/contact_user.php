@@ -10,34 +10,25 @@ $db = new myDB();
 $conn = $db->openCon();
 $aid = $_SESSION['admin_id'];
 $userInfo = $db->getUserInfo($conn, $aid);
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['action']) && $_POST['action'] == "search") {
-        $type = isset($_POST['type']) ? $_POST['type'] : '';
-        $query = isset($_POST['query']) ? $_POST['query'] : '';
 
-        $users = $db->getUsersByTypeOrEmail($conn, $type, $query);
-       
-        if (empty($users)) { // If the function returns an empty array
-            echo "<p>No results found</p>";
-            exit;
-        }
-        
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == "search") {
+    $query = isset($_POST['query']) ? $_POST['query'] : '';
+    $users = $db->getUsersByTypeOrEmail($conn, $query);
+    
+    $response = array();
+    if ($users && $users->num_rows > 0) {
         while ($row = $users->fetch_assoc()) {
-            echo "<p onclick=\"selectUser('" . $row['email'] . "', '" . $row['user_id'] . "')\">" . $row['email'] . "</p>";
+            $response[] = array(
+                'email' => $row['email'],
+                'user_id' => $row['user_id'],
+                'user_type' => $row['user_type']
+            );
         }
-        
-        exit;
     }
-
-    if (isset($_POST['action']) && $_POST['action'] == "send") {
-        $user_id = $_POST['user_id'];
-        $subject = $_POST['subject'];
-        $message = $_POST['message'];
-
-        $result = $db->insertContactUser($conn, $aid, $user_id, $subject, $message);
-        echo $result;
-        exit;
-    }
+    
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
 }
 ?>
 
@@ -64,15 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="navbar">
         <div>
             <table>
-            <tr>
+                <tr>
                     <td><a href="home.php">Home</a></td>
-                    <td><a href="dashboard.php">Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
-                    <td><a href="update_profile.php">Account</a></td>
-                    <td><a href="contact_admin.php" >Contact Admins</a></td>
-                    <td><a href="contact_user.php"class="active">Contact User</a></td>
+                    <td><a href="broadcast.php">Broadcast</a></td>
+                    <td><a href="contact_user.php" class="active">Contact User</a></td>
                     <td><a href="../functions/reviews.php">Reviews</a></td>
-
                     <td><a href="../../control/sessionout.php">Logout</a></td>
                 </tr>
             </table>
@@ -80,56 +68,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="content">
         <h2>Contact Users</h2>
+        
         <div id="errorMessages"></div>
 
         <fieldset>
-            <table>
-                <tr>
-                    <td>Select User Type:</td>
-                    <td>
-                        <select id="userType" onchange="searchUsers()">
-                            <option value="">Select Type</option>
-                            <option value="Customer">Customer</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Employee">Employee</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Search User:</td>
-                    <td>
-                        <input type="text" id="searchUser" placeholder="Search by name or email" onkeyup="searchUsers()">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Subject:</td>
-                    <td>
-                        <input type="text" id="subject" placeholder="Enter message subject">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Message:</td>
-                    <td>
-                        <textarea id="message" rows="5" placeholder="Type your message here"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: center;">
-                        <button id="sendMessage">Send Message</button>
-                    </td>
-                </tr>
-            </table>
+            <form action="../../control/contact_control.php" method="POST" onsubmit="return validateForm()">
+                <table>
+                    <tr>
+                        <td>Select User Type:</td>
+                        <td>
+                            <select id="userType" name="userType">
+                                <option value="">Select Type</option>
+                                <option value="Customer">Customer</option>
+                                <option value="Technician">Technician</option>
+                                <option value="Employee">Employee</option>
+                            </select>
+                            <div id="typeError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Search User:</td>
+                        <td>
+                            <input type="text" id="searchUser" name="email" placeholder="Search by email" onkeyup="searchUsers()">
+                            <div id="emailError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Subject:</td>
+                        <td>
+                            <input type="text" id="subject" name="subject" placeholder="Enter message subject">
+                            <div id="subjectError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Message:</td>
+                        <td>
+                            <textarea id="message" name="message" rows="5" placeholder="Type your message here"></textarea>
+                            <div id="messageError" class="error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <?php
+                            if (isset($_SESSION['message'])) {
+                                echo "<div class='alert'>" . $_SESSION['message'] . "</div>";
+                                unset($_SESSION['message']);
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" id="selectedUserId" name="userId">
+                            <input type="hidden" id="selectedUserEmail" name="userEmail">
+                            <input type="submit" value="Send Message">
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </fieldset>
-
-        <input type="hidden" id="selectedUserEmail">
-        <input type="hidden" id="selectedUserId">
 
         <div id="searchResults"></div>
     </div>
     <div class="footer">
         <p>&copy; 2024 PCMartBD. All rights reserved.</p>
     </div>
-    <script src="../../js/contact.js"></script>
+    <script src="../../js/contact_ajax.js"></script>
 </body>
 </html>
 

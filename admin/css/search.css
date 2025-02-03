@@ -13,57 +13,17 @@
 .main-content-s {
     display: flex;
     gap: 20px;
-    height: 30%;
-    min-height: 300px;
+    height: auto;
+    min-height: fit-content;
     width: 100%;
-}
-
-/* Left section - Add Product Form */
-.left-section {
-    flex: 0 0 40%;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-    overflow-y: auto;
-}
-
-.add-product-form h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-/* Right section - Search and Results */
-.right-section {
-    flex: 0 0 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin-bottom: 30px;
 }
 
 .search-and-products {
     display: flex;
     flex-direction: column;
-    height: 100%;
     gap: 10px;
+    width: 100%;
 }
 
 .search-icon-and-bar {
@@ -74,11 +34,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 .search-icon {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 .search-bar {
@@ -95,43 +56,23 @@
     border-radius: 10px;
     padding: 15px;
     overflow-y: auto;
+    width: 100%;
 }
 
-/* Product Display Section */
-.product-display {
-    background-color: #4472C4;
-    padding: 20px;
-    color: white;
-    flex: 1;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.product-display h1 {
-    margin-bottom: 20px;
-}
-
-/* Product table */
-.prod-table {
-    flex: 1;
-    overflow-y: auto;
-}
-
-.prod-table table {
+.search-results-table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
 }
 
-.prod-table th,
-.prod-table td {
+.search-results-table th,
+.search-results-table td {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
 }
 
-.prod-table th {
+.search-results-table th {
     background-color: #4472C4;
     color: white;
 }
@@ -188,4 +129,12 @@
 
 .delete-button:hover {
     background-color: #ff3333;
+}
+
+/* Add new style for manage products header */
+.manage-products-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #333;
 }

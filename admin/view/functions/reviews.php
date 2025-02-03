@@ -41,10 +41,8 @@ $db->closeCon($conn);
             <table>
             <tr>
                     <td><a href="../layout/home.php">Home</a></td>
-                    <td><a href="../layout/dashboard.php" >Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
-                    <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php" >Contact Admin</a></td>
+                    <td><a href="../layout/broadcast.php" >Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="reviews.php" class="active" >Reviews</a></td>
 

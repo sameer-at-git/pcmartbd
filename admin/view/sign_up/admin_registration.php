@@ -44,10 +44,8 @@ $userInfo = $db->getUserInfo($conn, $aid);
             <table>
                 <tr>
                     <td><a href="../layout/home.php" class="active">Home</a></td>
-                    <td><a href="../layout/dashboard.php">Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
-                    <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php">Contact Admins</a></td>
+                    <td><a href="../layout/broadcast.php">Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="../functions/reviews.php">Reviews</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
@@ -151,7 +149,7 @@ $userInfo = $db->getUserInfo($conn, $aid);
                         <label for="email" id="emailLabel" onmouseover="showEmailMessage()" onmouseout="hideEmailMessage()">Email:</label>
                         <div id="emailMessage"></div>
                     </div>
-                    <input type="email" name="email" id="email" placeholder="abcd@aiub.edu">
+                    <input type="text" name="email" id="email" placeholder="abcd@aiub.edu">
                     <p id="emailerr"></p>
                 </div>
 
@@ -183,7 +181,7 @@ $userInfo = $db->getUserInfo($conn, $aid);
     <div class="footer">
         &copy; 2024 PCMartBD. All rights reserved.
     </div>
-    <script src="../../js/reg_validation.js"></script>
+    <script src="../../js/admreg_validation.js"></script>
 
 </body>
 

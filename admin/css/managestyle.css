@@ -139,6 +139,20 @@ input, select {
     width: 100%;
 }
 
+/* Error Message Styling */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    min-height: 20px;
+}
+
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin: 10px 0;
+}
 
 .btn {
     padding: 8px 12px;
@@ -304,6 +318,44 @@ input[type="text"] {
 
 .appointments-table tr:hover {
     background-color: #f9f9f9;
+}
+
+.error-row td {
+    border-top: none;
+    padding-top: 0;
+}
+
+/* Error message styling */
+.error-message-cell {
+    color: #dc3545;
+    font-size: 14px;
+    padding: 5px 0;
+    min-height: 24px;
+}
+
+/* Style for input fields with errors */
+input.error {
+    border-color: #dc3545;
+}
+
+/* Style for select fields with errors */
+select.error {
+    border-color: #dc3545;
+}
+
+.admin-table td {
+    vertical-align: top;
+    padding: 12px;
+    position: relative;
+}
+
+.admin-table input[type="text"],
+.admin-table select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 2px;
 }
 
 

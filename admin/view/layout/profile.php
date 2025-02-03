@@ -42,10 +42,8 @@
                 <table>
                 <tr>
                     <td><a href="home.php">Home</a></td>
-                    <td><a href="dashboard.php" >Dashboard</a></td>
                     <td><a href="messages.php">Messages</a></td>
-                    <td><a href="update_profile.php">Account</a></td>
-                    <td><a href="contact_admin.php" >Contact Admins</a></td>
+                    <td><a href="broadcast.php" >Broadcast</a></td>
                     <td><a href="contact_user.php">Contact User</a></td>
                     <td><a href="../functions/reviews.php">Reviews</a></td>
 

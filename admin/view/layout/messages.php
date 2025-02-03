@@ -49,10 +49,8 @@ $db->closeCon($conn);
         <table>
         <tr>
                     <td><a href="home.php">Home</a></td>
-                    <td><a href="dashboard.php" >Dashboard</a></td>
                     <td><a href="messages.php" class="active">Messages</a></td>
-                    <td><a href="update_profile.php">Account</a></td>
-                    <td><a href="contact_admin.php" >Contact Admins</a></td>
+                    <td><a href="broadcast.php" >Broadcast</a></td>
                     <td><a href="contact_user.php">Contact User</a></td>
                     <td><a href="../functions/reviews.php">Reviews</a></td>
 
@@ -83,9 +81,9 @@ $db->closeCon($conn);
         </div>
         <div class="message__actions">
     <?php if ($message['user_type'] == "Admin") { ?>
-        <a href="contact_admin.php" class="reply-btn">Reply User</a>
+        <h3 >!Broadcast!</h3>
     <?php } else { ?>
-        <a href="contact_user.php?email=<?php echo urlencode($message['email']); ?>&type=<?php echo $message['user_type']; ?>" class="reply-btn">Reply User</a>
+        <a href="contact_user.php" class="reply-btn">Reply User</a>
     <?php } ?>
 </div>
     </div>

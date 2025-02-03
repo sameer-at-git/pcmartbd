@@ -36,17 +36,11 @@ class myDB
     }
 
 
-    function getUsersByTypeOrEmail($connectionObject, $type, $query)
+    function getUsersByTypeOrEmail($connectionObject, $query)
     {
-        $sql = "SELECT user_id, email FROM user WHERE 1";
-    
-        if (!empty($type)) {
-            $sql .= " AND user_type = '" . $type . "'";  
-        } elseif (!empty($query)) {
-            $sql .= " AND email LIKE '%" . $query . "%'"; 
-        }
-        $result= $connectionObject->query($sql);
-        if ($result && $result->num_rows > 0) {
+        $sql = "SELECT user_id, email, user_type FROM user WHERE 1 AND email LIKE '%" . $query . "%'";
+        $result = $connectionObject->query($sql);
+        if ($result->num_rows > 0) {
             return $result; 
         } else {
             return []; 
@@ -54,7 +48,7 @@ class myDB
     }
     
     function insertContactUser($connectionObject, $admin_id, $user_id, $subject, $message)
-{
+    {
     $sql = "INSERT INTO contactuser (admin_id, user_id, subject, message) 
             VALUES ($admin_id, $user_id, '$subject', '$message')";
 
@@ -63,9 +57,9 @@ class myDB
     if ($result) {
         return "Message inserted successfully!";
     } else {
-        return "Error: " . $connectionObject->error;
+            return "Error: " . $connectionObject->error;
+        }
     }
-}
 
 
     function getAdminByEmail($connectionObject, $email)
@@ -110,31 +104,6 @@ class myDB
         return $result;
     }
 
-    function updateTechnician($connectionObject, $first_name, $last_name, $phone, $email, $experience, $work_area, $work_hour)
-    {
-        $sql = "UPDATE technician SET 
-                first_name = '$first_name',
-                last_name = '$last_name',
-                phone = '$phone',
-                experience = '$experience',
-                work_area = '$work_area',
-                work_hour = '$work_hour'
-                WHERE email = '$email' ";
-
-        $tech_update = $connectionObject->query($sql);
-        return $tech_update;
-    }
-
-    function deleteTechnician($connectionObject, $email)
-    {
-        $user_sql = "DELETE FROM user WHERE email = '$email' ";
-        $user_delete = $connectionObject->query($user_sql);
-        $sql = "DELETE FROM technician WHERE email = '$email' ";
-        $tech_delete = $connectionObject->query($sql);
-
-        return ($tech_delete && $user_delete);
-    }
-
     function getAllAdmins($connectionObject)
     {
         $sql = "SELECT * FROM admin";
@@ -158,31 +127,6 @@ class myDB
         return $conn->query($sql);
     }
 
-    public function updateCustomer($conn,  $name, $email, $password, $address, $phone)
-    {
-        $sql = "UPDATE customer 
-                SET name='$name',  
-                    password='$password', 
-                    address='$address', 
-                    phone='$phone' 
-                WHERE email='$email' ";
-        $customer_update = $conn->query($sql);
-
-        $user_sql = "UPDATE user SET password = '$password' WHERE email = '$email'";
-        $user_update = $conn->query($user_sql);
-
-        return ($customer_update && $user_update);
-    }
-
-    public function deleteCustomer($conn, $email)
-    {
-        $user_sql = "DELETE FROM user WHERE email='$email' ";
-        $user_delete = $conn->query($user_sql);
-        $sql = "DELETE FROM customer WHERE email='$email' ";
-        $customer_delete = $conn->query($sql);
-
-        return ($customer_delete && $user_delete);
-    }
 
     public function getProducts($conn)
     {
@@ -191,34 +135,7 @@ class myDB
         return $result;
     }
 
-    public function addProduct($conn, $type, $brand, $quantity, $status,$price, $about, $photo)
-    {
-        $sql = "INSERT INTO product (type, brand, quantity, status,price, about, photo  ) 
-                VALUES ('$type', '$brand', $quantity, $status,$price, '$about', '$photo' )";
-        $result = $conn->query($sql);
-    
-        return $result;
-    }
-
-    public function updateProduct($conn, $pid, $type, $brand, $quantity, $price,  $photo, $status)
-    {
-        $sql = "UPDATE product SET 
-                type = '$type',
-                brand = '$brand',
-                quantity = $quantity,
-                price = $price,
-                photo = '$photo',
-                status = $status
-                WHERE pid = $pid";
-        return $conn->query($sql);
-    }
-
-    function deleteProduct($conn, $pid)
-    {
-        $sql = "DELETE FROM product WHERE pid = $pid";
-        return $conn->query($sql);
-    }
-
+   
     function getAllEmployees($conn)
     {
         $sql = "SELECT * FROM employee";
@@ -271,6 +188,7 @@ class myDB
         }
         return $connectionObject->query($sql);
     }
+
     function insertMessage($email, $subject, $message, $conn) {
         $sql = "INSERT INTO messages (email,subject,message,sent_date,user_type  ) 
               VALUES ('$email', '$subject','$message', NOW(), 'Admin' )";
@@ -278,173 +196,6 @@ class myDB
     
         return $result;
     }
-   
-    function getTotalCustomers($conn)
-    {
-        $sql = "SELECT COUNT(*) as total FROM customer";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];
-    }
-
-    function getActiveSubscriptions($conn)
-    {
-        /*$sql = "SELECT COUNT(*) as total FROM customer WHERE status = 'active'";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-
-    function getCustomerSatisfactionRating($conn)
-    {
-        /*$sql = "SELECT AVG(rating) as avg_rating FROM review WHERE review_type = 'customer'";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return number_format($data['avg_rating'] ?? 0, 1);*/
-    }
-
-    // Employee Performance Functions
-    function getTotalEmployees($conn)
-    {
-        $sql = "SELECT COUNT(*) as total FROM employee";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];
-    }
-
-    function getAverageEmployeePerformance($conn)
-    {
-        /*$sql = "SELECT AVG(performance_rating) as avg_performance FROM employee";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return number_format($data['avg_performance'] ?? 0, 1)     ;  */
-    }
-
-    function getTopPerformersCount($conn)
-    {
-        /*$sql = "SELECT COUNT(*) as total FROM employee WHERE performance_rating >= 8";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-
-    // Technician Performance Functions
-    function getTotalTechnicians($conn)
-    {
-        $sql = "SELECT COUNT(*) as total FROM technician";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];
-    }
-
-    function getTechnicianAverageRating($conn)
-    {
-        /*$sql = "SELECT AVG(rating) as avg_rating FROM review WHERE review_type = 'technician'";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return number_format($data['avg_rating'] ?? 0, 1);*/
-    }
-
-    function getTotalCompletedJobs($conn)
-    {
-        /* $sql = "SELECT COUNT(*) as total FROM orders WHERE status = 'completed' AND service_type = 'repair'";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-
-    // Overall Revenue Functions
-    function getTotalRevenue($conn)
-    {
-        /*$sql = "SELECT SUM(amount) as total FROM payment";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return number_format($data['total'] ?? 0, 2);*/
-    }
-
-    function getMonthlyGrowthRate($conn)
-    {
-        /* $sql = "SELECT 
-                    (SELECT SUM(amount) FROM payment 
-                     WHERE MONTH(payment_date) = MONTH(CURRENT_DATE)) as current_month,
-                    (SELECT SUM(amount) FROM payment 
-                     WHERE MONTH(payment_date) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)) as last_month";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        
-        if ($data['last_month'] > 0) {
-            $growth = (($data['current_month'] - $data['last_month']) / $data['last_month']) * 100;
-            return number_format($growth, 1);
-        }
-        return 0;*/
-    }
-
-    function getAverageOrderValue($conn)
-    {
-        /* $sql = "SELECT AVG(amount) as avg_amount FROM payment";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return number_format($data['avg_amount'] ?? 0, 2);*/
-    }
-
-    // Product Performance Functions
-    function getTotalProducts($conn)
-    {
-        $sql = "SELECT COUNT(*) as total FROM product";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];
-    }
-
-    function getTopSellingProductCount($conn)
-    {
-        /* $sql = "SELECT COUNT(DISTINCT product_id) as total 
-                FROM orders 
-                WHERE product_id IN (
-                    SELECT product_id 
-                    FROM orders 
-                    GROUP BY product_id 
-                    HAVING COUNT(*) >= 5
-                )";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-
-    function getLowStockProductCount($conn)
-    {
-        /*$sql = "SELECT COUNT(*) as total FROM product WHERE stock < 10";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-
-    // Ratings & Reviews Functions
-    function getTotalReviews($conn)
-    {
-        /*$sql = "SELECT COUNT(*) as total FROM review";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-
-    function getAverageProductRating($conn)
-    {
-        /*$sql = "SELECT AVG(rating) as avg_rating FROM review WHERE review_type = 'product'";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return number_format($data['avg_rating'] ?? 0, 1);*/
-    }
-
-    function getRecentReviewsCount($conn)
-    {
-        /*$sql = "SELECT COUNT(*) as total FROM review 
-                WHERE review_date >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-        return $data['total'];*/
-    }
-    
     
     function getTechnicianReviews($connectionObject) {
         $sql = "SELECT appointment_id, customer_id, technician_id, 
@@ -454,9 +205,6 @@ class myDB
                 WHERE technician_rating > 0";
     
         $result = $connectionObject->query($sql);
-        if (!$result) {
-            die("SQL Error in getTechnicianReviews: " . $connectionObject->error);
-        }
         return $result;
     }
     
@@ -471,16 +219,9 @@ class myDB
                 WHERE customer_rating > 0";
     
         $result = $connectionObject->query($sql);
-        if (!$result) {
-            die("SQL Error in getCustomerReviews: " . $connectionObject->error);
-        }
         return $result;
     }
     
-    
-    
-    
-
     function getProductReviews($connectionObject) {
         $sql = "SELECT o.order_id, 
                        c.email AS customer_email, 
@@ -494,9 +235,6 @@ class myDB
                 WHERE o.customer_rating IS NOT NULL";
     
         $result = $connectionObject->query($sql);
-        if (!$result) {
-            die("SQL Error in getProductReviews: " . $connectionObject->error);
-        }
         return $result;
     }
     
@@ -506,4 +244,15 @@ class myDB
     {
         $connectionObject->close();
     }
-}
+
+    
+    function searchProducts($conn, $searchTerm) {
+        $sql = "SELECT pid, type, brand, quantity, status, photo, about, price  FROM product  WHERE type LIKE '%$searchTerm%'  OR brand LIKE '%$searchTerm%'  ;";
+        
+        $result = $conn->query($sql);
+        return $result;
+    }
+
+        
+ }   
+    

@@ -3,55 +3,49 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, sans-serif;
     background-color: #003366;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Make body at least full viewport height */
+    min-height: 100vh;
     margin: 0;
 }
 .header {
     background-color: #003366;
     display: flex;
-    justify-content: space-between; /* Space between logo and admin info */
-    align-items: center; /* Center items vertically */
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
-    height:50px; /* Add some padding */
+    height:50px;
 }
-
 .admin-info {
     display: flex;
     align-items: center;
 }
-
 .admin-link {
     display: flex;
     align-items: center;
     text-decoration: none;
-    font-weight: bold; /* Removes underline from link */
-    color: #333; /* Text color */
+    font-weight: bold;
+    color: #333;
 }
-
 .admin-link-active {
     display: flex;
     align-items: center;
     text-decoration: none;
-    font-weight: bold; /* Removes underline from link */
-    color: #ffffff; /* Text color */
+    font-weight: bold;
+    color: #ffffff;
 }
-
 .admin-image {
-    border-radius: 50%; /* Makes the image round */
-    width: 40px; /* Sets width */
-    height: 40px; /* Sets height */
-    margin-right: 8px; /* Space between image and name */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
 }
-
 .admin-name {
     font-size: 20px;
-    color:white; /* Font size for the name */
+    color:white;
 }
 .main-logo{
     display: inline-block;
@@ -73,12 +67,10 @@ body {
     text-decoration: none;
     padding: -50px;
 }
-
 .navbar {
     background-color: #007bff;
     padding: 10px 0;
 }
-
 .nav-container {
     list-style: none;
     padding: 0;
@@ -88,16 +80,13 @@ body {
     gap: 20px;
     flex-wrap: wrap;
 }
-
 .navbar table {
     width: 100%;
 }
-
 .navbar table td {
     text-align: center;
     padding: 0;
 }
-
 .navbar table td a {
     color: #fff;
     text-decoration: none;
@@ -105,7 +94,6 @@ body {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-
 .navbar table td a:hover {
     background-color: #0056b3;
 }
@@ -122,10 +110,8 @@ body {
     text-align: center;
     padding: 20px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: auto; /* Push footer to bottom */
+    margin-top: auto;
 }
-
-
 .content-header {
     display: flex;
     justify-content: space-between;
@@ -133,20 +119,17 @@ body {
     margin-bottom: 30px;
     padding: 0 115px;
 }
-
 .content-header h2 {
     margin: 0;
     text-align: left;
 }
-
 .search-container {
     display: flex;
     align-items: center;
-    width: 400px;  /* Increased width */
+    width: 400px;
     margin: 0;
     padding: 0;
 }
-
 .search-container input {
     width: 100%;
     padding: 12px 20px;
@@ -155,7 +138,6 @@ body {
     font-size: 16px;
     background: white;
 }
-
 .search-btn {
     padding: 12px 20px;
     background: #007bff;
@@ -166,13 +148,10 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .search-icon {
     width: 20px;
     height: 20px;
 }
-
-/* Add this new class to wrap your main content */
 .main-content {
     flex: 1;
     display: flex;

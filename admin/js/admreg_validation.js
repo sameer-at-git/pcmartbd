@@ -133,6 +133,22 @@ function validateForm() {
 
 function confirmationBox() {
     if (confirm("Are you sure you want to clear the form?")) {
-        document.getElementById("adminForm").reset(); 
+        document.getElementById("adminForm").reset();
+        document.getElementById("emailerr").innerHTML = "";
+        document.getElementById("passerr").innerHTML = "";
+        document.getElementById("conpasserr").innerHTML = "";
+        document.getElementById("permiterr").innerHTML = "";
+        document.getElementById("phoneerr").innerHTML = "";
+        document.getElementById("gendererr").innerHTML = "";
+        document.getElementById("nameerr").innerHTML = ""; 
+        document.getElementById("email").value = "";
+        document.getElementById("pass").value = "";
+        document.getElementById("conpass").value = "";
+        document.getElementById("permit").value = "0";
+        document.getElementById("phone").value = "";
+        document.getElementById("uname").value = "";
+        document.getElementById("bio").value = "";
+        document.getElementById("dob").value = "";
+        document.getElementById("doj").value = "";
     }
 }

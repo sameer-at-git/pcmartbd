@@ -44,10 +44,9 @@ $userInfo = $db->getUserInfo($conn, $aid);
             <table>
                 <tr>
                     <td><a href="../layout/home.php" class="active">Home</a></td>
-                    <td><a href="../layout/dashboard.php">Dashboard</a></td>
                     <td><a href="../layout/messages.php">Messages</a></td>
                     <td><a href="../layout/update_profile.php">Account</a></td>
-                    <td><a href="../layout/contact_admin.php">Contact Admins</a></td>
+                    <td><a href="../layout/broadcast.php">Broadcast</a></td>
                     <td><a href="../layout/contact_user.php">Contact User</a></td>
                     <td><a href="../functions/reviews.php">Reviews</a></td>
                     <td><a href="../../control/sessionout.php">Logout</a></td>
@@ -57,25 +56,44 @@ $userInfo = $db->getUserInfo($conn, $aid);
     </div>
     <div class="form-container">
     <h2>Add Employee</h2>
-    <form action="../../control/employee_reg_control.php" method="post" enctype="multipart/form-data">
+    <form id="employeeForm" action="../../control/employee_reg_control.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
         <fieldset>
             <legend><b>Employee Personal Details</b></legend>
             <table>
             <tr>
                     <td>First Name :</td>
-                    <td><input type="text" name="fname" placeholder="Enter Your Full Name" ></td>
-                </tr><tr>
+                    <td><input type="text" name="fname" id="fname" placeholder="Enter Your First Name" onkeyup="validateFirstName()"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="fnameerr" class="error"></p></td>
+                </tr>
+                
+                <tr>
                     <td>Last Name :</td>
-                    <td><input type="text" name="lname" placeholder="Enter Your Full Name" ></td>
+                    <td><input type="text" name="lname" id="lname" placeholder="Enter Your Last Name" onkeyup="validateLastName()"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="lnameerr" class="error"></p></td>
                 </tr>
                 
                 <tr>
                     <td>Phone Number :</td>
-                    <td><input type="number" name="number"></td>
+                    <td><input type="number" name="number" id="phone" onkeyup="validatePhone()"></td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td><p id="phoneerr" class="error"></p></td>
+                </tr>
+                
+                <tr>
                     <td>Date of Birth :</td>
-                    <td><input type="date" name="dob"></td>
+                    <td><input type="date" name="dob" id="dob" onchange="validateDOB()"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="doberr" class="error"></p></td>
                 </tr>
                 <tr>
                     <td>Present Address :</td>
@@ -90,14 +108,18 @@ $userInfo = $db->getUserInfo($conn, $aid);
                 <tr>
                     <td>Gender :</td>
                     <td>
-                        <label for="101">
-                            <input type="radio" name="gender" value="Male" id="101">Male
+                        <label for="male">
+                            <input type="radio" name="gender" value="Male" id="male" onchange="validateGender()">Male
                         </label>
-                        <label for="102">
-                            <input type="radio" name="gender" value="Female" id="102">Female
+                        <label for="female">
+                            <input type="radio" name="gender" value="Female" id="female" onchange="validateGender()">Female
                         </label>
                         
                     </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="gendererr" class="error"></p></td>
                 </tr>
                 <tr>
                     <td>Marital Status :</td>
@@ -129,16 +151,20 @@ $userInfo = $db->getUserInfo($conn, $aid);
                 <tr>
                     <td>Employment :</td>
                     <td>
-                        <label for="101">
-                            <input type="radio" name="employment" value="Full" id="101">Full Time
+                        <label for="full">
+                            <input type="radio" name="employment" value="Full" id="full" onchange="validateEmployment()">Full Time
                         </label>
-                        <label for="102">
-                            <input type="radio" name="employment" value="Part" id="102">Part Time
+                        <label for="part">
+                            <input type="radio" name="employment" value="Part" id="part" onchange="validateEmployment()">Part Time
                         </label>
-                        <label for="103">
-                            <input type="radio" name="employment" value="Intern" id="103">Internship
+                        <label for="intern">
+                            <input type="radio" name="employment" value="Intern" id="intern" onchange="validateEmployment()">Internship
                         </label>
                     </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="employerr" class="error"></p></td>
                 </tr>
                 
             </table>
@@ -149,15 +175,27 @@ $userInfo = $db->getUserInfo($conn, $aid);
             <table>
                 <tr>
                     <td>Email :</td>
-                    <td><input type="email" name="email" placeholder="abcd@gmail.com"></td>
+                    <td><input type="text" name="email" id="email" placeholder="Enter Your Email" onkeyup="validateEmail()"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="emailerr" class="error"></p></td>
                 </tr>
                 <tr>
                     <td>Password :</td>
-                    <td><input type="password" name="pass" placeholder="Enter Your Password"></td>
+                    <td><input type="password" name="pass" id="pass" placeholder="Enter Your Password" onkeyup="validatePassword()"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="passerr" class="error"></p></td>
                 </tr>
                 <tr>
                     <td>Confirm Password :</td>
-                    <td><input type="password" name="confirmpass" placeholder="Re-Enter to Confirm"></td>
+                    <td><input type="password" name="confirmpass" id="confirmpass" placeholder="Re-Enter to Confirm" onkeyup="validateConfirmPassword()"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="conpasserr" class="error"></p></td>
                 </tr>
             </table>
         </fieldset>
@@ -169,7 +207,7 @@ $userInfo = $db->getUserInfo($conn, $aid);
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><input type="reset" value="Clear"></td>
+                <td><input type="reset" value="Clear" onclick="confirmationBox()"></td>
             </tr>
         </table>
     </form>
@@ -177,6 +215,8 @@ $userInfo = $db->getUserInfo($conn, $aid);
     <div class="footer">
         &copy; 2024 PCMartBD. All rights reserved.
     </div>
+    <script src="../../js/empreg_validation.js"></script>
+
 </body>
 
 </html>
